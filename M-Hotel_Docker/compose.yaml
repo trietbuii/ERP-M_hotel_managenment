@@ -1,0 +1,33 @@
+services:
+  db:
+    container_name: m-hotel-db
+    image: postgres:15
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+      POSTGRES_USER: ${POSTGRES_USER:-odoo}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dev_only_change_me}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  web:
+    container_name: m-hotel-web
+    image: ${ODOO_IMAGE:-odoo:19}
+    depends_on:
+      - db
+    ports:
+      - "${ODOO_PORT:-8069}:8069"
+    environment:
+      HOST: db
+      USER: ${POSTGRES_USER:-odoo}
+      PASSWORD: ${POSTGRES_PASSWORD:-dev_only_change_me}
+    volumes:
+      - odoo-data:/var/lib/odoo
+      - ./addons:/mnt/extra-addons:z
+      - ./config:/etc/odoo:z
+    command: ["odoo", "--config=/etc/odoo/odoo.conf"]
+    restart: unless-stopped
+
+volumes:
+  db-data:
+  odoo-data:

@@ -1,0 +1,199 @@
+========================================================================================
+THÔNG TIN MÔI TRƯỜNG VẬN HÀNH & TRIỂN KHAI HỆ THỐNG ERP M-HOTEL
+DỰ ÁN: ERP QUẢN LÝ VẬN HÀNH KHÁCH SẠN M-HOTEL (BÌNH ĐỊNH)
+HỌC PHẦN: IS336 - HOẠCH ĐỊNH NGUỒN LỰC DOANH NGHIỆP | NHÓM 12
+PHIÊN BẢN CẤU HÌNH: 19.0.1.0.0 (ODOO 19 COMMUNITY + DOCKER + POSTGRESQL 15 + PYTHON 3.12)
+========================================================================================
+
+PHẦN 1: TỔNG QUAN KIẾN TRÚC MÔI TRƯỜNG CÔNG NGHỆ ODOO 19
+----------------------------------------------------------------------------------------
+Hệ thống ERP M-Hotel đã được chuyển đổi và nâng cấp hoàn chỉnh lên nền tảng Odoo 19 Community,
+triển khai theo kiến trúc Container hóa (Docker) độc lập và chuẩn mực:
+
+1. Hệ điều hành máy trạm (Host OS):
+   - Linux (Ubuntu 64-bit AMD64) / Windows 11 WSL2
+   - Quản lý Container: Docker Engine & Docker Compose v2
+
+2. Nền tảng Container hóa:
+   - Docker Service: Docker Desktop / Docker CE
+   - Docker Compose: v2.x (điều phối cụm web và db)
+   - Mạng nội bộ Docker: Driver bridge (tên mạng `m-hotel_docker_default`)
+
+3. Ứng dụng lõi ERP:
+   - Phiên bản: Odoo 19.0 Community Edition (Docker Image: `odoo:19`, Build: 19.0-20260926)
+   - Môi trường thực thi: Python 3.12.3 / Werkzeug 3.0.1
+   - Xuất báo cáo PDF: Wkhtmltopdf 0.12.5 (tích hợp sẵn trong container)
+   - Kiến trúc giao diện: 100% Giao diện chuẩn Native Odoo Backend (Form, List, Kanban, Search, Pivot, Graph, Chatter)
+
+4. Hệ quản trị cơ sở dữ liệu (DBMS):
+   - PostgreSQL: Phiên bản 15 (Docker Image: `postgres:15`)
+   - Tên cơ sở dữ liệu: `mhotel_dev`
+   - Quản lý lưu trữ: Persistent Docker Volumes (`odoo-data` và `db-data`)
+
+5. Kiến trúc Module hóa (Modular Architecture):
+   Hệ thống gồm 6 module nghiệp vụ chuyên biệt + 1 meta-module cài đặt tổng:
+   (1) `m_hotel_base`: Nền tảng danh mục, chi nhánh khách sạn, hạng phòng, phòng, giá mùa & phân quyền 5 nhóm người dùng.
+   (2) `m_hotel_booking`: Đặt phòng (theo giờ / theo đêm), Check-in, Check-out, Folio dịch vụ & Hóa đơn tự động (Account).
+   (3) `m_hotel_housekeeping`: Quản lý buồng phòng, nhiệm vụ dọn dẹp, xử lý sự cố & khóa phòng khẩn cấp.
+   (4) `m_hotel_inventory`: Định mức vật tư phòng (Amenities/Minibar), tự động xuất kho tiêu hao qua module Stock.
+   (5) `m_hotel_asset`: Trang thiết bị trong phòng, liên kết bảo trì kỹ thuật qua module Maintenance.
+   (6) `m_hotel_report`: Báo cáo công suất buồng phòng (Occupancy Rate) & phân tích doanh thu.
+   (7) `m_hotel`: Meta-package umbrella cài đặt 1 chạm toàn bộ hệ thống.
+
+
+========================================================================================
+PHẦN 2: THÔNG SỐ KẾT NỐI, CỔNG MẠNG & TÀI KHOẢN ĐĂNG NHẬP
+----------------------------------------------------------------------------------------
+
+I. ĐỊA CHỈ TRUY CẬP (URL & PORTS):
+1. Ứng dụng ERP M-Hotel (Odoo 19 Local):
+   - Địa chỉ URL: http://localhost:8069  (hoặc http://127.0.0.1:8069)
+   - Cổng Port Host: 8069 -> Port Container: 8069
+
+2. Cơ sở dữ liệu PostgreSQL (Nội bộ):
+   - Cổng Port: 5432 (kết nối nội bộ mạng Docker container `db:5432`)
+
+3. Quản lý Cơ sở dữ liệu Odoo (Database Manager):
+   - Địa chỉ URL: http://localhost:8069/web/database/manager
+   - Master Password: dev_only_change_me (hoặc mhotel_dev_master_change_me)
+
+---
+
+II. THÔNG TIN TÀI KHOẢN & MẬT KHẨU (CREDENTIALS):
+
+1. Tài khoản Quản trị Odoo ERP (Admin Account):
+   - Tên cơ sở dữ liệu (Database Name): mhotel_dev
+   - Tên đăng nhập (Email/Login): admin
+   - Mật khẩu (Password): admin
+   - Vai trò: System Administrator (Quản trị viên toàn quyền hệ thống)
+
+2. Tài khoản Cơ sở dữ liệu PostgreSQL (Database Credentials):
+   - Database Host: db
+   - Database Port: 5432
+   - Database User: odoo
+   - Database Password: dev_only_change_me
+   - Database Name: mhotel_dev
+
+
+========================================================================================
+PHẦN 3: ĐẶC TẢ TƯƠNG THÍCH CHUẨN ODOO 19 (MIGRATION HIGHLIGHTS)
+----------------------------------------------------------------------------------------
+
+Khi chuyển đổi từ Odoo 17 sang Odoo 19 Community, mã nguồn đã được cập nhật đáp ứng 100%
+chuẩn kiến trúc kỹ thuật mới của Odoo 19:
+
+1. Chuyển đổi định dạng View danh sách:
+   - Trong Odoo 19, thẻ `<tree>` đã bị loại bỏ hoàn toàn khỏi RelaxNG schema.
+   - Toàn bộ các file XML view đã chuyển sang thẻ `<list>` và `</list>`.
+   - Các thuộc tính `view_mode` trong các action `ir.actions.act_window` được khai báo dạng `kanban,list,form`.
+
+2. Cập nhật cơ chế ràng buộc cơ sở dữ liệu (Database Constraints):
+   - Odoo 19 loại bỏ thuộc tính `_sql_constraints` kiểu tuple cũ.
+   - Chuyển đổi sang `models.Constraint('unique(...)', 'Thông báo lỗi')` chuẩn Odoo 19 ORM.
+   - Áp dụng trên `hotel.room.type` (mã hạng phòng duy nhất theo cơ sở) và `hotel.room` (số phòng duy nhất theo cơ sở).
+
+3. Chuẩn hóa thẻ tìm kiếm `<search>` & `<group>`:
+   - Loại bỏ các thuộc tính không hợp lệ trong RelaxNG Odoo 19: `expand="0"` và `string="Nhóm theo"` trên thẻ `<group>` bên trong `<search>`.
+   - Giữ nguyên nhóm bộ lọc `context="{'group_by': ...}"` hoạt động mượt mà trên thanh tìm kiếm tiêu chuẩn.
+
+4. Cập nhật nhóm quyền bảo mật `res.groups`:
+   - Phù hợp với thay đổi lược đồ quyền hạn người dùng Odoo 19 (chuyển sang `privilege_id` thay vì `category_id`).
+
+5. Chuẩn giao diện:
+   - 100% Native Backend Views của Odoo 19, hỗ trợ đầy đủ Desktop và Mobile Responsive.
+   - Tuyệt đối không can thiệp các đoạn mã HTML/JS ngoài luồng hay iframe bên thứ ba, bảo đảm tính ổn định lâu dài.
+
+
+========================================================================================
+PHẦN 4: THỐNG KÊ DỮ LIỆU ĐANG VẬN HÀNH TRÊN MÔI TRƯỜNG ODOO 19
+----------------------------------------------------------------------------------------
+
+Dữ liệu mẫu chuẩn hóa (Demo Data) đã được nạp đầy đủ vào database `mhotel_dev`:
+
+1. Cơ sở khách sạn (res.company / Multi-company): 02 Cơ sở
+   - hotel_quynhon: M-Hotel Quy Nhơn Beach (01 Đường Xuân Diệu, TP. Quy Nhơn)
+   - hotel_nhonly: M-Hotel Nhơn Lý - Eo Gió (Thôn Lý Lương, Xã Nhơn Lý, Quy Nhơn)
+
+2. Hạng phòng (hotel.room.type): 05 Hạng phòng
+   - RT-STD: Phòng Tiêu chuẩn Standard (650.000 đ/đêm | 150.000 đ/giờ | Sức chứa: 2)
+   - RT-SUP: Phòng Superior Double (1.100.000 đ/đêm | 250.000 đ/giờ | Sức chứa: 2)
+   - RT-DLX: Phòng Cao cấp Deluxe Ocean View (1.450.000 đ/đêm | 350.000 đ/giờ | Sức chứa: 2)
+   - RT-FAM: Phòng Gia đình Family Suite (1.800.000 đ/đêm | 450.000 đ/giờ | Sức chứa: 4)
+   - RT-EXE: Phòng Tổng thống Executive Suite (2.800.000 đ/đêm | 650.000 đ/giờ | Sức chứa: 2)
+
+3. Danh mục phòng nghỉ (hotel.room): 44 Phòng
+   - Cơ sở 1 - Quy Nhơn Beach (24 phòng):
+     + Tầng 1: P.101, P.102, P.103, P.104, P.105, P.106
+     + Tầng 2: P.201, P.202, P.203, P.204, P.205, P.206
+     + Tầng 3: P.301, P.302, P.303, P.304, P.305, P.306
+     + Tầng 4: P.401, P.402, P.403, P.404, P.405, P.406
+   - Cơ sở 2 - Nhơn Lý - Eo Gió (20 phòng):
+     + Tầng 1: P.501, P.502, P.503, P.504, P.505
+     + Tầng 2: P.601, P.602, P.603, P.604, P.605
+     + Tầng 3 (Seaview Bungalows): P.701, P.702, P.703, P.704, P.705
+     + Tầng 4 (Cliffside Panorama Villas): P.801, P.802, P.803, P.804, P.805
+
+4. Đơn đặt phòng (hotel.booking): Đầy đủ các kịch bản lưu trú
+   - Thuê theo đêm (Night Booking) & Thuê theo giờ (Hourly Booking)
+   - Trạng thái: Dự thảo (Draft), Đã xác nhận (Confirmed), Đang ở (Check-in), Đã trả (Check-out)
+   - Cơ chế phòng ngừa đặt trùng lấn (Overbooking Prevention) bảo đảm 100% không bao giờ có xung đột ngày hoặc giờ.
+
+5. Nhiệm vụ buồng phòng & Sự cố (hotel.housekeeping.task, hotel.incident):
+   - Nhiệm vụ tự động sinh ra khi khách Check-out hoặc yêu cầu thủ công
+   - Báo cáo sự cố phòng, tự động chuyển phòng sang trạng thái Bảo trì kỹ thuật.
+
+6. Trang thiết bị & Bảo trì (maintenance.equipment, maintenance.request):
+   - Tích hợp trực tiếp vào module chuẩn `maintenance` của Odoo 19
+   - Quản lý điều hòa, smart TV, khóa thẻ từ adel, bồn tắm sục liên kết từng mã phòng.
+
+7. Định mức vật tư & Kho vận (hotel.supply.norm, stock.picking):
+   - Tích hợp trực tiếp module chuẩn `stock` của Odoo 19
+   - Tự động xuất kho tiêu hao đồ Amenities và Minibar khi buồng phòng hoàn tất dọn dẹp.
+
+
+========================================================================================
+PHẦN 5: BỘ LỆNH QUẢN TRỊ & VẬN HÀNH HỆ THỐNG TRÊN ODOO 19 (CLI CHEAT SHEET)
+----------------------------------------------------------------------------------------
+
+Mở Terminal tại thư mục `M-Hotel_Docker`:
+
+1. Khởi động toàn bộ cụm dịch vụ Odoo 19 (Daemon):
+   docker compose up -d
+
+2. Xem danh sách containers đang chạy:
+   docker compose ps
+
+3. Xem nhật ký hoạt động (Logs) của Odoo 19:
+   docker compose logs -f web
+
+4. Khởi động lại dịch vụ Web Odoo:
+   docker compose restart web
+
+5. Nâng cấp (Upgrade) toàn bộ các module M-Hotel sau khi chỉnh sửa XML/Python:
+   docker exec -i m-hotel-web odoo -c /etc/odoo/odoo.conf -d mhotel_dev -u m_hotel --stop-after-init
+
+6. Chạy bộ kiểm thử tự động (Unit Tests) trên Odoo 19:
+   docker exec -i m-hotel-web odoo -c /etc/odoo/odoo.conf -d mhotel_dev --http-port=8070 --test-tags /m_hotel_booking,/m_hotel_housekeeping,/m_hotel_inventory --stop-after-init
+
+7. Sao lưu dữ liệu Database ra file SQL:
+   docker exec -i m-hotel-db pg_dump -U odoo mhotel_dev > backup_mhotel_dev_v19.sql
+
+8. Dừng hệ thống khi không sử dụng:
+   docker compose stop
+
+
+========================================================================================
+PHẦN 6: KẾT QUẢ KIỂM THỬ TỰ ĐỘNG (UNIT TEST VERIFICATION ON ODOO 19)
+----------------------------------------------------------------------------------------
+
+Đã chạy kiểm thử thực tế trên Odoo 19.0-20260926 bên trong container:
+- `m_hotel_booking`: 7 tests, 0 errors, 0 failures (0.81s)
+- `m_hotel_housekeeping`: 4 tests, 0 errors, 0 failures (0.16s)
+- `m_hotel_inventory`: 3 tests, 0 errors, 0 failures (0.17s)
+Tổng kết: 0 failed, 0 error(s) - 100% PASS RATE.
+
+
+========================================================================================
+BẢN QUYỀN DỰ ÁN: NHÓM 12 - HỌC PHẦN IS336 HOẠCH ĐỊNH NGUỒN LỰC DOANH NGHIỆP
+KHOA HỆ THỐNG THÔNG TIN | NĂM HỌC 2026 - 2027
+========================================================================================
