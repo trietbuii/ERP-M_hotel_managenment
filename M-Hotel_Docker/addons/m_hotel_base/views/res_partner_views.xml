@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_hotel_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.hotel.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Thông Tin Lưu Trú Khách Sạn" name="hotel_info">
+                    <group>
+                        <group string="Giấy tờ định danh &amp; Quốc tịch">
+                            <field name="id_card_number"/>
+                            <field name="nationality_id"/>
+                            <field name="gender"/>
+                            <field name="birthdate"/>
+                        </group>
+                        <group string="Phân loại &amp; Ghi chú">
+                            <field name="hotel_guest_type"/>
+                            <field name="hotel_notes" placeholder="Sở thích, phòng tầng cao, dị ứng món ăn..."/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Filter Khách Lưu Trú trong Contacts -->
+    <record id="view_res_partner_filter_hotel" model="ir.ui.view">
+        <field name="name">res.partner.search.hotel</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="id_card_number"/>
+                <filter string="Khách VIP" name="filter_hotel_vip" domain="[('hotel_guest_type', '=', 'vip')]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_view_hotel" model="ir.ui.view">
+        <field name="name">product.template.form.hotel</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options']" position="inside">
+                <span class="d-inline-block">
+                    <field name="is_hotel_service"/>
+                    <label for="is_hotel_service"/>
+                </span>
+                <span class="d-inline-block">
+                    <field name="is_hotel_supply"/>
+                    <label for="is_hotel_supply"/>
+                </span>
+                <span class="d-inline-block">
+                    <field name="is_hotel_minibar"/>
+                    <label for="is_hotel_minibar"/>
+                </span>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Filters cho Dịch vụ & Vật tư khách sạn -->
+    <record id="product_template_search_view_hotel" model="ir.ui.view">
+        <field name="name">product.template.search.hotel</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter string="Dịch Vụ Khách Sạn" name="filter_hotel_service" domain="[('is_hotel_service', '=', True)]"/>
+                <filter string="Vật Tư Buồng Phòng" name="filter_hotel_supply" domain="[('is_hotel_supply', '=', True)]"/>
+                <filter string="Đồ Minibar" name="filter_hotel_minibar" domain="[('is_hotel_minibar', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

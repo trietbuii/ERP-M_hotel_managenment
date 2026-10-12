@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu Khách Sạn -->
+    <menuitem id="menu_hotel_root"
+              name="Khách Sạn (M-Hotel)"
+              web_icon="m_hotel_base,static/description/icon.png"
+              sequence="10"/>
+
+    <!-- Menu Sơ đồ & Danh mục phòng -->
+    <menuitem id="menu_hotel_rooms_parent"
+              name="Sơ Đồ &amp; Phòng"
+              parent="menu_hotel_root"
+              sequence="10"/>
+
+    <menuitem id="menu_hotel_room_map"
+              name="Sơ Đồ Phòng Trực Quan"
+              parent="menu_hotel_rooms_parent"
+              action="action_hotel_room_map"
+              sequence="1"/>
+
+    <menuitem id="menu_hotel_room_list"
+              name="Danh Sách Phòng"
+              parent="menu_hotel_rooms_parent"
+              action="action_hotel_room_list"
+              sequence="2"/>
+
+    <!-- Menu Khách lưu trú -->
+    <record id="action_hotel_guests" model="ir.actions.act_window">
+        <field name="name">Khách Lưu Trú</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('is_company', '=', False)]</field>
+        <field name="context">{'default_is_company': False}</field>
+    </record>
+
+    <menuitem id="menu_hotel_guest_parent"
+              name="Khách Hàng"
+              parent="menu_hotel_root"
+              sequence="40"/>
+
+    <menuitem id="menu_hotel_guest_list"
+              name="Hồ Sơ Khách Lưu Trú"
+              parent="menu_hotel_guest_parent"
+              action="action_hotel_guests"
+              sequence="1"/>
+
+    <!-- Menu Cấu hình -->
+    <menuitem id="menu_hotel_config_parent"
+              name="Cấu Hình"
+              parent="menu_hotel_root"
+              sequence="100"
+              groups="group_hotel_manager"/>
+
+    <menuitem id="menu_hotel_room_type"
+              name="Hạng Phòng"
+              parent="menu_hotel_config_parent"
+              action="action_hotel_room_type"
+              sequence="1"/>
+
+    <menuitem id="menu_hotel_room_rate"
+              name="Biểu Giá Theo Mùa &amp; Dịp Lễ"
+              parent="menu_hotel_config_parent"
+              action="action_hotel_room_rate"
+              sequence="2"/>
+</odoo>
