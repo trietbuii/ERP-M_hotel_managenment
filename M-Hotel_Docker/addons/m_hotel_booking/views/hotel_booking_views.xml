@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_hotel_booking_tree" model="ir.ui.view">
+        <field name="name">hotel.booking.tree</field>
+        <field name="model">hotel.booking</field>
+        <field name="arch" type="xml">
+            <list string="Danh Sách Đặt Phòng"
+                  decoration-muted="state == 'cancel'"
+                  decoration-info="state == 'confirmed'"
+                  decoration-success="state == 'check_in'"
+                  decoration-warning="state == 'check_out'"
+                  decoration-primary="state == 'invoiced'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="room_id"/>
+                <field name="room_type_id"/>
+                <field name="rent_type"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <field name="amount_total" widget="monetary"/>
+                <field name="amount_residual" widget="monetary"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="state" widget="badge"
+                       decoration-muted="state == 'cancel'"
+                       decoration-info="state == 'confirmed'"
+                       decoration-success="state == 'check_in'"
+                       decoration-warning="state == 'check_out'"
+                       decoration-primary="state == 'invoiced'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Calendar View -->
+    <record id="view_hotel_booking_calendar" model="ir.ui.view">
+        <field name="name">hotel.booking.calendar</field>
+        <field name="model">hotel.booking</field>
+        <field name="arch" type="xml">
+            <calendar string="Lịch Đặt Phòng"
+                      date_start="check_in"
+                      date_stop="check_out"
+                      color="state"
+                      mode="month"
+                      quick_create="0">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="room_id"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_hotel_booking_form" model="ir.ui.view">
+        <field name="name">hotel.booking.form</field>
+        <field name="model">hotel.booking</field>
+        <field name="arch" type="xml">
+            <form string="Phiếu Đặt Phòng">
+                <header>
+                    <field name="invoice_id" invisible="1"/>
+                    <button name="action_confirm" string="Xác Nhận Giữ Phòng" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_check_in" string="Check-in (Nhận Phòng)" type="object" class="btn-success" invisible="state != 'confirmed'"/>
+                    <button name="action_check_out" string="Check-out (Trả Phòng)" type="object" class="btn-warning" invisible="state != 'check_in'"/>
+                    <button name="action_create_invoice" string="Tạo Hóa Đơn Khách Hàng" type="object" class="btn-info" invisible="state not in ('check_out', 'check_in') or invoice_id"/>
+                    <button name="action_cancel" string="Hủy Đặt Phòng" type="object" invisible="state not in ('draft', 'confirmed')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,check_in,check_out,invoiced"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_invoice" type="object" class="oe_stat_button" icon="fa-pencil-square-o" invisible="invoice_count == 0">
+                            <field name="invoice_count" widget="statinfo" string="Hóa đơn"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <span class="o_form_label">Mã Đặt Phòng</span>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Khách hàng &amp; Phòng">
+                            <field name="partner_id"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="company_id"/>
+                            <field name="room_id"/>
+                            <field name="room_type_id"/>
+                        </group>
+                        <group string="Thời gian &amp; Hình thức thuê">
+                            <field name="rent_type" widget="radio"/>
+                            <field name="check_in" invisible="rent_type != 'night'" required="rent_type == 'night'"/>
+                            <field name="check_out" invisible="rent_type != 'night'" required="rent_type == 'night'"/>
+                            <field name="nights_count" invisible="rent_type != 'night'"/>
+                            
+                            <field name="hour_date" invisible="rent_type != 'hour'" required="rent_type == 'hour'"/>
+                            <field name="hour_start" invisible="rent_type != 'hour'" required="rent_type == 'hour'"/>
+                            <field name="hours_duration" invisible="rent_type != 'hour'" required="rent_type == 'hour'"/>
+                            <field name="hour_end" invisible="rent_type != 'hour'"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Dịch Vụ &amp; Minibar (Folio)" name="folio">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="quantity"/>
+                                    <field name="price_unit" widget="monetary"/>
+                                    <field name="price_subtotal" widget="monetary"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="room_price"/>
+                                <field name="amount_room"/>
+                                <field name="amount_services"/>
+                                <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                    <label for="amount_total" string="Tổng cộng"/>
+                                </div>
+                                <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator"/>
+                                <field name="deposit_amount"/>
+                                <field name="amount_residual" class="oe_subtotal_footer_separator"/>
+                            </group>
+                        </page>
+                        <page string="Ghi chú &amp; Giấy tờ" name="notes">
+                            <group>
+                                <field name="id_card_number"/>
+                                <field name="note" placeholder="Yêu cầu riêng của khách hàng..."/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_hotel_booking_search" model="ir.ui.view">
+        <field name="name">hotel.booking.search</field>
+        <field name="model">hotel.booking</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Kiếm Đặt Phòng">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="phone"/>
+                <field name="room_id"/>
+                <separator/>
+                <filter string="Đang Lưu Trú" name="in_house" domain="[('state', '=', 'check_in')]"/>
+                <filter string="Đã Xác Nhận" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter string="Đã Trả Phòng" name="checked_out" domain="[('state', '=', 'check_out')]"/>
+                <group>
+                    <filter string="Phòng" name="group_by_room" context="{'group_by': 'room_id'}"/>
+                    <filter string="Trạng Thái" name="group_by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Hình Thức Thuê" name="group_by_rent_type" context="{'group_by': 'rent_type'}"/>
+                    <filter string="Chi Nhánh" name="group_by_company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_hotel_booking" model="ir.actions.act_window">
+        <field name="name">Đơn Đặt Phòng</field>
+        <field name="res_model">hotel.booking</field>
+        <field name="view_mode">list,calendar,form</field>
+        <field name="context">{}</field>
+    </record>
+</odoo>
