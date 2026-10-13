@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Danh mục phân quyền module M-Hotel -->
+    <record model="ir.module.category" id="module_category_m_hotel">
+        <field name="name">Quản lý Khách sạn M-Hotel</field>
+        <field name="description">Hệ thống phân quyền 5 vai trò (RBAC) cho dự án ERP Khách sạn M-Hotel</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <!-- 1. Vai trò: Buồng phòng (Housekeeping) -->
+    <record id="group_m_hotel_housekeeping" model="res.groups">
+        <field name="name">Buồng phòng &amp; Vệ sinh</field>
+        <field name="category_id" ref="module_category_m_hotel"/>
+    </record>
+
+    <!-- 2. Vai trò: Kỹ thuật & Bảo trì (Technician) -->
+    <record id="group_m_hotel_technician" model="res.groups">
+        <field name="name">Kỹ thuật &amp; Bảo trì sự cố</field>
+        <field name="category_id" ref="module_category_m_hotel"/>
+    </record>
+
+    <!-- 3. Vai trò: Kho vật tư & Minibar (Inventory) -->
+    <record id="group_m_hotel_inventory" model="res.groups">
+        <field name="name">Kho vật tư &amp; Kế toán Minibar</field>
+        <field name="category_id" ref="module_category_m_hotel"/>
+    </record>
+
+    <!-- 4. Vai trò: Lễ tân (Front Desk / Receptionist) -->
+    <record id="group_m_hotel_user" model="res.groups">
+        <field name="name">Nhân viên Lễ tân (Front Desk)</field>
+        <field name="category_id" ref="module_category_m_hotel"/>
+    </record>
+
+    <!-- 5. Vai trò: Quản lý / Giám đốc (Hotel Manager - Toàn quyền) -->
+    <record id="group_m_hotel_manager" model="res.groups">
+        <field name="name">Quản lý / Giám đốc điều hành</field>
+        <field name="category_id" ref="module_category_m_hotel"/>
+        <field name="implied_ids" eval="[
+            (4, ref('group_m_hotel_user')),
+            (4, ref('group_m_hotel_housekeeping')),
+            (4, ref('group_m_hotel_technician')),
+            (4, ref('group_m_hotel_inventory'))
+        ]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+    <!-- Record Rules: Phân quyền theo Chi nhánh / Cơ sở (Multi-Hotel) -->
+    <record id="rule_m_hotel_booking_branch" model="ir.rule">
+        <field name="name">Phân quyền Đặt phòng theo Chi nhánh</field>
+        <field name="model_id" ref="model_m_hotel_booking"/>
+        <field name="domain_force">['|', ('hotel_id', '=', False), ('hotel_id', 'in', user.company_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('group_m_hotel_user'))]"/>
+    </record>
+
+    <record id="rule_m_hotel_booking_manager" model="ir.rule">
+        <field name="name">Giám đốc xem toàn bộ Đặt phòng mọi chi nhánh</field>
+        <field name="model_id" ref="model_m_hotel_booking"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('group_m_hotel_manager'))]"/>
+    </record>
+</odoo>

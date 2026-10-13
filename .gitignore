@@ -1,0 +1,25 @@
+# Office temporary lock files
+~$*
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+
+# Docker persistent data volumes & local secrets
+M-Hotel_Docker/db-data/
+M-Hotel_Docker/odoo-data/
+M-Hotel_Docker/.env
+db-data/
+odoo-data/
+.env
+
+# Antigravity session & temporary logs
+session.json
+*.log
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+.DS_Store

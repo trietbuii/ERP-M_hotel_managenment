@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: dev_only_change_me
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  web:
+    image: odoo:17.0
+    depends_on:
+      - db
+    ports:
+      - "127.0.0.1:8069:8069"
+    environment:
+      HOST: db
+      USER: odoo
+      PASSWORD: dev_only_change_me
+    volumes:
+      - odoo-data:/var/lib/odoo
+      - ./addons:/mnt/extra-addons
+      - ./config:/etc/odoo
+    command: ["odoo", "--config=/etc/odoo/odoo.conf", "--dev=xml"]
+    restart: unless-stopped
+
+volumes:
+  db-data:
+  odoo-data:

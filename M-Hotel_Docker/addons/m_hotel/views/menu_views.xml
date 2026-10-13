@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="menu_m_hotel_root"
+              name="M-Hotel"
+              sequence="10"/>
+
+    <!-- Submenus -->
+    <menuitem id="menu_m_hotel_booking"
+              name="Đặt phòng"
+              parent="menu_m_hotel_root"
+              action="action_m_hotel_booking"
+              sequence="10"/>
+
+    <menuitem id="menu_m_hotel_room_management"
+              name="Phòng nghỉ"
+              parent="menu_m_hotel_root"
+              sequence="20"/>
+
+    <menuitem id="menu_m_hotel_room"
+              name="Sơ đồ &amp; Danh sách phòng"
+              parent="menu_m_hotel_room_management"
+              action="action_m_hotel_room"
+              sequence="10"/>
+
+    <menuitem id="menu_m_hotel_room_type"
+              name="Hạng phòng"
+              parent="menu_m_hotel_room_management"
+              action="action_m_hotel_room_type"
+              sequence="20"/>
+
+    <menuitem id="menu_m_hotel_service_request"
+              name="Sự vụ &amp; Buồng phòng"
+              parent="menu_m_hotel_root"
+              action="action_m_hotel_service_request"
+              sequence="30"/>
+
+    <menuitem id="menu_m_hotel_configuration"
+              name="Cấu hình &amp; Cơ sở"
+              parent="menu_m_hotel_root"
+              sequence="40"/>
+
+    <menuitem id="menu_m_hotel_branches"
+              name="Cơ sở khách sạn"
+              parent="menu_m_hotel_configuration"
+              action="action_m_hotel"
+              sequence="10"/>
+</odoo>

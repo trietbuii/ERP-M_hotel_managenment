@@ -1,0 +1,156 @@
+========================================================================================
+TÓM TẮT DỮ LIỆU ĐÃ CẤU HÌNH TRÊN ODOO & VAI TRÒ CHỨC NĂNG HỆ THỐNG
+DỰ ÁN: ERP QUẢN LÝ VẬN HÀNH KHÁCH SẠN M-HOTEL (BÌNH ĐỊNH)
+HỌC PHẦN: IS336 - HOẠCH ĐỊNH NGUỒN LỰC DOANH NGHIỆP | NHÓM 12
+========================================================================================
+
+PHẦN 1: HỆ THỐNG ODOO HIỆN TẠI ĐANG PHỤC VỤ CHỨC NĂNG GÌ?
+----------------------------------------------------------------------------------------
+Hệ thống Odoo (https://edu-m-hotel.odoo.com) hiện được cấu hình để đóng vai trò là "Nền tảng ERP lõi" (Core ERP Platform) phục vụ toàn bộ bài toán vận hành khách sạn M-Hotel theo đúng Project Charter đã duyệt:
+
+1. Phân hệ Bán hàng & Đặt phòng (Sales & Booking):
+   - Quản lý danh mục hạng phòng lưu trú và các gói dịch vụ gia tăng.
+   - Tiếp nhận thông tin khách lưu trú, tạo đơn đặt phòng (Sales Orders) với đầy đủ ngày nhận/trả phòng, đơn giá và số lượng đêm.
+   - Theo dõi lịch đặt phòng trực quan bằng chế độ Lịch (Sales Calendar View).
+
+2. Phân hệ Kho hàng & Tồn kho (Inventory Management):
+   - Quản lý danh mục hàng hóa tiêu thụ nhanh trong minibar (bia Quy Nhơn, nước ngọt, đặc sản bánh tráng nước dừa, hạt điều...).
+   - Quản lý vật tư tiêu hao phòng buồng (Amenities: bàn chải tre, dầu gội, sữa tắm, khăn tắm cotton).
+   - Kiểm soát số lượng tồn kho thực tế tại kho khách sạn (WH/Stock), tự động cảnh báo khi vật tư sắp hết.
+
+3. Phân hệ Hóa đơn & Kế toán (Invoicing & Accounting):
+   - Tự động kết chuyển chi phí từ đơn đặt phòng và dịch vụ phát sinh sang hóa đơn khách hàng (Customer Invoices).
+   - Kiểm tra, xác nhận và vào sổ kế toán (Posted) để ghi nhận doanh thu phòng và doanh thu minibar theo chuẩn kế toán.
+
+4. Phân hệ Bảo trì & Trang thiết bị (Maintenance & Asset Management):
+   - Quản lý hồ sơ tài sản, trang thiết bị cố định được trang bị trong từng phòng (Điều hòa, Smart Tivi, Khóa thẻ từ thông minh, Tủ lạnh minibar).
+   - Tiếp nhận yêu cầu sửa chữa/bảo trì khi có sự cố phát sinh (ví dụ: điều hòa không mát), phân công đội kỹ thuật xử lý và theo dõi tiến độ theo dạng Kanban (Tiếp nhận -> Đang sửa chữa -> Hoàn thành).
+
+5. Phân hệ Quản trị đa cơ sở (Multi-company / Chuỗi khách sạn):
+   - Phân tách và quản lý độc lập 2 cơ sở kinh doanh tại Bình Định (M-Hotel Quy Nhơn Beach và M-Hotel Nhơn Lý - Eo Gió) trên cùng một cơ sở dữ liệu dùng chung.
+
+6. Phân hệ Phân quyền người dùng (User & Role-based Access Control):
+   - Thiết lập cấu trúc người dùng tương ứng với 5 vai trò chính của khách sạn: Chủ/Quản lý, Lễ tân, Buồng phòng, Kỹ thuật bảo trì, Kho/Mua hàng.
+
+
+========================================================================================
+PHẦN 2: CHI TIẾT NHỮNG GÌ ĐÃ ĐƯỢC THIẾT LẬP TRỰC TIẾP TRÊN ODOO
+----------------------------------------------------------------------------------------
+
+I. MASTER DATA (DỮ LIỆU CHỦ):
+
+1. Cơ sở kinh doanh (Companies):
+   - Chi nhánh 1: M-Hotel Quy Nhơn Beach (Đường Xuân Diệu, TP. Quy Nhơn, Bình Định).
+   - Chi nhánh 2: M-Hotel Nhơn Lý – Eo Gió (Xã Nhơn Lý, TP. Quy Nhơn, Bình Định).
+
+2. Nhóm danh mục sản phẩm (Product Categories):
+   - Phong luu tru (Hạng phòng lưu trú)
+   - Dich vu khach san (Dịch vụ giặt ủi, ăn uống, tiện ích)
+   - Hang hoa Minibar (Đồ uống, đồ ăn vặt đóng gói)
+   - Vat tu tieu hao Amenities (Vật dụng phòng khách)
+
+3. Sản phẩm, Phòng & Dịch vụ:
+   - Phòng nghỉ:
+     + RT-STD: Phòng Tiêu chuẩn Standard (550.000 - 800.000 đ/đêm)
+     + RT-SUP: Phòng Superior Double (1.100.000 đ/đêm)
+     + RT-DLX: Phòng Cao cấp Deluxe Ocean View (1.150.000 - 1.500.000 đ/đêm)
+     + RT-FAM: Phòng Gia đình Family (1.600.000 đ/đêm)
+     + RT-SUI: Phòng Suite Hướng Biển (2.200.000 đ/đêm)
+     + RT-EXE: Phòng Executive Ocean View (2.800.000 đ/đêm)
+   - Dịch vụ khách sạn:
+     + SRV-LND: Dịch vụ Giặt ủi cao cấp (80.000 đ/lượt)
+     + SRV-BF: Dịch vụ Ăn sáng Buffet (120.000 đ/suất)
+     + SRV-MTO: Dịch vụ Thuê xe máy tay ga (150.000 đ/ngày)
+   - Hàng hóa Minibar: Bia Quy Nhơn lon, Bia Heineken, Nước khoáng Đảnh Thạnh, Bánh tráng nước dừa Tam Quan, Hạt điều rang muối Bình Định.
+   - Vật tư Amenities: Bộ bàn chải tre sinh học, Khăn tắm cotton cao cấp, Dầu gội sữa tắm thảo mộc Eco.
+   *(Đã tạo sẵn file import_products.csv gồm 44 bản ghi chuẩn hóa để nạp hàng loạt)*
+
+4. Khách hàng & Đối tác (Contacts):
+   - Đã mở rộng lên 22 hồ sơ đối tác và khách hàng thực tế (khách cá nhân, khách VIP, công ty lữ hành Saigontourist, Vietravel, Bùi Minh Triết,...).
+   *(Đã tạo sẵn file import_20_khach_hang.csv chuẩn hóa để import hàng loạt bất kỳ lúc nào)*
+
+5. Tồn kho thực tế (Inventory on Hand):
+   - Đã nhập số dư ban đầu tại kho khách sạn (WH/Stock):
+     + 120 lon Bia Quy Nhơn
+     + 60 gói Bánh tráng nước dừa Tam Quan
+     + 300 bộ Bàn chải & kem đánh răng sinh học
+
+6. Hồ sơ trang thiết bị phòng (Maintenance Equipment):
+   - Phòng 101 (Chi nhánh Quy Nhơn Beach):
+     + Điều hòa Panasonic Inverter 12000 BTU
+     + Smart Tivi Sony 55 inch 4K
+     + Khóa thẻ từ thông minh Adel
+     + Tủ lạnh Minibar Alaska 50L
+   *(Đã tạo sẵn file import_equipments.csv gồm 25 thiết bị trải đều các phòng)*
+
+
+II. TRANSACTION DATA (DỮ LIỆU GIAO DỊCH):
+
+1. Đơn bán hàng / Đặt phòng (Sales Orders):
+   - Đã tạo và xác nhận 7 đơn bán hàng (S00001 -> S00007) với tổng doanh thu đạt 31.393.000 VNĐ:
+     + S00001: Khách Nguyễn Văn An (Phòng Deluxe + Bia Quy Nhơn - 2.700.000 đ).
+     + S00002: Khách LE HOANG LONG CONSTRUCTION (Phòng Suite Hướng Biển - 4.915.000 đ).
+     + S00003: Khách Trần Mai Phương (Phòng Family + Giặt ủi - 5.368.000 đ).
+     + S00004: Khách Lê Hoàng Long (Phòng Suite Hướng Biển - 4.840.000 đ).
+     + S00005: Khách Trần Mai Phương (Phòng Family connecting - 5.280.000 đ).
+     + S00006: Khách Vũ Đình Trọng (Phòng Executive Ocean View - 3.450.000 đ).
+     + S00007: Khách LE HOANG LONG CONSTRUCTION (Phòng Suite Ocean View - 4.840.000 đ).
+   - Chế độ Lịch (Sales Calendar View): Giao diện lịch biểu thị trực quan trạng thái đặt phòng theo ngày/tuần/tháng trong tháng 10/2026.
+
+2. Hóa đơn tài chính (Customer Invoices):
+   - 100% 7 hóa đơn đã được lập và XÁC NHẬN VÀO SỔ (Posted status) với đầy đủ thuế VAT:
+     + INV/2026/00001 -> INV/2026/00007
+     + Tổng doanh thu ghi nhận sổ sách: 31.393.000 VNĐ (Chưa thuế: 29.105.000 VNĐ).
+
+3. Quản lý sự cố & Bảo trì phòng (Maintenance Requests & Equipment):
+   - Quản lý danh mục 7 thiết bị phòng cốt lõi (Điều hòa Daikin/Panasonic, Smart TV Sony/Samsung, Khóa thẻ từ Adel, Tủ lạnh Minibar).
+   - Tiếp nhận và điều phối 3 sự cố thực tế trên bảng Kanban:
+     + Cột "Đề nghị mới" (New): 2 yêu cầu (Khóa thẻ từ phòng 201 hết pin, Điều hòa phòng 101 không mát).
+     + Cột "Đang thực hiện" (In Progress): 1 yêu cầu (Tủ lạnh minibar phòng 102 không làm lạnh).
+
+4. Báo cáo & Phân tích thông minh (Reporting & Analytics):
+   - Biểu đồ phân tích doanh thu bán phòng (Sales Analysis) theo từng đối tượng khách hàng và đối tác du lịch.
+   - Bảng tổng hợp tồn kho vật tư thực tế (Stock on Hand).
+
+========================================================================================
+PHẦN 3: DANH SÁCH ẢNH CHỤP MINH CHỨNG SẴN SÀNG ĐỂ CHÈN VÀO BÁO CÁO DOCX:
+----------------------------------------------------------------------------------------
+Các file ảnh chuẩn nét cao đã được lưu ngay tại thư mục đồ án: D:\HK5\Hoach_Dinh\Đồ_Án\
+1. H1_Co_so_khach_san.png         -> Cấu hình chuỗi khách sạn đa cơ sở (Multi-company).
+2. H3_Danh_sach_phong_dich_vu.png -> Danh mục hạng phòng, dịch vụ, minibar, amenities (16 danh mục).
+3. H4_Danh_sach_khach_hang.png    -> Danh bạ khách hàng cá nhân, khách VIP và doanh nghiệp lữ hành.
+4. H5_Ton_kho_vat_tu.png          -> Báo cáo tồn kho vật tư Minibar và Amenities có số dư ban đầu.
+5. H6_Thiet_bi_phong.png          -> Danh sách trang thiết bị quản lý trong phòng (7 thiết bị).
+6. H7_Phan_quyen_nguoi_dung.png   -> Phân quyền người dùng và vai trò bảo mật.
+7. H8_Danh_sach_dat_phong.png     -> Danh sách 7 đơn đặt phòng xác nhận, tổng doanh thu 31.393.000 đ.
+8. H9_Lich_dat_phong.png          -> Giao diện Lịch đặt phòng trực quan (Sales Calendar View).
+9. H10_Su_vu_bao_tri_kanban.png   -> Bảng Kanban tiếp nhận và phân luồng sự vụ bảo trì phòng.
+10. H13_Danh_sach_hoa_don.png     -> Danh sách 7 hóa đơn tài chính đã được vào sổ kế toán (Posted).
+11. H15_Bao_cao_doanh_thu.png     -> Biểu đồ trực quan phân tích doanh thu theo từng khách hàng.
+12. H16_Website_Dat_Phong_Shop.png -> Giao diện Cửa hàng / Website danh mục phòng và giá niêm yết (VNĐ).
+13. H17_Chi_tiet_Dat_Phong_Online.png -> Chi tiết hạng phòng (Phong Deluxe Ocean View) & nút Đặt phòng / Thêm vào giỏ hàng.
+14. H18_Gio_hang_Dat_Phong_Online.png -> Giỏ hàng đặt phòng online (Tóm tắt đơn hàng 1.150.000 VND).
+15. H19_Thong_tin_Khach_Dat_Phong.png -> Bước điền thông tin khách hàng đặt phòng & thanh toán trực tuyến.
+16. H20_Trang_Chu_Website_M_Hotel.png -> Trang chủ Website khách sạn M-Hotel thiết kế với banner và nút "Đặt phòng ngay".
+17. H21_Odoo_Studio_Custom_Field.png  -> Tạo các trường dữ liệu tùy chỉnh nghiệp vụ khách sạn trên Odoo.
+18. H22_Giao_dien_Odoo_Studio_Editor.png -> Không gian thiết kế Odoo Studio tùy biến form Đơn bán hàng thành Phiếu đặt phòng.
+19. H23_Phieu_Dat_Phong_Khach_San_Odoo.png -> Form Phiếu đặt phòng khách sạn hoàn chỉnh trên Odoo: Số phòng & Loại phòng, Ngày Check-in, Ngày Check-out, Số lượng khách.
+20. H24_Khach_Hang_Dat_Phong_Thanh_Cong.png -> Giao diện khách hàng hoàn tất đặt phòng trực tuyến trên Website (Mã đơn S00008, tổng 2.850.000 VNĐ).
+21. H25_Form_Dat_Phong_Khach_San_Website.png -> Tùy biến form Liên hệ / Đặt phòng trực tuyến trên Website Odoo có trường chọn ngày nhận phòng (Check-in Date).
+22. H26_Danh_Muc_Loai_Phong_M_Hotel.png -> Danh mục Loại phòng trong app M-Hotel tùy biến bằng Odoo Studio (Standard, Deluxe, Family).
+23. H27_Icon_Ung_Dung_M_Hotel_Tren_Odoo.png -> Ứng dụng M-Hotel xuất hiện chính thức trên Menu ứng dụng Odoo (App Dashboard).
+24. H28_Danh_Sach_Phong_Khach_San_M_Hotel.png -> Danh sách phòng thực tế trong ứng dụng M-Hotel (Phòng 101, 102, 201, 202, 301).
+25. H29_Phieu_Dat_Phong_M_Hotel.png -> Cấu trúc Menu & Model Đặt phòng (Hotel Booking) với các trường Check-in, Check-out, Khách hàng trong M-Hotel.
+26. H30_Chi_Tiet_Phieu_Dat_Phong_M_Hotel.png -> Danh sách Phiếu đặt phòng thực tế trong M-Hotel lưu trữ dữ liệu lưu trú (Check-in 15/10/2026, Check-out 18/10/2026).
+27. H31_Sua_Loi_Chinh_Ta_Loai_Phong.png -> Giao diện ứng dụng M-Hotel với thanh điều hướng chuẩn: Loại phòng, Danh sách phòng, Đặt phòng.
+28. H32_Lich_Phong_Calendar_Odoo_Studio.png -> Giao diện Cấu hình và Vận hành Lịch đặt phòng (Calendar View) theo dõi phòng Trống và Bận trực quan theo Tuần/Ngày.
+29. H33_So_Do_Lich_Phong_Theo_Tung_Phong.png -> Giao diện Lịch phòng thực tế của M-Hotel hiển thị chi tiết các dải đặt phòng bận và các khoảng thời gian trống theo giờ.
+30. H34_Lich_Dat_Phong_Theo_Tung_Phong.png -> Giao diện Chi tiết phòng (Phòng 101) tích hợp bảng danh sách "Lịch đặt phòng" (One2Many) hiển thị toàn bộ người đặt trước và thời gian lưu trú để chống trùng lịch.
+31. H35_Danh_Muc_Phong_Website_Shop_VND.png -> Giao diện Cửa hàng / Danh mục đặt phòng trực tuyến trên Website niêm yết đầy đủ các hạng phòng và giá VNĐ.
+32. H36_Chi_Tiet_Phong_Standard_Dat_Ngay_Web.png -> Giao diện Chi tiết phòng Standard Mountain View (550.000₫) trên Website có nút Đặt phòng / Thêm vào giỏ hàng ngay.
+33. H37_Kiem_Thu_Dat_Phong_Thanh_Cong.png -> Kiểm thử E2E: Tạo thành công đơn đặt phòng BK0002 cho khách Nguyễn Văn Khách tại Phòng 101 (20/10 - 22/10/2026).
+34. H38_Kiem_Thu_Lich_Phong_Calendar_Toan_Dien.png -> Kiểm thử E2E: Giao diện Lịch phòng Calendar View thực tế hiển thị các dải thanh đặt phòng trực quan theo thời gian.
+========================================================================================
+TÀI LIỆU KẾ HOẠCH TỔNG THỂ DỰ ÁN TỪ A ĐẾN Z:
+- File: KE_HOACH_CHI_TIET_TRIEN_KHAI_M_HOTEL_ODOO_A_DEN_Z.md (Đầy đủ 8 giai đoạn kỹ thuật, ERD, 7 mốc tiến độ M1-M7, 12 Test Cases TC01-TC12 và kịch bản demo bảo vệ).
+========================================================================================

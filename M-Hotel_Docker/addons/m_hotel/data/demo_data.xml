@@ -1,0 +1,1412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <!-- ==================== 1. CƠ SỞ KHÁCH SẠN (HOTEL BRANCHES) ==================== -->
+    <record id="hotel_quynhon" model="m.hotel">
+        <field name="name">M-Hotel Quy Nhơn Beach</field>
+        <field name="code">QN-BEACH</field>
+        <field name="phone">0256 3888 999</field>
+        <field name="email">quynhon@m-hotel.vn</field>
+        <field name="address">01 Đường Xuân Diệu, P. Hải Cảng, TP. Quy Nhơn, Bình Định</field>
+    </record>
+    <record id="hotel_nhonly" model="m.hotel">
+        <field name="name">M-Hotel Nhơn Lý - Eo Gió</field>
+        <field name="code">NHON-LY</field>
+        <field name="phone">0256 3777 888</field>
+        <field name="email">nhonly@m-hotel.vn</field>
+        <field name="address">Thôn Lý Lương, Xã Nhơn Lý, TP. Quy Nhơn, Bình Định</field>
+    </record>
+
+    <!-- ==================== 2. HẠNG PHÒNG (ROOM TYPES) ==================== -->
+    <record id="room_type_std" model="m.hotel.room.type">
+        <field name="name">Phòng Tiêu chuẩn Standard</field>
+        <field name="code">RT-STD</field>
+        <field name="price_night">650000.0</field>
+        <field name="price_hour">150000.0</field>
+        <field name="capacity">2</field>
+        <field name="bed_count">1</field>
+        <field name="amenities">Wifi tốc độ cao, Điều hòa Inverter, Tủ lạnh Minibar, Bình nóng lạnh</field>
+    </record>
+    <record id="room_type_sup" model="m.hotel.room.type">
+        <field name="name">Phòng Superior Double</field>
+        <field name="code">RT-SUP</field>
+        <field name="price_night">1100000.0</field>
+        <field name="price_hour">250000.0</field>
+        <field name="capacity">2</field>
+        <field name="bed_count">1</field>
+        <field name="amenities">Smart Tivi, Cửa sổ thoáng, Ban công nhỏ, Bàn làm việc</field>
+    </record>
+    <record id="room_type_dlx" model="m.hotel.room.type">
+        <field name="name">Phòng Cao cấp Deluxe Ocean View</field>
+        <field name="code">RT-DLX</field>
+        <field name="price_night">1450000.0</field>
+        <field name="price_hour">350000.0</field>
+        <field name="capacity">2</field>
+        <field name="bed_count">1</field>
+        <field name="amenities">Ban công hướng biển Quy Nhơn, Smart Tivi 55 inch 4K, Bồn tắm nằm, Khóa Adel</field>
+    </record>
+    <record id="room_type_fam" model="m.hotel.room.type">
+        <field name="name">Phòng Gia đình Family Suite</field>
+        <field name="code">RT-FAM</field>
+        <field name="price_night">1800000.0</field>
+        <field name="price_hour">450000.0</field>
+        <field name="capacity">4</field>
+        <field name="bed_count">2</field>
+        <field name="amenities">2 Giường Queen, Phòng khách riêng, Sofa bed, Tầm nhìn toàn cảnh biển</field>
+    </record>
+    <record id="room_type_exe" model="m.hotel.room.type">
+        <field name="name">Phòng Tổng thống Executive Suite</field>
+        <field name="code">RT-EXE</field>
+        <field name="price_night">2800000.0</field>
+        <field name="price_hour">650000.0</field>
+        <field name="capacity">2</field>
+        <field name="bed_count">1</field>
+        <field name="amenities">Bồn sục Jacuzzi, Phòng khách sang trọng, Ban công Sky View 180 độ, Quầy bar mini</field>
+    </record>
+
+    <!-- ==================== 3. DANH MỤC PHÒNG NGHỈ (44 PHÒNG) ==================== -->
+    <record id="room_101" model="m.hotel.room">
+        <field name="name">P.101</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_std"/>
+        <field name="floor">1</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_102" model="m.hotel.room">
+        <field name="name">P.102</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_std"/>
+        <field name="floor">1</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="room_103" model="m.hotel.room">
+        <field name="name">P.103</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_sup"/>
+        <field name="floor">1</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_104" model="m.hotel.room">
+        <field name="name">P.104</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_sup"/>
+        <field name="floor">1</field>
+        <field name="status">maintenance</field>
+    </record>
+    <record id="room_105" model="m.hotel.room">
+        <field name="name">P.105</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_dlx"/>
+        <field name="floor">1</field>
+        <field name="status">cleaning</field>
+    </record>
+    <record id="room_106" model="m.hotel.room">
+        <field name="name">P.106</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_std"/>
+        <field name="floor">1</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_201" model="m.hotel.room">
+        <field name="name">P.201</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_dlx"/>
+        <field name="floor">2</field>
+        <field name="status">confirmed</field>
+    </record>
+    <record id="room_202" model="m.hotel.room">
+        <field name="name">P.202</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_dlx"/>
+        <field name="floor">2</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="room_203" model="m.hotel.room">
+        <field name="name">P.203</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_fam"/>
+        <field name="floor">2</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_204" model="m.hotel.room">
+        <field name="name">P.204</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_fam"/>
+        <field name="floor">2</field>
+        <field name="status">cleaning</field>
+    </record>
+    <record id="room_205" model="m.hotel.room">
+        <field name="name">P.205</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_exe"/>
+        <field name="floor">2</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="room_206" model="m.hotel.room">
+        <field name="name">P.206</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_sup"/>
+        <field name="floor">2</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_301" model="m.hotel.room">
+        <field name="name">P.301</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_dlx"/>
+        <field name="floor">3</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="room_302" model="m.hotel.room">
+        <field name="name">P.302</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_fam"/>
+        <field name="floor">3</field>
+        <field name="status">confirmed</field>
+    </record>
+    <record id="room_303" model="m.hotel.room">
+        <field name="name">P.303</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_exe"/>
+        <field name="floor">3</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_304" model="m.hotel.room">
+        <field name="name">P.304</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_exe"/>
+        <field name="floor">3</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_305" model="m.hotel.room">
+        <field name="name">P.305</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_dlx"/>
+        <field name="floor">3</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_306" model="m.hotel.room">
+        <field name="name">P.306</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_fam"/>
+        <field name="floor">3</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_401" model="m.hotel.room">
+        <field name="name">P.401</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_exe"/>
+        <field name="floor">4</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="room_402" model="m.hotel.room">
+        <field name="name">P.402</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_exe"/>
+        <field name="floor">4</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_403" model="m.hotel.room">
+        <field name="name">P.403</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_dlx"/>
+        <field name="floor">4</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_404" model="m.hotel.room">
+        <field name="name">P.404</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_dlx"/>
+        <field name="floor">4</field>
+        <field name="status">confirmed</field>
+    </record>
+    <record id="room_405" model="m.hotel.room">
+        <field name="name">P.405</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_exe"/>
+        <field name="floor">4</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="room_406" model="m.hotel.room">
+        <field name="name">P.406</field>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_type_id" ref="room_type_exe"/>
+        <field name="floor">4</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_501" model="m.hotel.room">
+        <field name="name">P.501</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_std"/>
+        <field name="floor">1</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_502" model="m.hotel.room">
+        <field name="name">P.502</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_sup"/>
+        <field name="floor">1</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="room_503" model="m.hotel.room">
+        <field name="name">P.503</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_dlx"/>
+        <field name="floor">1</field>
+        <field name="status">confirmed</field>
+    </record>
+    <record id="room_504" model="m.hotel.room">
+        <field name="name">P.504</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_std"/>
+        <field name="floor">1</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_505" model="m.hotel.room">
+        <field name="name">P.505</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_sup"/>
+        <field name="floor">1</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_601" model="m.hotel.room">
+        <field name="name">P.601</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_fam"/>
+        <field name="floor">2</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="room_602" model="m.hotel.room">
+        <field name="name">P.602</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_exe"/>
+        <field name="floor">2</field>
+        <field name="status">confirmed</field>
+    </record>
+    <record id="room_603" model="m.hotel.room">
+        <field name="name">P.603</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_exe"/>
+        <field name="floor">2</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_604" model="m.hotel.room">
+        <field name="name">P.604</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_fam"/>
+        <field name="floor">2</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_605" model="m.hotel.room">
+        <field name="name">P.605</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_exe"/>
+        <field name="floor">2</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_701" model="m.hotel.room">
+        <field name="name">P.701</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_std"/>
+        <field name="floor">3</field>
+        <field name="status">cleaning</field>
+    </record>
+    <record id="room_702" model="m.hotel.room">
+        <field name="name">P.702</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_sup"/>
+        <field name="floor">3</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="room_703" model="m.hotel.room">
+        <field name="name">P.703</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_dlx"/>
+        <field name="floor">3</field>
+        <field name="status">maintenance</field>
+    </record>
+    <record id="room_704" model="m.hotel.room">
+        <field name="name">P.704</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_fam"/>
+        <field name="floor">3</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="room_705" model="m.hotel.room">
+        <field name="name">P.705</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_exe"/>
+        <field name="floor">3</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_801" model="m.hotel.room">
+        <field name="name">P.801</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_dlx"/>
+        <field name="floor">4</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_802" model="m.hotel.room">
+        <field name="name">P.802</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_dlx"/>
+        <field name="floor">4</field>
+        <field name="status">confirmed</field>
+    </record>
+    <record id="room_803" model="m.hotel.room">
+        <field name="name">P.803</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_exe"/>
+        <field name="floor">4</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="room_804" model="m.hotel.room">
+        <field name="name">P.804</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_exe"/>
+        <field name="floor">4</field>
+        <field name="status">available</field>
+    </record>
+    <record id="room_805" model="m.hotel.room">
+        <field name="name">P.805</field>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_type_id" ref="room_type_fam"/>
+        <field name="floor">4</field>
+        <field name="status">available</field>
+    </record>
+
+    <!-- ==================== 4. KHÁCH HÀNG MẪU (28 GUESTS) ==================== -->
+    <record id="partner_an" model="res.partner">
+        <field name="name">Nguyễn Văn An</field>
+        <field name="phone">0912 345 678</field>
+        <field name="email">an.nguyen@gmail.com</field>
+        <field name="city">Quy Nhơn</field>
+    </record>
+    <record id="partner_binh" model="res.partner">
+        <field name="name">Trần Thị Bình</field>
+        <field name="phone">0905 111 222</field>
+        <field name="email">binh.tran@yahoo.com</field>
+        <field name="city">Hà Nội</field>
+    </record>
+    <record id="partner_long" model="res.partner">
+        <field name="name">Lê Hoàng Long</field>
+        <field name="phone">0908 777 888</field>
+        <field name="email">long.le@hoanglongcorp.vn</field>
+        <field name="city">TP. Hồ Chí Minh</field>
+    </record>
+    <record id="partner_mai" model="res.partner">
+        <field name="name">Hoàng Thị Mai</field>
+        <field name="phone">0935 999 888</field>
+        <field name="email">mai.hoang@vietravel.com</field>
+        <field name="city">Đà Nẵng</field>
+    </record>
+    <record id="partner_huy" model="res.partner">
+        <field name="name">Phạm Quốc Huy</field>
+        <field name="phone">0978 666 555</field>
+        <field name="email">huy.pham@fpt.edu.vn</field>
+        <field name="city">Quy Nhơn</field>
+    </record>
+    <record id="partner_dung" model="res.partner">
+        <field name="name">Võ Tiến Dũng</field>
+        <field name="phone">0903 123 456</field>
+        <field name="email">dung.vo@vinamilk.com.vn</field>
+        <field name="city">Bình Định</field>
+    </record>
+    <record id="partner_ngoc" model="res.partner">
+        <field name="name">Đặng Bích Ngọc</field>
+        <field name="phone">0919 444 555</field>
+        <field name="email">ngoc.dang@traveldanang.vn</field>
+        <field name="city">Đà Nẵng</field>
+    </record>
+    <record id="partner_tuan" model="res.partner">
+        <field name="name">Lâm Văn Tuấn</field>
+        <field name="phone">0918 888 222</field>
+        <field name="email">tuan.lam@saigontech.com</field>
+        <field name="city">TP. Hồ Chí Minh</field>
+    </record>
+    <record id="partner_huong" model="res.partner">
+        <field name="name">Trịnh Thu Hương</field>
+        <field name="phone">0903 666 999</field>
+        <field name="email">huong.trinh@gmail.com</field>
+        <field name="city">Hải Phòng</field>
+    </record>
+    <record id="partner_minh" model="res.partner">
+        <field name="name">Ngô Quang Minh</field>
+        <field name="phone">0977 444 333</field>
+        <field name="email">minh.ngo@cantho.edu.vn</field>
+        <field name="city">Cần Thơ</field>
+    </record>
+    <record id="partner_thanh" model="res.partner">
+        <field name="name">Bùi Đức Thành</field>
+        <field name="phone">0966 333 111</field>
+        <field name="email">thanh.bui@vingroup.net</field>
+        <field name="city">Quảng Ninh</field>
+    </record>
+    <record id="partner_lan" model="res.partner">
+        <field name="name">Đỗ Thị Tuyết Lan</field>
+        <field name="phone">0915 222 999</field>
+        <field name="email">lan.do@nhatrangresort.com</field>
+        <field name="city">Nha Trang</field>
+    </record>
+    <record id="partner_saigontourist" model="res.partner">
+        <field name="name">Công ty Du lịch Lữ hành Saigontourist</field>
+        <field name="phone">028 3829 2222</field>
+        <field name="email">info@saigontourist.net</field>
+        <field name="city">TP. Hồ Chí Minh</field>
+    </record>
+    <record id="partner_vnpt" model="res.partner">
+        <field name="name">Tập đoàn VNPT Chi nhánh Bình Định</field>
+        <field name="phone">0256 3822 888</field>
+        <field name="email">contact@vnpt-binhdinh.vn</field>
+        <field name="city">Quy Nhơn</field>
+    </record>
+    <record id="partner_fpt" model="res.partner">
+        <field name="name">Công ty Cổ phần Phần mềm FPT Quy Nhơn</field>
+        <field name="phone">0256 7300 999</field>
+        <field name="email">hr@fpt-software.com</field>
+        <field name="city">Quy Nhơn</field>
+    </record>
+    <record id="partner_chi" model="res.partner">
+        <field name="name">Trịnh Kim Chi</field>
+        <field name="phone">0914 555 777</field>
+        <field name="email">kimchi.trinh@gmail.com</field>
+        <field name="city">Nha Trang</field>
+    </record>
+    <record id="partner_trong" model="res.partner">
+        <field name="name">Vũ Đình Trọng</field>
+        <field name="phone">0988 234 567</field>
+        <field name="email">trong.vu@haiphongport.vn</field>
+        <field name="city">Hải Phòng</field>
+    </record>
+    <record id="partner_linh" model="res.partner">
+        <field name="name">Đỗ Mỹ Linh</field>
+        <field name="phone">0939 123 456</field>
+        <field name="email">mylinh.do@cantho.gov.vn</field>
+        <field name="city">Cần Thơ</field>
+    </record>
+    <record id="partner_tuand" model="res.partner">
+        <field name="name">Bùi Anh Tuấn</field>
+        <field name="phone">0904 888 777</field>
+        <field name="email">tuan.bui@hanoitour.vn</field>
+        <field name="city">Hà Nội</field>
+    </record>
+    <record id="partner_tiendung" model="res.partner">
+        <field name="name">Đinh Tiến Dũng</field>
+        <field name="phone">0913 666 444</field>
+        <field name="email">tiendung.dinh@hueheritage.com</field>
+        <field name="city">Thừa Thiên Huế</field>
+    </record>
+    <record id="partner_hang" model="res.partner">
+        <field name="name">Phan Thanh Hằng</field>
+        <field name="phone">0979 555 333</field>
+        <field name="email">thanhhang.phan@vungtauoil.vn</field>
+        <field name="city">Bà Rịa - Vũng Tàu</field>
+    </record>
+    <record id="partner_hau" model="res.partner">
+        <field name="name">Đoàn Văn Hậu</field>
+        <field name="phone">0983 111 444</field>
+        <field name="email">vanhau.doan@vietjetair.com</field>
+        <field name="city">Thái Bình</field>
+    </record>
+    <record id="partner_huyen" model="res.partner">
+        <field name="name">Lê Thị Diệu Huyền</field>
+        <field name="phone">0909 333 777</field>
+        <field name="email">dieuhuyen.le@dalatflower.vn</field>
+        <field name="city">Lâm Đồng</field>
+    </record>
+    <record id="partner_smith" model="res.partner">
+        <field name="name">Johnathan Smith</field>
+        <field name="phone">+44 7911 123456</field>
+        <field name="email">j.smith@londoncorp.co.uk</field>
+        <field name="city">London, UK</field>
+    </record>
+    <record id="partner_watson" model="res.partner">
+        <field name="name">Emily Watson</field>
+        <field name="phone">+61 412 345 678</field>
+        <field name="email">emily.watson@sydneytravel.com.au</field>
+        <field name="city">Sydney, Australia</field>
+    </record>
+    <record id="partner_nam" model="res.partner">
+        <field name="name">Nguyễn Hoàng Nam</field>
+        <field name="phone">0932 444 888</field>
+        <field name="email">nam.nguyen@quynhonbiz.vn</field>
+        <field name="city">Quy Nhơn</field>
+    </record>
+    <record id="partner_baongoc" model="res.partner">
+        <field name="name">Trần Bảo Ngọc</field>
+        <field name="phone">0908 999 666</field>
+        <field name="email">baongoc.tran@vietcombank.com.vn</field>
+        <field name="city">TP. Hồ Chí Minh</field>
+    </record>
+    <record id="partner_khanhchi" model="res.partner">
+        <field name="name">Lâm Khánh Chi</field>
+        <field name="phone">0935 777 999</field>
+        <field name="email">khanhchi.lam@dananghotel.com</field>
+        <field name="city">Đà Nẵng</field>
+    </record>
+
+    <!-- ==================== 5. ĐƠN ĐẶT PHÒNG MẪU (65 BOOKINGS) ==================== -->
+    <record id="booking_demo_01" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_an"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_101"/>
+        <field name="rent_type">hour</field>
+        <field name="hours_duration">4</field>
+        <field name="hour_date">2026-10-13</field>
+        <field name="hour_start">8.0</field>
+        <field name="check_in">2026-10-13 08:00:00</field>
+        <field name="check_out">2026-10-13 12:00:00</field>
+        <field name="status">completed</field>
+        <field name="note">Khách nghỉ trưa công tác tại TP. Quy Nhơn</field>
+    </record>
+    <record id="booking_demo_02" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_huy"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_101"/>
+        <field name="rent_type">hour</field>
+        <field name="hours_duration">4</field>
+        <field name="hour_date">2026-10-13</field>
+        <field name="hour_start">14.0</field>
+        <field name="check_in">2026-10-13 14:00:00</field>
+        <field name="check_out">2026-10-13 18:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Đặt phòng nghỉ theo giờ chiều</field>
+    </record>
+    <record id="booking_demo_23" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_dung"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_101"/>
+        <field name="rent_type">hour</field>
+        <field name="hours_duration">3</field>
+        <field name="hour_date">2026-10-13</field>
+        <field name="hour_start">19.0</field>
+        <field name="check_in">2026-10-13 19:00:00</field>
+        <field name="check_out">2026-10-13 22:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Thuê tối ngắn hạn</field>
+    </record>
+    <record id="booking_demo_24" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_ngoc"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_103"/>
+        <field name="rent_type">hour</field>
+        <field name="hours_duration">3</field>
+        <field name="hour_date">2026-10-13</field>
+        <field name="hour_start">9.0</field>
+        <field name="check_in">2026-10-13 09:00:00</field>
+        <field name="check_out">2026-10-13 12:00:00</field>
+        <field name="status">completed</field>
+    </record>
+    <record id="booking_demo_25" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_tuan"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_501"/>
+        <field name="rent_type">hour</field>
+        <field name="hours_duration">4</field>
+        <field name="hour_date">2026-10-13</field>
+        <field name="hour_start">13.0</field>
+        <field name="check_in">2026-10-13 13:00:00</field>
+        <field name="check_out">2026-10-13 17:00:00</field>
+        <field name="status">confirmed</field>
+    </record>
+    <record id="booking_demo_03" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_binh"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_102"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-12 14:00:00</field>
+        <field name="check_out">2026-10-15 12:00:00</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="booking_demo_05" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_mai"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_202"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-11 14:00:00</field>
+        <field name="check_out">2026-10-14 12:00:00</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="booking_demo_06" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_long"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_205"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-12 14:00:00</field>
+        <field name="check_out">2026-10-17 12:00:00</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="booking_demo_07" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_lan"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_301"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-13 14:00:00</field>
+        <field name="check_out">2026-10-16 12:00:00</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="booking_demo_09" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_thanh"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_401"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-12 14:00:00</field>
+        <field name="check_out">2026-10-16 12:00:00</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="booking_demo_10" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_an"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_502"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-12 14:00:00</field>
+        <field name="check_out">2026-10-14 12:00:00</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="booking_demo_12" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_binh"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_601"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-11 14:00:00</field>
+        <field name="check_out">2026-10-15 12:00:00</field>
+        <field name="status">occupied</field>
+    </record>
+    <record id="booking_demo_04" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_dung"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_201"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-14 14:00:00</field>
+        <field name="check_out">2026-10-17 12:00:00</field>
+        <field name="status">confirmed</field>
+    </record>
+    <record id="booking_demo_08" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_tuan"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_302"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-15 14:00:00</field>
+        <field name="check_out">2026-10-18 12:00:00</field>
+        <field name="status">confirmed</field>
+    </record>
+    <record id="booking_demo_11" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_ngoc"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_503"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-14 14:00:00</field>
+        <field name="check_out">2026-10-18 12:00:00</field>
+        <field name="status">confirmed</field>
+    </record>
+    <record id="booking_demo_13" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_mai"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_602"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-15 14:00:00</field>
+        <field name="check_out">2026-10-18 12:00:00</field>
+        <field name="status">confirmed</field>
+    </record>
+    <record id="booking_demo_14" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_long"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_603"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-16 14:00:00</field>
+        <field name="check_out">2026-10-19 12:00:00</field>
+        <field name="status">confirmed</field>
+    </record>
+    <record id="booking_demo_17" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_huong"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_102"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-16 14:00:00</field>
+        <field name="check_out">2026-10-19 12:00:00</field>
+        <field name="status">confirmed</field>
+    </record>
+    <record id="booking_demo_21" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_thanh"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_202"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-15 14:00:00</field>
+        <field name="check_out">2026-10-18 12:00:00</field>
+        <field name="status">confirmed</field>
+    </record>
+    <record id="booking_demo_22" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_minh"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_502"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-15 14:00:00</field>
+        <field name="check_out">2026-10-19 12:00:00</field>
+        <field name="status">confirmed</field>
+    </record>
+    <record id="booking_demo_15" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_huy"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_106"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-10 14:00:00</field>
+        <field name="check_out">2026-10-12 12:00:00</field>
+        <field name="status">completed</field>
+    </record>
+    <record id="booking_demo_16" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_dung"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_203"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-08 14:00:00</field>
+        <field name="check_out">2026-10-11 12:00:00</field>
+        <field name="status">completed</field>
+    </record>
+    <record id="booking_demo_18" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_tuan"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_206"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-18 14:00:00</field>
+        <field name="check_out">2026-10-21 12:00:00</field>
+        <field name="status">draft</field>
+        <field name="note">Chờ khách chuyển cọc ngân hàng</field>
+    </record>
+    <record id="booking_demo_19" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_huong"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_304"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-20 14:00:00</field>
+        <field name="check_out">2026-10-24 12:00:00</field>
+        <field name="status">draft</field>
+    </record>
+    <record id="booking_demo_20" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_minh"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_305"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-13 14:00:00</field>
+        <field name="check_out">2026-10-15 12:00:00</field>
+        <field name="status">cancelled</field>
+        <field name="note">Khách hủy do hoãn chuyến bay</field>
+    </record>
+    <record id="booking_demo_26" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_linh"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_103"/>
+        <field name="rent_type">hour</field>
+        <field name="hours_duration">4</field>
+        <field name="hour_date">2026-10-13</field>
+        <field name="hour_start">13.0</field>
+        <field name="check_in">2026-10-13 13:00:00</field>
+        <field name="check_out">2026-10-13 17:00:00</field>
+        <field name="status">completed</field>
+        <field name="note">Khách công tác nghỉ trưa &amp; chiều</field>
+    </record>
+    <record id="booking_demo_27" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_nam"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_106"/>
+        <field name="rent_type">hour</field>
+        <field name="hours_duration">3</field>
+        <field name="hour_date">2026-10-14</field>
+        <field name="hour_start">8.5</field>
+        <field name="check_in">2026-10-14 08:30:00</field>
+        <field name="check_out">2026-10-14 11:30:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Khách nghỉ ngơi buổi sáng chờ đối tác</field>
+    </record>
+    <record id="booking_demo_28" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_trong"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_106"/>
+        <field name="rent_type">hour</field>
+        <field name="hours_duration">4</field>
+        <field name="hour_date">2026-10-14</field>
+        <field name="hour_start">13.5</field>
+        <field name="check_in">2026-10-14 13:30:00</field>
+        <field name="check_out">2026-10-14 17:30:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Thuê theo giờ buổi chiều</field>
+    </record>
+    <record id="booking_demo_29" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_hang"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_206"/>
+        <field name="rent_type">hour</field>
+        <field name="hours_duration">3</field>
+        <field name="hour_date">2026-10-14</field>
+        <field name="hour_start">9.0</field>
+        <field name="check_in">2026-10-14 09:00:00</field>
+        <field name="check_out">2026-10-14 12:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Nghỉ nhanh buổi sáng</field>
+    </record>
+    <record id="booking_demo_30" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_hau"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_504"/>
+        <field name="rent_type">hour</field>
+        <field name="hours_duration">4</field>
+        <field name="hour_date">2026-10-14</field>
+        <field name="hour_start">10.0</field>
+        <field name="check_in">2026-10-14 10:00:00</field>
+        <field name="check_out">2026-10-14 14:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Nghỉ trưa sau khi tham quan Kỳ Co</field>
+    </record>
+    <record id="booking_demo_31" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_tiendung"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_505"/>
+        <field name="rent_type">hour</field>
+        <field name="hours_duration">4</field>
+        <field name="hour_date">2026-10-15</field>
+        <field name="hour_start">14.0</field>
+        <field name="check_in">2026-10-15 14:00:00</field>
+        <field name="check_out">2026-10-15 18:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Thuê chiều nghỉ mát ngắm Eo Gió</field>
+    </record>
+    <record id="booking_demo_32" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_vnpt"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_405"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-12 14:00:00</field>
+        <field name="check_out">2026-10-16 12:00:00</field>
+        <field name="status">occupied</field>
+        <field name="note">Đoàn kỹ sư VNPT triển khai hạ tầng số</field>
+    </record>
+    <record id="booking_demo_33" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_fpt"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_702"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-11 14:00:00</field>
+        <field name="check_out">2026-10-15 12:00:00</field>
+        <field name="status">occupied</field>
+        <field name="note">Team FPT Software teambuilding</field>
+    </record>
+    <record id="booking_demo_34" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_smith"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_704"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-10 14:00:00</field>
+        <field name="check_out">2026-10-17 12:00:00</field>
+        <field name="status">occupied</field>
+        <field name="note">Gia đình du khách quốc tế (UK) - Cần nôi em bé</field>
+    </record>
+    <record id="booking_demo_35" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_watson"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_803"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-12 14:00:00</field>
+        <field name="check_out">2026-10-16 12:00:00</field>
+        <field name="status">occupied</field>
+        <field name="note">Executive Suite Panorama Villa - Yêu cầu rượu vang chào đón</field>
+    </record>
+    <record id="booking_demo_36" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_tuand"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_201"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-02 14:00:00</field>
+        <field name="check_out">2026-10-05 12:00:00</field>
+        <field name="status">completed</field>
+        <field name="note">Khách đã thanh toán đủ tiền mặt</field>
+    </record>
+    <record id="booking_demo_37" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_huyen"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_204"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-04 14:00:00</field>
+        <field name="check_out">2026-10-07 12:00:00</field>
+        <field name="status">completed</field>
+        <field name="note">Gia đình nghỉ dưỡng tuần trăng mật</field>
+    </record>
+    <record id="booking_demo_38" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_baongoc"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_302"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-03 14:00:00</field>
+        <field name="check_out">2026-10-06 12:00:00</field>
+        <field name="status">completed</field>
+        <field name="note">Hài lòng về dịch vụ phòng</field>
+    </record>
+    <record id="booking_demo_39" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_khanhchi"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_402"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-05 14:00:00</field>
+        <field name="check_out">2026-10-08 12:00:00</field>
+        <field name="status">completed</field>
+        <field name="note">Check-out đúng giờ</field>
+    </record>
+    <record id="booking_demo_40" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_linh"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_403"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-06 14:00:00</field>
+        <field name="check_out">2026-10-09 12:00:00</field>
+        <field name="status">completed</field>
+        <field name="note">Khách công tác Cần Thơ</field>
+    </record>
+    <record id="booking_demo_41" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_trong"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_503"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-03 14:00:00</field>
+        <field name="check_out">2026-10-07 12:00:00</field>
+        <field name="status">completed</field>
+        <field name="note">Đã hoàn tất thanh toán thẻ</field>
+    </record>
+    <record id="booking_demo_42" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_chi"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_602"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-05 14:00:00</field>
+        <field name="check_out">2026-10-08 12:00:00</field>
+        <field name="status">completed</field>
+        <field name="note">Đã trả phòng tốt</field>
+    </record>
+    <record id="booking_demo_43" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_hau"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_604"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-06 14:00:00</field>
+        <field name="check_out">2026-10-09 12:00:00</field>
+        <field name="status">completed</field>
+        <field name="note">Gia đình hài lòng cảnh biển Eo Gió</field>
+    </record>
+    <record id="booking_demo_44" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_tiendung"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_801"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-04 14:00:00</field>
+        <field name="check_out">2026-10-07 12:00:00</field>
+        <field name="status">completed</field>
+        <field name="note">Đã check-out</field>
+    </record>
+    <record id="booking_demo_45" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_hang"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_805"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-02 14:00:00</field>
+        <field name="check_out">2026-10-06 12:00:00</field>
+        <field name="status">completed</field>
+        <field name="note">Du lịch Vũng Tàu - Quy Nhơn</field>
+    </record>
+    <record id="booking_demo_46" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_saigontourist"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_201"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-18 14:00:00</field>
+        <field name="check_out">2026-10-21 12:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Khách đoàn VIP qua Saigontourist</field>
+    </record>
+    <record id="booking_demo_47" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_nam"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_202"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-19 14:00:00</field>
+        <field name="check_out">2026-10-22 12:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Đặt trước chuyển cọc 50%</field>
+    </record>
+    <record id="booking_demo_48" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_linh"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_205"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-17 14:00:00</field>
+        <field name="check_out">2026-10-20 12:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Khách yêu cầu phòng yên tĩnh tầng cao</field>
+    </record>
+    <record id="booking_demo_49" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_tuand"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_301"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-17 14:00:00</field>
+        <field name="check_out">2026-10-20 12:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Đặt trước phòng Deluxe hướng biển</field>
+    </record>
+    <record id="booking_demo_50" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_chi"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_302"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-19 14:00:00</field>
+        <field name="check_out">2026-10-22 12:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Gia đình có 2 trẻ nhỏ</field>
+    </record>
+    <record id="booking_demo_51" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_huyen"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_401"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-17 14:00:00</field>
+        <field name="check_out">2026-10-21 12:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Executive Suite - Cần xe đón sân bay Phù Cát</field>
+    </record>
+    <record id="booking_demo_52" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_trong"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_404"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-15 14:00:00</field>
+        <field name="check_out">2026-10-18 12:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Khách xác nhận đặt phòng qua hotline</field>
+    </record>
+    <record id="booking_demo_53" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_baongoc"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_406"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-16 14:00:00</field>
+        <field name="check_out">2026-10-20 12:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Executive Suite - Kỳ nghỉ cuối tuần</field>
+    </record>
+    <record id="booking_demo_54" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_hang"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_502"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-20 14:00:00</field>
+        <field name="check_out">2026-10-23 12:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Phòng Superior view đồi cát</field>
+    </record>
+    <record id="booking_demo_55" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_tiendung"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_503"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-19 14:00:00</field>
+        <field name="check_out">2026-10-22 12:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Đã chuyển khoản cọc 100%</field>
+    </record>
+    <record id="booking_demo_56" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_khanhchi"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_601"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-16 14:00:00</field>
+        <field name="check_out">2026-10-19 12:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Family Suite - Yêu cầu chuẩn bị nôi trẻ em</field>
+    </record>
+    <record id="booking_demo_57" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_hau"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_602"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-20 14:00:00</field>
+        <field name="check_out">2026-10-23 12:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Executive Suite view toàn cảnh</field>
+    </record>
+    <record id="booking_demo_58" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_tuand"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_802"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-15 14:00:00</field>
+        <field name="check_out">2026-10-19 12:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Deluxe Cliffside Eo Gió</field>
+    </record>
+    <record id="booking_demo_59" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_fpt"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_403"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-22 14:00:00</field>
+        <field name="check_out">2026-10-25 12:00:00</field>
+        <field name="status">draft</field>
+        <field name="note">Chờ phòng nhân sự FPT duyệt chi phí công tác</field>
+    </record>
+    <record id="booking_demo_60" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_chi"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_705"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-21 14:00:00</field>
+        <field name="check_out">2026-10-24 12:00:00</field>
+        <field name="status">draft</field>
+        <field name="note">Chờ khách chốt danh sách thành viên</field>
+    </record>
+    <record id="booking_demo_61" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_nam"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_805"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-23 14:00:00</field>
+        <field name="check_out">2026-10-26 12:00:00</field>
+        <field name="status">draft</field>
+        <field name="note">Dự kiến nghỉ lễ gia đình</field>
+    </record>
+    <record id="booking_demo_62" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_linh"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_404"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-10 14:00:00</field>
+        <field name="check_out">2026-10-13 12:00:00</field>
+        <field name="status">cancelled</field>
+        <field name="note">Hủy do hoãn hội nghị xúc tiến đầu tư Bình Định</field>
+    </record>
+    <record id="booking_demo_63" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_smith"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_705"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-05 14:00:00</field>
+        <field name="check_out">2026-10-08 12:00:00</field>
+        <field name="status">cancelled</field>
+        <field name="note">Khách đổi vé máy bay sang tháng sau</field>
+    </record>
+    <record id="booking_demo_64" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_trong"/>
+        <field name="hotel_id" ref="hotel_nhonly"/>
+        <field name="room_id" ref="room_802"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-08 14:00:00</field>
+        <field name="check_out">2026-10-11 12:00:00</field>
+        <field name="status">cancelled</field>
+        <field name="note">Thời tiết mưa bão ngoài biển, khách dời ngày</field>
+    </record>
+    <record id="booking_demo_65" model="m.hotel.booking">
+        <field name="partner_id" ref="partner_watson"/>
+        <field name="hotel_id" ref="hotel_quynhon"/>
+        <field name="room_id" ref="room_406"/>
+        <field name="rent_type">night</field>
+        <field name="check_in">2026-10-22 14:00:00</field>
+        <field name="check_out">2026-10-26 12:00:00</field>
+        <field name="status">confirmed</field>
+        <field name="note">Du khách Úc đặt phòng Executive Suite đón sinh nhật</field>
+    </record>
+
+    <!-- ==================== 6. SỰ VỤ & BẢO TRÌ MẪU (25 SERVICE REQUESTS) ==================== -->
+    <record id="sr_demo_01" model="m.hotel.service.request">
+        <field name="name">Dọn phòng khẩn cấp P.105 sau khi khách trả</field>
+        <field name="room_id" ref="room_105"/>
+        <field name="request_type">housekeeping</field>
+        <field name="priority">high</field>
+        <field name="status">in_progress</field>
+        <field name="note">Cần thay ga gối, khử khuẩn và bổ sung nước suối minibar trước 14:00.</field>
+    </record>
+    <record id="sr_demo_02" model="m.hotel.service.request">
+        <field name="name">Sửa điều hòa rỉ nước P.104</field>
+        <field name="room_id" ref="room_104"/>
+        <field name="request_type">maintenance</field>
+        <field name="priority">urgent</field>
+        <field name="status">new</field>
+        <field name="note">Điều hòa Daikin bị đọng nước chảy xuống sàn gỗ. Đã khóa phòng bảo trì.</field>
+    </record>
+    <record id="sr_demo_03" model="m.hotel.service.request">
+        <field name="name">Cấp phát vật tư Amenities định kỳ P.204</field>
+        <field name="room_id" ref="room_204"/>
+        <field name="request_type">housekeeping</field>
+        <field name="priority">medium</field>
+        <field name="status">new</field>
+        <field name="note">Cấp khăn tắm mới, bàn chải, dầu gội và nước ngọt minibar.</field>
+    </record>
+    <record id="sr_demo_04" model="m.hotel.service.request">
+        <field name="name">Thay bóng đèn LED ban công P.203</field>
+        <field name="room_id" ref="room_203"/>
+        <field name="request_type">maintenance</field>
+        <field name="priority">low</field>
+        <field name="status">done</field>
+        <field name="note">Đã thay bóng LED Philips 12W mới.</field>
+    </record>
+    <record id="sr_demo_05" model="m.hotel.service.request">
+        <field name="name">Vệ sinh ban công hướng biển P.301</field>
+        <field name="room_id" ref="room_301"/>
+        <field name="request_type">housekeeping</field>
+        <field name="priority">medium</field>
+        <field name="status">in_progress</field>
+        <field name="note">Lau kính ban công và dọn bàn trà ngoài trời.</field>
+    </record>
+    <record id="sr_demo_06" model="m.hotel.service.request">
+        <field name="name">Kiểm tra vòi sen nước nóng P.303</field>
+        <field name="room_id" ref="room_303"/>
+        <field name="request_type">maintenance</field>
+        <field name="priority">high</field>
+        <field name="status">new</field>
+        <field name="note">Áp lực nước hơi yếu vào giờ cao điểm, cần kiểm tra van tăng áp.</field>
+    </record>
+    <record id="sr_demo_07" model="m.hotel.service.request">
+        <field name="name">Khử khuẩn phòng sau trả phòng P.106</field>
+        <field name="room_id" ref="room_106"/>
+        <field name="request_type">housekeeping</field>
+        <field name="priority">high</field>
+        <field name="status">done</field>
+        <field name="note">Đã phun khử khuẩn UV, phòng sẵn sàng đón lượt khách mới.</field>
+    </record>
+    <record id="sr_demo_08" model="m.hotel.service.request">
+        <field name="name">Thay pin khóa thẻ từ Adel P.502</field>
+        <field name="room_id" ref="room_502"/>
+        <field name="request_type">maintenance</field>
+        <field name="priority">medium</field>
+        <field name="status">done</field>
+        <field name="note">Khóa báo đèn đỏ yếu pin, đã thay 4 pin AA Energizer mới.</field>
+    </record>
+    <record id="sr_demo_09" model="m.hotel.service.request">
+        <field name="name">Khách mượn bàn ủi hơi nước P.202</field>
+        <field name="room_id" ref="room_202"/>
+        <field name="request_type">guest_service</field>
+        <field name="priority">low</field>
+        <field name="status">done</field>
+        <field name="note">Đã giao bàn ủi hơi nước cầm tay và cầu là cho khách mượn.</field>
+    </record>
+    <record id="sr_demo_10" model="m.hotel.service.request">
+        <field name="name">Bổ sung nôi em bé (Baby Cot) P.601</field>
+        <field name="room_id" ref="room_601"/>
+        <field name="request_type">guest_service</field>
+        <field name="priority">high</field>
+        <field name="status">in_progress</field>
+        <field name="note">Gia đình có trẻ 8 tháng tuổi, cần lắp nôi gỗ an toàn trong phòng khách.</field>
+    </record>
+    <record id="sr_demo_11" model="m.hotel.service.request">
+        <field name="name">Dọn vệ sinh phòng P.401 sau check-out</field>
+        <field name="room_id" ref="room_401"/>
+        <field name="request_type">housekeeping</field>
+        <field name="priority">high</field>
+        <field name="status">in_progress</field>
+        <field name="note">Khách vừa check-out lúc 12:00, cần dọn dẹp sạch sẽ để đón lượt khách tiếp theo.</field>
+    </record>
+    <record id="sr_demo_12" model="m.hotel.service.request">
+        <field name="name">Bảo dưỡng định kỳ điều hòa trung tâm tầng 4</field>
+        <field name="room_id" ref="room_402"/>
+        <field name="request_type">maintenance</field>
+        <field name="priority">medium</field>
+        <field name="status">new</field>
+        <field name="note">Vệ sinh lưới lọc bụi và bổ sung gas R410A cho dàn lạnh.</field>
+    </record>
+    <record id="sr_demo_13" model="m.hotel.service.request">
+        <field name="name">Vệ sinh kính ban công và bàn ghế ngoài trời P.403</field>
+        <field name="room_id" ref="room_403"/>
+        <field name="request_type">housekeeping</field>
+        <field name="priority">low</field>
+        <field name="status">done</field>
+        <field name="note">Lau kính ban công bằng nước chuyên dụng chống bám hơi muối biển.</field>
+    </record>
+    <record id="sr_demo_14" model="m.hotel.service.request">
+        <field name="name">Cấp thêm chăn ga gối lông vũ P.405</field>
+        <field name="room_id" ref="room_405"/>
+        <field name="request_type">guest_service</field>
+        <field name="priority">medium</field>
+        <field name="status">done</field>
+        <field name="note">Đoàn khách công tác VNPT cần thêm 2 bộ gối ngủ cao cấp.</field>
+    </record>
+    <record id="sr_demo_15" model="m.hotel.service.request">
+        <field name="name">Thay bóng đèn rọi tranh tường trang trí P.406</field>
+        <field name="room_id" ref="room_406"/>
+        <field name="request_type">maintenance</field>
+        <field name="priority">low</field>
+        <field name="status">done</field>
+        <field name="note">Bóng đèn tranh chập chờn, đã thay bóng spotlight 7W mới.</field>
+    </record>
+    <record id="sr_demo_16" model="m.hotel.service.request">
+        <field name="name">Khách yêu cầu bàn ủi và cầu là hơi nước P.306</field>
+        <field name="room_id" ref="room_306"/>
+        <field name="request_type">guest_service</field>
+        <field name="priority">medium</field>
+        <field name="status">done</field>
+        <field name="note">Đã giao bàn ủi hơi nước Philips và cầu là tận phòng.</field>
+    </record>
+    <record id="sr_demo_17" model="m.hotel.service.request">
+        <field name="name">Phun khử khuẩn Ozone toàn diện P.701</field>
+        <field name="room_id" ref="room_701"/>
+        <field name="request_type">housekeeping</field>
+        <field name="priority">high</field>
+        <field name="status">in_progress</field>
+        <field name="note">Phòng đang chờ làm sạch sau đoàn khách tour, đang chạy máy Ozone khử mùi.</field>
+    </record>
+    <record id="sr_demo_18" model="m.hotel.service.request">
+        <field name="name">Kiểm tra van áp lực vòi sen tắm đứng P.703</field>
+        <field name="room_id" ref="room_703"/>
+        <field name="request_type">maintenance</field>
+        <field name="priority">urgent</field>
+        <field name="status">in_progress</field>
+        <field name="note">Vòi sen bị rò rỉ tại khớp nối nóng lạnh, đang khóa phòng để thợ sửa chữa.</field>
+    </record>
+    <record id="sr_demo_19" model="m.hotel.service.request">
+        <field name="name">Setup trang trí Honeymoon hoa hồng &amp; rượu vang P.704</field>
+        <field name="room_id" ref="room_704"/>
+        <field name="request_type">guest_service</field>
+        <field name="priority">high</field>
+        <field name="status">done</field>
+        <field name="note">Setup giường hoa thiên nga gấp khăn, rải cánh hoa hồng và chuẩn bị vang đỏ Chile.</field>
+    </record>
+    <record id="sr_demo_20" model="m.hotel.service.request">
+        <field name="name">Khách mượn máy sấy tóc công suất 2200W P.702</field>
+        <field name="room_id" ref="room_702"/>
+        <field name="request_type">guest_service</field>
+        <field name="priority">low</field>
+        <field name="status">done</field>
+        <field name="note">Đã mang máy sấy tóc ion âm Panasonic lên phòng cho khách.</field>
+    </record>
+    <record id="sr_demo_21" model="m.hotel.service.request">
+        <field name="name">Dọn dẹp và bổ sung Minibar cao cấp P.801</field>
+        <field name="room_id" ref="room_801"/>
+        <field name="request_type">housekeeping</field>
+        <field name="priority">medium</field>
+        <field name="status">done</field>
+        <field name="note">Bổ sung nước dừa tươi, bia Quy Nhơn craft và hạt điều rang muối.</field>
+    </record>
+    <record id="sr_demo_22" model="m.hotel.service.request">
+        <field name="name">Sửa cánh cửa kính lùa ban công bị rít P.802</field>
+        <field name="room_id" ref="room_802"/>
+        <field name="request_type">maintenance</field>
+        <field name="priority">medium</field>
+        <field name="status">done</field>
+        <field name="note">Tra dầu silicon rãnh trượt cửa kính lùa panorama, cửa đóng mở êm.</field>
+    </record>
+    <record id="sr_demo_23" model="m.hotel.service.request">
+        <field name="name">Kiểm tra hệ thống cảm biến khói tự động P.803</field>
+        <field name="room_id" ref="room_803"/>
+        <field name="request_type">maintenance</field>
+        <field name="priority">low</field>
+        <field name="status">done</field>
+        <field name="note">Kiểm tra tín hiệu đầu báo khói kết nối về tủ trung tâm PCCC, hoạt động bình thường.</field>
+    </record>
+    <record id="sr_demo_24" model="m.hotel.service.request">
+        <field name="name">Setup trà chiều và bánh ngọt tại ban công ngắm hoàng hôn P.805</field>
+        <field name="room_id" ref="room_805"/>
+        <field name="request_type">guest_service</field>
+        <field name="priority">high</field>
+        <field name="status">in_progress</field>
+        <field name="note">Phục vụ set trà hoa cúc mật ong, bánh macaron và trái cây nhiệt đới tại ban công.</field>
+    </record>
+    <record id="sr_demo_25" model="m.hotel.service.request">
+        <field name="name">Hỗ trợ đặt xe Limousine 9 chỗ đón sân bay Phù Cát P.804</field>
+        <field name="room_id" ref="room_804"/>
+        <field name="request_type">guest_service</field>
+        <field name="priority">medium</field>
+        <field name="status">new</field>
+        <field name="note">Đón 6 khách lúc 16:30 tại ga đến sân bay Phù Cát, biển số 77B-018.99.</field>
+    </record>
+</odoo>
