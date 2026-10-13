@@ -21,8 +21,8 @@ services:
       PASSWORD: dev_only_change_me
     volumes:
       - odoo-data:/var/lib/odoo
-      - ./addons:/mnt/extra-addons
-      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons:z
+      - ./config:/etc/odoo:z
     command: ["odoo", "--config=/etc/odoo/odoo.conf", "--dev=xml"]
     restart: unless-stopped
 
