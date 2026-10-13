@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hotel_room_search_wizard_form" model="ir.ui.view">
+        <field name="name">hotel.room.search.wizard.form</field>
+        <field name="model">hotel.room.search.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Tra Cứu &amp; Tìm Phòng Trống Khả Dụng">
+                <group>
+                    <group string="Chi nhánh &amp; Hạng phòng">
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="room_type_id" placeholder="Tất cả các hạng phòng..."/>
+                        <field name="rent_type" widget="radio"/>
+                    </group>
+                    <group string="Khoảng thời gian lưu trú">
+                        <field name="check_in" invisible="rent_type != 'night'" required="rent_type == 'night'"/>
+                        <field name="check_out" invisible="rent_type != 'night'" required="rent_type == 'night'"/>
+                        <field name="hour_date" invisible="rent_type != 'hour'" required="rent_type == 'hour'"/>
+                        <field name="hour_start" invisible="rent_type != 'hour'" required="rent_type == 'hour'"/>
+                        <field name="hours_duration" invisible="rent_type != 'hour'" required="rent_type == 'hour'"/>
+                    </group>
+                </group>
+                <div class="text-center my-2">
+                    <button name="action_search_rooms" string="Kiểm Tra Phòng Trống" type="object" class="btn-primary w-50"/>
+                </div>
+                <separator string="Danh Sách Phòng Trống Phù Hợp" invisible="not available_room_ids"/>
+                <field name="available_room_ids" invisible="not available_room_ids" readonly="1">
+                    <list>
+                        <field name="name"/>
+                        <field name="floor"/>
+                        <field name="room_type_id"/>
+                        <field name="price_night" widget="monetary"/>
+                        <field name="price_hour" widget="monetary"/>
+                    </list>
+                </field>
+                <group invisible="not available_room_ids">
+                    <field name="selected_room_id" domain="[('id', 'in', available_room_ids)]" placeholder="Chọn phòng muốn đặt..."/>
+                </group>
+                <footer>
+                    <button name="action_book_room" string="Đặt Phòng Này Ngay" type="object" class="btn-success" invisible="not selected_room_id"/>
+                    <button string="Đóng" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hotel_room_search_wizard" model="ir.actions.act_window">
+        <field name="name">Tìm Phòng Trống Nhanh</field>
+        <field name="res_model">hotel.room.search.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

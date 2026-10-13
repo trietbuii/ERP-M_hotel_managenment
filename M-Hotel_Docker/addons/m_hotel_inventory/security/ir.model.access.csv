@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hotel_supply_norm_user,hotel.supply.norm.user,model_hotel_supply_norm,base.group_user,1,0,0,0
+access_hotel_supply_norm_stock,hotel.supply.norm.stock,model_hotel_supply_norm,m_hotel_base.group_hotel_stock,1,1,1,1
+access_hotel_supply_norm_manager,hotel.supply.norm.manager,model_hotel_supply_norm,m_hotel_base.group_hotel_manager,1,1,1,1
+access_hotel_consumed_housekeeping,hotel.task.supply.consumed.hk,model_hotel_task_supply_consumed,m_hotel_base.group_hotel_housekeeping,1,0,1,0
+access_hotel_consumed_stock,hotel.task.supply.consumed.stock,model_hotel_task_supply_consumed,m_hotel_base.group_hotel_stock,1,1,1,1
+access_hotel_consumed_manager,hotel.task.supply.consumed.manager,model_hotel_task_supply_consumed,m_hotel_base.group_hotel_manager,1,1,1,1

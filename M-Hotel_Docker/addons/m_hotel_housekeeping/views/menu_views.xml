@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_hotel_housekeeping_parent"
+              name="Buồng Phòng &amp; Sự Cố"
+              parent="m_hotel_base.menu_hotel_root"
+              sequence="30"/>
+
+    <menuitem id="menu_hotel_housekeeping_task"
+              name="Bảng Nhiệm Vụ Dọn Phòng"
+              parent="menu_hotel_housekeeping_parent"
+              action="action_hotel_housekeeping_task"
+              sequence="1"/>
+
+    <menuitem id="menu_hotel_incident"
+              name="Báo Cáo Sự Cố Phòng"
+              parent="menu_hotel_housekeeping_parent"
+              action="action_hotel_incident"
+              sequence="2"/>
+</odoo>

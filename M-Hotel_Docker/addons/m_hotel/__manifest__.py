@@ -1,35 +1,33 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'M-Hotel — Quản Lý Vận Hành Khách Sạn & Đặt Phòng',
-    'version': '17.0.1.0.0',
+    'name': 'M-Hotel — Hotel Operations Management (ERP Suite)',
+    'version': '19.0.1.0.0',
     'category': 'Services/Hotel',
-    'summary': 'Quản lý Đặt phòng (theo ngày & theo giờ), Lịch phòng, Sơ đồ phòng, Buồng phòng và Sự cố',
+    'summary': 'M-Hotel ERP Management Suite for Odoo 19 Community with native standard views',
     'description': """
-M-Hotel Hotel Management System (Odoo 17 Community):
-- Quản lý cơ sở khách sạn đa chi nhánh (Multi-company).
-- Quản lý hạng phòng và danh mục phòng.
-- Đặt phòng linh hoạt: Thuê theo đêm (Night) và Thuê theo giờ (Hourly booking).
-- Chống trùng lịch (Double-booking prevention).
-- Luồng Check-in / Check-out tự động cập nhật trạng thái phòng.
-- Phân hệ Buồng phòng (Housekeeping) và Bảo trì sự cố (Maintenance).
+M-Hotel ERP Management Suite (Odoo 19 Community):
+=================================================
+A comprehensive hotel operations management system built entirely on standard Odoo native views:
+1. m_hotel_base: Multi-branch hotel foundation, 5 room types, 54 rooms, seasonal rate tables, guest identification (Citizen ID / Passport / VIP tiers).
+2. m_hotel_booking: Daily & hourly room reservations, double-booking prevention, service folio, check-in/out workflows, room availability wizard, and standard customer invoicing.
+3. m_hotel_housekeeping: Drag-and-drop housekeeping Kanban board, auto-generated tasks upon check-out, incident tracking, and automatic room blocking.
+4. m_hotel_inventory: Room supply norms (linens, amenities), automatic stock consumption upon task completion.
+5. m_hotel_asset: Room equipment registry and maintenance request integration.
+6. m_hotel_report: Dynamic Pivot & Graph analytics for room occupancy and multi-dimensional revenue.
+7. m_hotel_website: Public hotel portal and online booking engine.
     """,
-    'author': 'Nhóm 12 — IS336 Hoạch Định Nguồn Lực Doanh Nghiệp',
-    'website': 'https://m-hotel.vn',
+    'author': 'Group 12 — Enterprise Resource Planning (ERP)',
     'license': 'LGPL-3',
-    'depends': ['base', 'mail'],
-    'data': [
-        'security/security.xml',
-        'security/ir.model.access.csv',
-        'views/hotel_views.xml',
-        'views/room_views.xml',
-        'views/booking_views.xml',
-        'views/service_request_views.xml',
-        'views/menu_views.xml',
-        'data/demo_data.xml',
+    'depends': [
+        'm_hotel_base',
+        'm_hotel_booking',
+        'm_hotel_housekeeping',
+        'm_hotel_inventory',
+        'm_hotel_asset',
+        'm_hotel_report',
+        'm_hotel_website',
     ],
-    'demo': [
-        'data/demo_data.xml',
-    ],
+    'data': [],
     'application': True,
     'installable': True,
     'auto_install': False,

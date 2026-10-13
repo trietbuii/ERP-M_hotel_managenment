@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_hotel_supply_norm"
+              name="Định Mức Vật Tư Tiêu Hao"
+              parent="m_hotel_housekeeping.menu_hotel_housekeeping_parent"
+              action="action_hotel_supply_norm"
+              sequence="10"/>
+</odoo>

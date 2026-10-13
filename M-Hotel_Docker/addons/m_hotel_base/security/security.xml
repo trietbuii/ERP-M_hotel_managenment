@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- 1. Nhóm Buồng phòng -->
+        <record id="group_hotel_housekeeping" model="res.groups">
+            <field name="name">Nhân viên Buồng phòng</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- 2. Nhóm Lễ tân -->
+        <record id="group_hotel_receptionist" model="res.groups">
+            <field name="name">Nhân viên Lễ tân</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- 3. Nhóm Kỹ thuật / Bảo trì -->
+        <record id="group_hotel_maintenance" model="res.groups">
+            <field name="name">Nhân viên Kỹ thuật &amp; Bảo trì</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- 4. Nhóm Kho -->
+        <record id="group_hotel_stock" model="res.groups">
+            <field name="name">Thủ kho Vật tư Khách sạn</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- 5. Nhóm Quản lý Khách sạn / Giám đốc -->
+        <record id="group_hotel_manager" model="res.groups">
+            <field name="name">Quản lý / Giám đốc Khách sạn</field>
+            <field name="implied_ids" eval="[
+                (4, ref('group_hotel_housekeeping')),
+                (4, ref('group_hotel_receptionist')),
+                (4, ref('group_hotel_maintenance')),
+                (4, ref('group_hotel_stock'))
+            ]"/>
+            <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+        <!-- Kế thừa quyền cho Quản trị viên hệ thống (Admin) -->
+        <record id="base.group_system" model="res.groups">
+            <field name="implied_ids" eval="[(4, ref('group_hotel_manager'))]"/>
+        </record>
+    </data>
+
+    <!-- Multi-Company Record Rules -->
+    <data noupdate="1">
+        <record id="hotel_room_type_comp_rule" model="ir.rule">
+            <field name="name">Hạng phòng theo chi nhánh</field>
+            <field name="model_id" ref="model_hotel_room_type"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="hotel_room_rate_comp_rule" model="ir.rule">
+            <field name="name">Biểu giá phòng theo chi nhánh</field>
+            <field name="model_id" ref="model_hotel_room_rate"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="hotel_room_comp_rule" model="ir.rule">
+            <field name="name">Danh mục phòng theo chi nhánh</field>
+            <field name="model_id" ref="model_hotel_room"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+    </data>
+</odoo>

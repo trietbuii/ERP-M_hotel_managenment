@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hotel_hk_task_housekeeping,hotel.housekeeping.task.housekeeping,model_hotel_housekeeping_task,m_hotel_base.group_hotel_housekeeping,1,1,1,0
+access_hotel_hk_task_receptionist,hotel.housekeeping.task.receptionist,model_hotel_housekeeping_task,m_hotel_base.group_hotel_receptionist,1,1,1,0
+access_hotel_hk_task_manager,hotel.housekeeping.task.manager,model_hotel_housekeeping_task,m_hotel_base.group_hotel_manager,1,1,1,1
+access_hotel_incident_housekeeping,hotel.incident.housekeeping,model_hotel_incident,m_hotel_base.group_hotel_housekeeping,1,1,1,0
+access_hotel_incident_receptionist,hotel.incident.receptionist,model_hotel_incident,m_hotel_base.group_hotel_receptionist,1,1,1,0
+access_hotel_incident_maintenance,hotel.incident.maintenance,model_hotel_incident,m_hotel_base.group_hotel_maintenance,1,1,1,0
+access_hotel_incident_manager,hotel.incident.manager,model_hotel_incident,m_hotel_base.group_hotel_manager,1,1,1,1

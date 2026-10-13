@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hotel_incident_form_asset_inherit" model="ir.ui.view">
+        <field name="name">hotel.incident.form.asset.inherit</field>
+        <field name="model">hotel.incident</field>
+        <field name="inherit_id" ref="m_hotel_housekeeping.view_hotel_incident_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="maintenance_request_id" invisible="1"/>
+                <button name="action_create_maintenance_request" string="Tạo Yêu Cầu Sửa Chữa (Kỹ Thuật)"
+                        type="object" class="btn-warning"
+                        invisible="maintenance_request_id or state not in ('reported', 'in_progress')"/>
+            </xpath>
+            <xpath expr="//field[@name='block_room']" position="after">
+                <field name="maintenance_request_id" readonly="1" invisible="not maintenance_request_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
