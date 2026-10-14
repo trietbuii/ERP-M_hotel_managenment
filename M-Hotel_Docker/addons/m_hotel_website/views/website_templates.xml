@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Template: Hotel Home Page -->
+        <template id="hotel_home" name="M-Hotel Home Page">
+            <t t-call="website.layout">
+                <div id="wrap" class="oe_structure oe_empty">
+                    
+                    <!-- Custom Inline CSS for Luxury Styling -->
+                    <style>
+                        :root {
+                            --mhotel-gold: #c5a880;
+                            --mhotel-gold-dark: #a38257;
+                            --mhotel-dark: #111827;
+                            --mhotel-navy: #0f172a;
+                        }
+                        .hero-banner {
+                            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&amp;fit=crop&amp;w=1920&amp;q=80') center/cover no-repeat;
+                            min-height: 85vh;
+                            display: flex;
+                            align-items: center;
+                            color: white;
+                        }
+                        .gold-text { color: #d4af37 !important; }
+                        .gold-btn {
+                            background: linear-gradient(135deg, #d4af37, #aa820a);
+                            color: #111827 !important;
+                            font-weight: 700;
+                            border: none;
+                            padding: 12px 28px;
+                            border-radius: 8px;
+                            transition: all 0.3s ease;
+                        }
+                        .gold-btn:hover {
+                            background: linear-gradient(135deg, #e6c34e, #c5970c);
+                            transform: translateY(-2px);
+                            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35);
+                        }
+                        .booking-search-card {
+                            background: rgba(255, 255, 255, 0.98);
+                            backdrop-filter: blur(10px);
+                            border-radius: 16px;
+                            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+                            margin-top: -60px;
+                            position: relative;
+                            z-index: 10;
+                        }
+                        .room-card {
+                            border: 1px solid #e5e7eb;
+                            border-radius: 14px;
+                            overflow: hidden;
+                            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                            background: #ffffff;
+                        }
+                        .room-card:hover {
+                            transform: translateY(-8px);
+                            box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+                            border-color: #d4af37;
+                        }
+                        .service-icon-box {
+                            width: 64px;
+                            height: 64px;
+                            border-radius: 16px;
+                            background: #fbf6ec;
+                            color: #aa820a;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 28px;
+                            margin: 0 auto 16px;
+                        }
+                    </style>
+
+                    <!-- Hero Section -->
+                    <section class="hero-banner text-center py-5">
+                        <div class="container py-5">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10">
+                                    <span class="badge bg-warning text-dark px-3 py-2 text-uppercase fw-bold rounded-pill mb-3">
+                                        ✨ Khách Sạn &amp; Khu Nghỉ Dưỡng Đẳng Cấp 5 Sao
+                                    </span>
+                                    <h1 class="display-3 fw-bold mb-3 text-white">
+                                        M-HOTEL LUXURY HOSPITALITY
+                                    </h1>
+                                    <p class="lead mb-4 text-light opacity-90 mx-auto" style="max-width: 800px; font-size: 1.25rem;">
+                                        Trải nghiệm không gian nghỉ dưỡng tinh tế, tiện nghi thượng lưu chuẩn quốc tế tại 
+                                        <strong>M-Hotel Quy Nhơn Central</strong> &amp; <strong>M-Hotel Kỳ Co Resort (Bình Định)</strong>.
+                                    </p>
+                                    <div class="d-flex justify-content-center gap-3">
+                                        <a href="/hotel/booking" class="gold-btn btn btn-lg">
+                                            <i class="fa fa-calendar-check-o me-2"></i> Đặt Phòng Ngay
+                                        </a>
+                                        <a href="/hotel/rooms" class="btn btn-outline-light btn-lg px-4 rounded-3 fw-bold">
+                                            <i class="fa fa-bed me-2"></i> Xem Các Hạng Phòng
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Quick Booking Search Floating Bar -->
+                    <div class="container mb-5">
+                        <div class="booking-search-card p-4">
+                            <form action="/hotel/booking" method="GET" class="row g-3 align-items-end">
+                                <div class="col-md-3">
+                                    <label class="form-label fw-bold text-dark mb-1">
+                                        <i class="fa fa-map-marker text-danger me-1"></i> Chi Nhánh Khách Sạn
+                                    </label>
+                                    <select class="form-select form-select-lg border-2" name="company_id">
+                                        <t t-foreach="companies" t-as="c">
+                                            <option t-att-value="c.id" t-esc="c.name"/>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label fw-bold text-dark mb-1">
+                                        <i class="fa fa-home gold-text me-1"></i> Hạng Phòng Ưa Thích
+                                    </label>
+                                    <select class="form-select form-select-lg border-2" name="type_id">
+                                        <t t-foreach="room_types" t-as="rt">
+                                            <option t-att-value="rt.id" t-esc="rt.name"/>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label fw-bold text-dark mb-1">
+                                        <i class="fa fa-clock-o text-primary me-1"></i> Hình Thức Thuê
+                                    </label>
+                                    <select class="form-select form-select-lg border-2" name="rent_type">
+                                        <option value="night">Theo đêm</option>
+                                        <option value="hour">Theo giờ</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="gold-btn btn btn-lg w-100 py-3">
+                                        <i class="fa fa-search me-2"></i> Tìm Phòng &amp; Báo Giá
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Branches Showcase Section -->
+                    <section class="py-5 bg-light">
+                        <div class="container py-3">
+                            <div class="text-center mb-5">
+                                <span class="text-uppercase fw-bold text-warning small tracking-wide">Hệ Thống Lưu Trú Tại Bình Định</span>
+                                <h2 class="fw-bold text-dark mt-1">Hai Cơ Sở Nghỉ Dưỡng Hàng Đầu Tỉnh Bình Định</h2>
+                                <p class="text-muted mx-auto" style="max-width: 650px;">
+                                    Tọa lạc tại những vị trí đắc địa nhất của thành phố biển Quy Nhơn và danh thắng Kỳ Co - Eo Gió, Bình Định.
+                                </p>
+                            </div>
+                            <div class="row g-4">
+                                <!-- Quy Nhon Central -->
+                                <div class="col-lg-6">
+                                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+                                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&amp;fit=crop&amp;w=800&amp;q=80" 
+                                             class="card-img-top" style="height: 300px; object-fit: cover;" alt="Quy Nhon Central"/>
+                                        <div class="card-body p-4">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h3 class="card-title fw-bold h4 mb-0 text-dark">M-Hotel Quy Nhơn Central</h3>
+                                                <span class="badge bg-primary px-3 py-2 rounded-pill">44 Phòng Nghỉ</span>
+                                            </div>
+                                            <p class="text-muted mb-3">
+                                                <i class="fa fa-map-marker text-danger me-1"></i> 01 An Dương Vương, Phường Nguyễn Văn Cừ, TP. Quy Nhơn, Tỉnh Bình Định
+                                            </p>
+                                            <p class="card-text text-secondary mb-4">
+                                                Khách sạn phong cách Boutique sang trọng tọa lạc ngay mặt biển trung tâm TP. Quy Nhơn, chỉ 2 phút ra bờ biển cát vàng và quảng trường Nguyễn Tất Thành. Tầm nhìn panorama ôm trọn vịnh Quy Nhơn.
+                                            </p>
+                                            <a href="/hotel/booking?company_id=1" class="btn btn-outline-dark fw-bold rounded-pill px-4">
+                                                Đặt phòng Quy Nhơn →
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Ky Co Resort -->
+                                <div class="col-lg-6">
+                                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+                                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&amp;fit=crop&amp;w=800&amp;q=80" 
+                                             class="card-img-top" style="height: 300px; object-fit: cover;" alt="Ky Co Resort"/>
+                                        <div class="card-body p-4">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h3 class="card-title fw-bold h4 mb-0 text-dark">M-Hotel Kỳ Co Resort (Bình Định)</h3>
+                                                <span class="badge bg-success px-3 py-2 rounded-pill">10 Biệt Thự Biển</span>
+                                            </div>
+                                            <p class="text-muted mb-3">
+                                                <i class="fa fa-map-marker text-danger me-1"></i> Khu du lịch sinh thái Kỳ Co - Eo Gió, Xã Nhơn Lý, TP. Quy Nhơn, Tỉnh Bình Định
+                                            </p>
+                                            <p class="card-text text-secondary mb-4">
+                                                Khu nghỉ dưỡng biệt lập hướng trực diện vịnh biển Kỳ Co và danh thắng Eo Gió với bãi tắm riêng nước trong xanh ngọc bích, hồ bơi vô cực ngập tràn ánh nắng và gió biển nhiệt đới.
+                                            </p>
+                                            <a href="/hotel/booking?company_id=2" class="btn btn-outline-dark fw-bold rounded-pill px-4">
+                                                Đặt phòng Kỳ Co Resort →
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Featured Room Types Section -->
+                    <section class="py-5">
+                        <div class="container py-3">
+                            <div class="d-flex justify-content-between align-items-end mb-4">
+                                <div>
+                                    <span class="text-uppercase fw-bold text-warning small tracking-wide">Bộ Sưu Tập Phòng</span>
+                                    <h2 class="fw-bold text-dark mt-1">Các Hạng Phòng Tiêu Chuẩn 5 Sao</h2>
+                                </div>
+                                <a href="/hotel/rooms" class="btn btn-outline-secondary fw-bold rounded-pill px-4">
+                                    Xem tất cả hạng phòng
+                                </a>
+                            </div>
+                            <div class="row g-4">
+                                <t t-foreach="room_types" t-as="rt">
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="room-card h-100 d-flex flex-column">
+                                            <div class="position-relative">
+                                                <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&amp;fit=crop&amp;w=600&amp;q=80" 
+                                                     class="w-100" style="height: 220px; object-fit: cover;" alt="Room Image"/>
+                                                <div class="position-absolute top-0 end-0 m-3">
+                                                    <span class="badge bg-dark px-3 py-2 rounded-pill fw-bold">
+                                                        <i class="fa fa-users me-1"></i> <t t-esc="rt.capacity"/> Khách
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="p-4 d-flex flex-column flex-grow-1">
+                                                <h3 class="h5 fw-bold text-dark mb-2" t-esc="rt.name"/>
+                                                <p class="text-muted small mb-3 flex-grow-1" t-esc="rt.description or 'Trang thiết bị hiện đại, nệm cao cấp, minibar, bồn tắm nằm và view thoáng đãng.'"/>
+                                                <div class="d-flex justify-content-between align-items-baseline pt-3 border-top mb-3">
+                                                    <div>
+                                                        <small class="text-muted d-block">Giá theo đêm</small>
+                                                        <span class="h4 fw-bold text-danger mb-0">
+                                                            <t t-esc="'{:,.0f}'.format(rt.base_price_night)"/> đ
+                                                        </span>
+                                                        <small class="text-muted">/đêm</small>
+                                                    </div>
+                                                    <div class="text-end">
+                                                        <small class="text-muted d-block">Giá theo giờ</small>
+                                                        <span class="fw-bold text-dark">
+                                                            <t t-esc="'{:,.0f}'.format(rt.base_price_hour)"/> đ
+                                                        </span>
+                                                        <small class="text-muted">/giờ đầu</small>
+                                                    </div>
+                                                </div>
+                                                <a t-att-href="'/hotel/booking?type_id=%s' % rt.id" class="gold-btn btn text-center w-100">
+                                                    <i class="fa fa-check-circle me-1"></i> Đặt Phòng Này
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Hotel Amenities & Services -->
+                    <section class="py-5 bg-dark text-white">
+                        <div class="container py-4 text-center">
+                            <span class="text-uppercase fw-bold gold-text small tracking-wide">Dịch Vụ Đẳng Cấp</span>
+                            <h2 class="fw-bold text-white mt-1 mb-5">Tiện Ích Nghỉ Dưỡng Toàn Diện</h2>
+                            <div class="row g-4">
+                                <div class="col-md-3 col-6">
+                                    <div class="service-icon-box">
+                                        <i class="fa fa-cutlery"></i>
+                                    </div>
+                                    <h4 class="h5 fw-bold text-white mb-2">Ẩm Thực Fine Dining</h4>
+                                    <p class="text-light opacity-75 small">Nhà hàng Á - Âu với đầu bếp 5 sao và Room Service phục vụ tận phòng 24/7.</p>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <div class="service-icon-box">
+                                        <i class="fa fa-life-ring"></i>
+                                    </div>
+                                    <h4 class="h5 fw-bold text-white mb-2">Hồ Bơi Vô Cực</h4>
+                                    <p class="text-light opacity-75 small">Hồ bơi tràn bờ trên cao view triệu đô ngắm trọn hoàng hôn tuyệt mỹ.</p>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <div class="service-icon-box">
+                                        <i class="fa fa-heartbeat"></i>
+                                    </div>
+                                    <h4 class="h5 fw-bold text-white mb-2">Spa &amp; Trị Liệu</h4>
+                                    <p class="text-light opacity-75 small">Liệu pháp massage thảo mộc truyền thống phục hồi năng lượng tinh thần.</p>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <div class="service-icon-box">
+                                        <i class="fa fa-car"></i>
+                                    </div>
+                                    <h4 class="h5 fw-bold text-white mb-2">Đưa Đón VIP</h4>
+                                    <p class="text-light opacity-75 small">Đội xe Limousine và Mercedes đưa đón sân bay Tân Sơn Nhất chu đáo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </t>
+        </template>
+
+
+        <!-- Template: Hotel Rooms Catalog -->
+        <template id="hotel_rooms" name="M-Hotel Rooms Catalog">
+            <t t-call="website.layout">
+                <div id="wrap" class="py-5 bg-light">
+                    <div class="container">
+                        <div class="text-center mb-5">
+                            <h1 class="display-5 fw-bold text-dark">Danh Sách Hạng Phòng M-Hotel</h1>
+                            <p class="lead text-muted mx-auto" style="max-width: 700px;">
+                                Lựa chọn không gian nghỉ dưỡng lý tưởng với đầy đủ tiện nghi cao cấp chuẩn 5 sao cho kỳ nghỉ hoàn hảo.
+                            </p>
+                        </div>
+
+                        <div class="row g-4">
+                            <t t-foreach="room_types" t-as="rt">
+                                <div class="col-12">
+                                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&amp;fit=crop&amp;w=800&amp;q=80" 
+                                                     class="img-fluid h-100 w-100" style="min-height: 260px; object-fit: cover;" alt="Room"/>
+                                            </div>
+                                            <div class="col-md-8 p-4 d-flex flex-column justify-content-between">
+                                                <div>
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h2 class="h3 fw-bold text-dark mb-0" t-esc="rt.name"/>
+                                                        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold">
+                                                            Mã: <t t-esc="rt.code"/>
+                                                        </span>
+                                                    </div>
+                                                    <p class="text-muted mb-3" t-esc="rt.description or 'Không gian rộng rãi, ban công view thoáng, trang bị Smart TV, máy lạnh Inverter, két sắt điện tử và minibar cao cấp.'"/>
+                                                    
+                                                    <div class="row g-2 mb-3">
+                                                        <div class="col-sm-3 col-6">
+                                                            <small class="text-muted d-block"><i class="fa fa-users text-primary me-1"></i> Sức chứa</small>
+                                                            <span class="fw-bold"><t t-esc="rt.capacity"/> người lớn</span>
+                                                        </div>
+                                                        <div class="col-sm-3 col-6">
+                                                            <small class="text-muted d-block"><i class="fa fa-bed text-success me-1"></i> Loại giường</small>
+                                                            <span class="fw-bold text-capitalize"><t t-esc="rt.bed_type or 'King Size'"/></span>
+                                                        </div>
+                                                        <div class="col-sm-3 col-6">
+                                                            <small class="text-muted d-block"><i class="fa fa-wifi text-info me-1"></i> Wifi Free</small>
+                                                            <span class="fw-bold">Tốc độ cao</span>
+                                                        </div>
+                                                        <div class="col-sm-3 col-6">
+                                                            <small class="text-muted d-block"><i class="fa fa-coffee text-danger me-1"></i> Bữa sáng</small>
+                                                            <span class="fw-bold">Buffet 5 sao</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                                                    <div>
+                                                        <span class="h3 fw-bold text-danger mb-0">
+                                                            <t t-esc="'{:,.0f}'.format(rt.base_price_night)"/> đ
+                                                        </span>
+                                                        <span class="text-muted"> /đêm</span>
+                                                        <span class="text-muted ms-3">
+                                                            (<t t-esc="'{:,.0f}'.format(rt.base_price_hour)"/> đ/giờ đầu)
+                                                        </span>
+                                                    </div>
+                                                    <a t-att-href="'/hotel/booking?type_id=%s' % rt.id" class="btn btn-warning btn-lg px-4 fw-bold rounded-pill text-dark">
+                                                        <i class="fa fa-calendar-check-o me-2"></i> Đặt Phòng Này
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+
+        <!-- Template: Hotel Online Booking Form -->
+        <template id="hotel_booking_form" name="M-Hotel Booking Form">
+            <t t-call="website.layout">
+                <div id="wrap" class="py-5 bg-light">
+                    <div class="container" style="max-width: 900px;">
+                        
+                        <div class="text-center mb-5">
+                            <span class="badge bg-warning text-dark px-3 py-2 rounded-pill text-uppercase fw-bold mb-2">
+                                🏨 Cổng Đặt Phòng Trực Tuyến
+                            </span>
+                            <h1 class="display-6 fw-bold text-dark">Đặt Phòng Trực Tuyến M-Hotel</h1>
+                            <p class="text-muted">
+                                Điền thông tin bên dưới để giữ phòng ngay. Dữ liệu sẽ được tự động đồng bộ ngay lập tức vào hệ thống Lễ tân ERP.
+                            </p>
+                        </div>
+
+                        <div class="card border-0 shadow rounded-4 overflow-hidden p-4 p-md-5 bg-white">
+                            <form action="/hotel/booking/submit" method="POST">
+                                
+                                <!-- Section 1: Thông tin lưu trú -->
+                                <h2 class="h5 fw-bold text-dark mb-4 pb-2 border-bottom">
+                                    <i class="fa fa-building-o text-warning me-2"></i> 1. Thông Tin Lưu Trú
+                                </h2>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold text-secondary">Chi Nhánh Khách Sạn <span class="text-danger">*</span></label>
+                                        <select class="form-select form-select-lg" name="company_id" required="required">
+                                            <t t-foreach="companies" t-as="c">
+                                                <option t-att-value="c.id" t-att-selected="c.id == selected_company_id" t-esc="c.name"/>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold text-secondary">Hạng Phòng <span class="text-danger">*</span></label>
+                                        <select class="form-select form-select-lg" name="room_type_id" required="required">
+                                            <t t-foreach="room_types" t-as="rt">
+                                                <option t-att-value="rt.id" t-att-selected="rt.id == selected_type_id" t-esc="'%s (%s đ/đêm)' % (rt.name, '{:,.0f}'.format(rt.base_price_night))"/>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-bold text-secondary">Hình Thức Thuê <span class="text-danger">*</span></label>
+                                        <select class="form-select form-select-lg" name="rent_type" required="required">
+                                            <option value="night" selected="selected">Thuê theo đêm</option>
+                                            <option value="hour">Thuê theo giờ</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-bold text-secondary">Thời Gian Nhận Phòng <span class="text-danger">*</span></label>
+                                        <input type="datetime-local" class="form-control form-control-lg" name="check_in" t-att-value="default_check_in" required="required"/>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-bold text-secondary">Thời Gian Trả Phòng <span class="text-danger">*</span></label>
+                                        <input type="datetime-local" class="form-control form-control-lg" name="check_out" t-att-value="default_check_out" required="required"/>
+                                    </div>
+                                </div>
+
+                                <!-- Section 2: Thông tin khách hàng -->
+                                <h2 class="h5 fw-bold text-dark mb-4 pb-2 border-bottom">
+                                    <i class="fa fa-user-circle text-primary me-2"></i> 2. Thông Tin Khách Hàng
+                                </h2>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold text-secondary">Họ Và Tên <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control form-control-lg" name="customer_name" placeholder="Nguyễn Văn A" required="required"/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold text-secondary">Số Điện Thoại <span class="text-danger">*</span></label>
+                                        <input type="tel" class="form-control form-control-lg" name="phone" placeholder="0901234567" required="required"/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold text-secondary">Email</label>
+                                        <input type="email" class="form-control form-control-lg" name="email" placeholder="example@gmail.com"/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold text-secondary">Số CCCD / Hộ Chiếu</label>
+                                        <input type="text" class="form-control form-control-lg" name="id_number" placeholder="07920100xxxx"/>
+                                    </div>
+                                </div>
+
+                                <!-- Section 3: Yêu cầu đặc biệt -->
+                                <h2 class="h5 fw-bold text-dark mb-3 pb-2 border-bottom">
+                                    <i class="fa fa-pencil-square-o text-success me-2"></i> 3. Yêu Cầu Đặc Biệt
+                                </h2>
+                                <div class="mb-4">
+                                    <textarea class="form-control" name="note" rows="3" placeholder="Ví dụ: Cần phòng tầng cao, giường đôi, nhận phòng sớm, chuẩn bị thêm nôi em bé..."></textarea>
+                                </div>
+
+                                <!-- Cam kết và Nút gửi -->
+                                <div class="alert alert-light border p-3 rounded-3 mb-4">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa fa-shield fa-2x text-warning me-3"></i>
+                                        <small class="text-muted">
+                                            Sau khi nhấn xác nhận, phiếu đặt phòng sẽ được tự động kích hoạt trạng thái <strong>Đã Xác Nhận (Confirmed)</strong> trên phần mềm Odoo của Lễ tân. Quý khách thanh toán tại quầy khi nhận phòng.
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <button id="btn_submit_hotel_booking" type="submit" class="btn btn-warning btn-lg w-100 py-3 fw-bold text-dark fs-5 rounded-3 shadow-sm">
+                                    <i class="fa fa-check-circle me-2"></i> XÁC NHẬN ĐẶT PHÒNG NGAY
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+
+        <!-- Template: Hotel Booking Confirmation -->
+        <template id="hotel_booking_confirmation" name="M-Hotel Booking Confirmation">
+            <t t-call="website.layout">
+                <div id="wrap" class="py-5 bg-light">
+                    <div class="container" style="max-width: 800px;">
+                        
+                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden text-center p-5 bg-white">
+                            <div class="mb-4">
+                                <span class="d-inline-flex align-items-center justify-content-center bg-success text-white rounded-circle shadow" style="width: 80px; height: 80px; font-size: 40px;">
+                                    ✓
+                                </span>
+                            </div>
+                            
+                            <h1 class="display-6 fw-bold text-dark mb-2">ĐẶT PHÒNG THÀNH CÔNG!</h1>
+                            <p class="text-muted mb-4 lead">
+                                Cảm ơn quý khách đã tin tưởng và lựa chọn <strong>M-Hotel Hospitality</strong>.
+                            </p>
+
+                            <!-- Booking Receipt Card -->
+                            <div class="card bg-light border text-start p-4 rounded-3 mb-4">
+                                <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+                                    <div>
+                                        <span class="text-muted small d-block">Mã Đặt Phòng ERP:</span>
+                                        <span class="h4 fw-bold text-primary mb-0" t-esc="booking.name"/>
+                                    </div>
+                                    <span class="badge bg-success px-3 py-2 rounded-pill fs-6">
+                                        Trạng thái: Đã Xác Nhận
+                                    </span>
+                                </div>
+
+                                <div class="row g-3">
+                                    <div class="col-sm-6">
+                                        <span class="text-muted small d-block">Khách hàng:</span>
+                                        <strong class="text-dark fs-6" t-esc="booking.partner_id.name"/>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span class="text-muted small d-block">Số điện thoại:</span>
+                                        <strong class="text-dark fs-6" t-esc="booking.partner_id.phone or 'Chưa cập nhật'"/>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span class="text-muted small d-block">Chi nhánh khách sạn:</span>
+                                        <strong class="text-dark fs-6" t-esc="booking.company_id.name"/>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span class="text-muted small d-block">Phòng &amp; Hạng phòng:</span>
+                                        <strong class="text-dark fs-6" t-esc="'%s (%s)' % (booking.room_id.name, booking.room_type_id.name)"/>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span class="text-muted small d-block">Thời gian nhận phòng:</span>
+                                        <strong class="text-success fs-6" t-esc="booking.check_in.strftime('%d/%m/%Y %H:%M') if booking.check_in else ''"/>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span class="text-muted small d-block">Thời gian trả phòng:</span>
+                                        <strong class="text-danger fs-6" t-esc="booking.check_out.strftime('%d/%m/%Y %H:%M') if booking.check_out else ''"/>
+                                    </div>
+                                    <div class="col-12 pt-3 border-top d-flex justify-content-between align-items-baseline">
+                                        <span class="h6 mb-0 text-dark">Giá phòng niêm yết:</span>
+                                        <span class="h4 fw-bold text-danger mb-0">
+                                            <t t-esc="'{:,.0f}'.format(booking.room_price)"/> đ
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="alert alert-info text-start small mb-4">
+                                <i class="fa fa-info-circle me-1"></i> <strong>Lưu ý nhận phòng:</strong> Quý khách vui lòng cung cấp mã đặt phòng <code><t t-esc="booking.name"/></code> hoặc số điện thoại khi đến quầy Lễ tân để làm thủ tục nhận chìa khóa phòng nhanh chóng.
+                            </div>
+
+                            <div class="d-flex justify-content-center gap-3">
+                                <a href="/hotel" class="btn btn-outline-dark btn-lg px-4 rounded-pill fw-bold">
+                                    <i class="fa fa-home me-1"></i> Trang Chủ M-Hotel
+                                </a>
+                                <a href="/odoo" class="btn btn-primary btn-lg px-4 rounded-pill fw-bold">
+                                    <i class="fa fa-tachometer me-1"></i> Xem Trên Quản Trị ERP
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </t>
+        </template>
+
+    </data>
+</odoo>
