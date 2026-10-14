@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Đơn 1: Đang lưu trú tại P.104 -->
+        <record id="booking_sample_1" model="hotel.booking">
+            <field name="partner_id" ref="m_hotel_base.partner_guest_1"/>
+            <field name="room_id" ref="m_hotel_base.room_104"/>
+            <field name="rent_type">night</field>
+            <field name="check_in" eval="(datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d 14:00:00')"/>
+            <field name="check_out" eval="(datetime.now() + timedelta(days=2)).strftime('%Y-%m-%d 12:00:00')"/>
+            <field name="deposit_amount">500000</field>
+            <field name="state">check_in</field>
+        </record>
+
+        <!-- Folio line cho Đơn 1 -->
+        <record id="folio_line_sample_1" model="hotel.booking.line">
+            <field name="booking_id" ref="booking_sample_1"/>
+            <field name="product_id" ref="m_hotel_base.product_laundry"/>
+            <field name="name">Giặt ủi quần áo cao cấp</field>
+            <field name="quantity">2</field>
+            <field name="price_unit">60000</field>
+        </record>
+
+        <record id="folio_line_sample_2" model="hotel.booking.line">
+            <field name="booking_id" ref="booking_sample_1"/>
+            <field name="product_id" ref="m_hotel_base.product_lavie"/>
+            <field name="name">Nước khoáng Lavie 500ml</field>
+            <field name="quantity">4</field>
+            <field name="price_unit">20000</field>
+        </record>
+
+        <!-- Đơn 2: Đang lưu trú tại P.203 -->
+        <record id="booking_sample_2" model="hotel.booking">
+            <field name="partner_id" ref="m_hotel_base.partner_guest_2"/>
+            <field name="room_id" ref="m_hotel_base.room_203"/>
+            <field name="rent_type">night</field>
+            <field name="check_in" eval="(datetime.now() - timedelta(days=2)).strftime('%Y-%m-%d 14:00:00')"/>
+            <field name="check_out" eval="(datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d 12:00:00')"/>
+            <field name="deposit_amount">1000000</field>
+            <field name="state">check_in</field>
+        </record>
+
+        <!-- Đơn 3: Đã xác nhận giữ phòng P.105 -->
+        <record id="booking_sample_3" model="hotel.booking">
+            <field name="partner_id" ref="m_hotel_base.partner_guest_3"/>
+            <field name="room_id" ref="m_hotel_base.room_105"/>
+            <field name="rent_type">night</field>
+            <field name="check_in" eval="(datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d 14:00:00')"/>
+            <field name="check_out" eval="(datetime.now() + timedelta(days=4)).strftime('%Y-%m-%d 12:00:00')"/>
+            <field name="deposit_amount">500000</field>
+            <field name="state">confirmed</field>
+        </record>
+    </data>
+</odoo>

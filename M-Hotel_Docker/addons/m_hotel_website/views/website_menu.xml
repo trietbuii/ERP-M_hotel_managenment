@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="menu_m_hotel_home" model="website.menu">
+            <field name="name">Khách Sạn M-Hotel</field>
+            <field name="url">/hotel</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">10</field>
+        </record>
+        <record id="menu_m_hotel_rooms" model="website.menu">
+            <field name="name">Hạng Phòng</field>
+            <field name="url">/hotel/rooms</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">20</field>
+        </record>
+        <record id="menu_m_hotel_booking" model="website.menu">
+            <field name="name">Đặt Phòng Trực Tuyến</field>
+            <field name="url">/hotel/booking</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">30</field>
+        </record>
+        <record id="menu_m_hotel_erp" model="website.menu">
+            <field name="name">Quản Trị ERP (Nội Bộ)</field>
+            <field name="url">/odoo</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">40</field>
+        </record>
+    </data>
+</odoo>
