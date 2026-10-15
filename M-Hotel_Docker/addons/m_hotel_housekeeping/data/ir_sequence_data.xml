@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_hotel_housekeeping_task" model="ir.sequence">
+            <field name="name">Mã Nhiệm Vụ Buồng Phòng</field>
+            <field name="code">hotel.housekeeping.task</field>
+            <field name="prefix">HK/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_hotel_incident" model="ir.sequence">
+            <field name="name">Mã Sự Cố Phòng</field>
+            <field name="code">hotel.incident</field>
+            <field name="prefix">INC/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>
