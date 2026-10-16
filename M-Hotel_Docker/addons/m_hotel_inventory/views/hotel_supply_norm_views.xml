@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hotel_supply_norm_tree" model="ir.ui.view">
+        <field name="name">hotel.supply.norm.tree</field>
+        <field name="model">hotel.supply.norm</field>
+        <field name="arch" type="xml">
+            <list string="Định Mức Vật Tư Buồng Phòng" editable="bottom">
+                <field name="room_type_id"/>
+                <field name="product_id"/>
+                <field name="quantity"/>
+                <field name="uom_id"/>
+                <field name="task_type"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_hotel_supply_norm_form" model="ir.ui.view">
+        <field name="name">hotel.supply.norm.form</field>
+        <field name="model">hotel.supply.norm</field>
+        <field name="arch" type="xml">
+            <form string="Định Mức Vật Tư Buồng Phòng">
+                <sheet>
+                    <group>
+                        <group string="Hạng phòng &amp; Loại công việc">
+                            <field name="room_type_id"/>
+                            <field name="task_type"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group string="Vật tư &amp; Số lượng">
+                            <field name="product_id"/>
+                            <field name="quantity"/>
+                            <field name="uom_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hotel_supply_norm" model="ir.actions.act_window">
+        <field name="name">Định Mức Vật Tư Buồng Phòng</field>
+        <field name="res_model">hotel.supply.norm</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

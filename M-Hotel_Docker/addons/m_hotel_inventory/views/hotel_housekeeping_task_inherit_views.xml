@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hotel_housekeeping_task_form_inventory_inherit" model="ir.ui.view">
+        <field name="name">hotel.housekeeping.task.form.inventory.inherit</field>
+        <field name="model">hotel.housekeeping.task</field>
+        <field name="inherit_id" ref="m_hotel_housekeeping.view_hotel_housekeeping_task_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Vật Tư Tiêu Hao (Kho)" name="supplies">
+                    <field name="consumed_supply_ids" readonly="1">
+                        <list>
+                            <field name="product_id"/>
+                            <field name="quantity"/>
+                            <field name="uom_id"/>
+                            <field name="date"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

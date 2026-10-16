@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hotel_room_form_asset_inherit" model="ir.ui.view">
+        <field name="name">hotel.room.form.asset.inherit</field>
+        <field name="model">hotel.room</field>
+        <field name="inherit_id" ref="m_hotel_base.view_hotel_room_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_view_equipments" type="object" class="oe_stat_button" icon="fa-television">
+                        <field name="equipment_count" widget="statinfo" string="Thiết bị"/>
+                    </button>
+                    <button name="action_view_maintenances" type="object" class="oe_stat_button" icon="fa-wrench">
+                        <field name="maintenance_count" widget="statinfo" string="Bảo trì"/>
+                    </button>
+                </div>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Trang Thiết Bị Trong Phòng" name="equipments">
+                    <field name="equipment_ids">
+                        <list>
+                            <field name="name"/>
+                            <field name="serial_no"/>
+                            <field name="category_id"/>
+                            <field name="effective_date"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

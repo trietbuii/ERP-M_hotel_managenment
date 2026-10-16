@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_hotel_asset_parent"
+              name="Kỹ Thuật &amp; Thiết Bị"
+              parent="m_hotel_base.menu_hotel_root"
+              sequence="50"/>
+
+    <record id="action_hotel_room_equipments" model="ir.actions.act_window">
+        <field name="name">Trang Thiết Bị Buồng Phòng</field>
+        <field name="res_model">maintenance.equipment</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('room_id', '!=', False)]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_hotel_room_maintenance_requests" model="ir.actions.act_window">
+        <field name="name">Yêu Cầu Sửa Chữa Thiết Bị</field>
+        <field name="res_model">maintenance.request</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('room_id', '!=', False)]</field>
+    </record>
+
+    <menuitem id="menu_hotel_equipment_list"
+              name="Thiết Bị Theo Từng Phòng"
+              parent="menu_hotel_asset_parent"
+              action="action_hotel_room_equipments"
+              sequence="1"/>
+
+    <menuitem id="menu_hotel_maintenance_request_list"
+              name="Phiếu Sửa Chữa Kỹ Thuật"
+              parent="menu_hotel_asset_parent"
+              action="action_hotel_room_maintenance_requests"
+              sequence="2"/>
+</odoo>
