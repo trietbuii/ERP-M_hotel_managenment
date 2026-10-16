@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_hotel_report_parent"
+              name="Báo Cáo &amp; Phân Tích"
+              parent="m_hotel_base.menu_hotel_root"
+              sequence="90"
+              groups="m_hotel_base.group_hotel_manager"/>
+
+    <menuitem id="menu_hotel_occupancy_report"
+              name="Công Suất &amp; Doanh Thu Phòng"
+              parent="menu_hotel_report_parent"
+              action="action_hotel_occupancy_report"
+              sequence="1"/>
+</odoo>

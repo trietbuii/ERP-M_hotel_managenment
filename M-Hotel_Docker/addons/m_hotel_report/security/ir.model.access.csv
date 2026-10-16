@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hotel_report_user,hotel.occupancy.report.user,model_hotel_occupancy_report,base.group_user,1,0,0,0
+access_hotel_report_manager,hotel.occupancy.report.manager,model_hotel_occupancy_report,m_hotel_base.group_hotel_manager,1,0,0,0
