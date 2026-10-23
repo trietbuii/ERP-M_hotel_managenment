@@ -84,8 +84,8 @@
                                         M-HOTEL LUXURY HOSPITALITY
                                     </h1>
                                     <p class="lead mb-4 text-light opacity-90 mx-auto" style="max-width: 800px; font-size: 1.25rem;">
-                                        Trải nghiệm không gian nghỉ dưỡng tinh tế, tiện nghi thượng lưu chuẩn quốc tế tại 
-                                        <strong>M-Hotel Quy Nhơn Central</strong> &amp; <strong>M-Hotel Kỳ Co Resort (Bình Định)</strong>.
+                                        Trải nghiệm không gian lưu trú và nghỉ dưỡng chuyên nghiệp tại 
+                                        <strong>Khách Sạn M (Cơ sở 1 - Gia Lai)</strong> &amp; <strong>M-Hotel Vũng Tàu (Cơ sở 2 - Vũng Tàu)</strong>.
                                     </p>
                                     <div class="d-flex justify-content-center gap-3">
                                         <a href="/hotel/booking" class="gold-btn btn btn-lg">
@@ -146,53 +146,53 @@
                     <section class="py-5 bg-light">
                         <div class="container py-3">
                             <div class="text-center mb-5">
-                                <span class="text-uppercase fw-bold text-warning small tracking-wide">Hệ Thống Lưu Trú Tại Bình Định</span>
-                                <h2 class="fw-bold text-dark mt-1">Hai Cơ Sở Nghỉ Dưỡng Hàng Đầu Tỉnh Bình Định</h2>
+                                <span class="text-uppercase fw-bold text-warning small tracking-wide">Hệ Thống Lưu Trú Khách Sạn M</span>
+                                <h2 class="fw-bold text-dark mt-1">Hai Cơ Sở Hoạt Động Tại Gia Lai &amp; Vũng Tàu</h2>
                                 <p class="text-muted mx-auto" style="max-width: 650px;">
-                                    Tọa lạc tại những vị trí đắc địa nhất của thành phố biển Quy Nhơn và danh thắng Kỳ Co - Eo Gió, Bình Định.
+                                    Hệ thống cơ sở lưu trú đồng bộ phục vụ khách du lịch, đoàn trải nghiệm và khách công tác tại Trụ sở chính (Gia Lai) cùng Chi nhánh nghỉ dưỡng mở rộng (Vũng Tàu).
                                 </p>
                             </div>
                             <div class="row g-4">
-                                <!-- Quy Nhon Central -->
+                                <!-- Co so 1 Gia Lai -->
                                 <div class="col-lg-6">
                                     <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
                                         <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&amp;fit=crop&amp;w=800&amp;q=80" 
-                                             class="card-img-top" style="height: 300px; object-fit: cover;" alt="Quy Nhon Central"/>
+                                             class="card-img-top" style="height: 300px; object-fit: cover;" alt="Cơ sở 1 Gia Lai"/>
                                         <div class="card-body p-4">
                                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                                <h3 class="card-title fw-bold h4 mb-0 text-dark">M-Hotel Quy Nhơn Central</h3>
-                                                <span class="badge bg-primary px-3 py-2 rounded-pill">44 Phòng Nghỉ</span>
+                                                <h3 class="card-title fw-bold h4 mb-0 text-dark">Khách Sạn M (Cơ sở 1 - Gia Lai)</h3>
+                                                <span class="badge bg-primary px-3 py-2 rounded-pill">13 Phòng Nghỉ</span>
                                             </div>
                                             <p class="text-muted mb-3">
-                                                <i class="fa fa-map-marker text-danger me-1"></i> 01 An Dương Vương, Phường Nguyễn Văn Cừ, TP. Quy Nhơn, Tỉnh Bình Định
+                                                <i class="fa fa-map-marker text-danger me-1"></i> Thôn Dương Liễu Tây, xã Bình Dương, Tỉnh Gia Lai
                                             </p>
                                             <p class="card-text text-secondary mb-4">
-                                                Khách sạn phong cách Boutique sang trọng tọa lạc ngay mặt biển trung tâm TP. Quy Nhơn, chỉ 2 phút ra bờ biển cát vàng và quảng trường Nguyễn Tất Thành. Tầm nhìn panorama ôm trọn vịnh Quy Nhơn.
+                                                Trụ sở chính khách sạn với 13 phòng bố trí từ tầng 1 đến tầng 3. Không gian yên tĩnh, tiện nghi với 4 hạng phòng: Phòng đơn, Phòng đôi, Phòng ba giường và Phòng tập thể. Đơn giá chỉ từ 250.000 VNĐ/đêm.
                                             </p>
                                             <a href="/hotel/booking?company_id=1" class="btn btn-outline-dark fw-bold rounded-pill px-4">
-                                                Đặt phòng Quy Nhơn →
+                                                Đặt phòng Cơ sở Gia Lai →
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Ky Co Resort -->
+                                <!-- Co so 2 Vung Tau -->
                                 <div class="col-lg-6">
                                     <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
                                         <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&amp;fit=crop&amp;w=800&amp;q=80" 
-                                             class="card-img-top" style="height: 300px; object-fit: cover;" alt="Ky Co Resort"/>
+                                             class="card-img-top" style="height: 300px; object-fit: cover;" alt="Cơ sở 2 Vũng Tàu"/>
                                         <div class="card-body p-4">
                                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                                <h3 class="card-title fw-bold h4 mb-0 text-dark">M-Hotel Kỳ Co Resort (Bình Định)</h3>
-                                                <span class="badge bg-success px-3 py-2 rounded-pill">10 Biệt Thự Biển</span>
+                                                <h3 class="card-title fw-bold h4 mb-0 text-dark">M-Hotel Vũng Tàu (Cơ sở 2 - Vũng Tàu)</h3>
+                                                <span class="badge bg-success px-3 py-2 rounded-pill">18 Phòng (Tầng 1 - 5)</span>
                                             </div>
                                             <p class="text-muted mb-3">
-                                                <i class="fa fa-map-marker text-danger me-1"></i> Khu du lịch sinh thái Kỳ Co - Eo Gió, Xã Nhơn Lý, TP. Quy Nhơn, Tỉnh Bình Định
+                                                <i class="fa fa-map-marker text-danger me-1"></i> 125 Thùy Vân, Phường Thắng Tam, TP. Vũng Tàu, Tỉnh Bà Rịa – Vũng Tàu
                                             </p>
                                             <p class="card-text text-secondary mb-4">
-                                                Khu nghỉ dưỡng biệt lập hướng trực diện vịnh biển Kỳ Co và danh thắng Eo Gió với bãi tắm riêng nước trong xanh ngọc bích, hồ bơi vô cực ngập tràn ánh nắng và gió biển nhiệt đới.
+                                                Chi nhánh nghỉ dưỡng quy mô mở rộng gồm 18 phòng bố trí từ Tầng 1 đến Tầng 5 mặt tiền Bãi Sau Thùy Vân, trang bị bồn sục thư giãn, phòng gia đình và căn hộ áp mái ngắm toàn cảnh biển 180 độ.
                                             </p>
                                             <a href="/hotel/booking?company_id=2" class="btn btn-outline-dark fw-bold rounded-pill px-4">
-                                                Đặt phòng Kỳ Co Resort →
+                                                Đặt phòng Cơ sở Vũng Tàu →
                                             </a>
                                         </div>
                                     </div>

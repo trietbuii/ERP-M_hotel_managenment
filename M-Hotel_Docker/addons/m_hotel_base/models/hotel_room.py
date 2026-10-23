@@ -28,6 +28,7 @@ class HotelRoom(models.Model):
     
     note = fields.Text(string='Ghi chú đặc biệt')
     color = fields.Integer(string='Color Index', compute='_compute_color')
+    active = fields.Boolean(string='Còn sử dụng', default=True)
 
     _name_company_uniq = models.Constraint(
         'unique(name, company_id)',

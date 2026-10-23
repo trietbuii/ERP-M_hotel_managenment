@@ -14,8 +14,11 @@ class HotelRoomType(models.Model):
     extra_capacity = fields.Integer(string='Sức chứa tối đa thêm (người)', default=1)
     bed_type = fields.Selection([
         ('single', '1 Giường đơn'),
-        ('double', '1 Giường đôi'),
+        ('double', '1 Giường đôi lớn'),
         ('twin', '2 Giường đơn'),
+        ('double_2', '2 Giường đôi'),
+        ('triple', '3 Giường (đơn hoặc đôi)'),
+        ('dorm', '6 Giường (đơn hoặc tầng)'),
         ('queen', '1 Giường Queen'),
         ('king', '1 Giường King'),
     ], string='Loại giường', default='double', required=True)

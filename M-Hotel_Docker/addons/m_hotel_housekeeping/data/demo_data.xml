@@ -1,32 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
-        <!-- Nhiệm vụ 1: Dọn phòng P.103 -->
+        <!-- Nhiệm vụ 1: Dọn phòng P.102 (Phòng đơn vừa trả) -->
         <record id="task_demo_1" model="hotel.housekeeping.task">
-            <field name="room_id" ref="m_hotel_base.room_103"/>
+            <field name="room_id" ref="m_hotel_base.room_102"/>
             <field name="task_type">checkout_clean</field>
             <field name="priority">2</field>
             <field name="state">pending</field>
-            <field name="notes">Khách vừa trả phòng lúc 12:00, cần dọn gấp cho khách tiếp theo nhận phòng lúc 14:00.</field>
+            <field name="notes">Khách vừa trả phòng lúc 12:00, cần dọn gấp chuẩn bị đón lượt khách tiếp theo.</field>
         </record>
 
-        <!-- Nhiệm vụ 2: Dọn phòng P.205 -->
-        <record id="task_demo_2" model="hotel.housekeeping.task">
-            <field name="room_id" ref="m_hotel_base.room_205"/>
-            <field name="task_type">stayover_clean</field>
-            <field name="priority">1</field>
-            <field name="state">in_progress</field>
-            <field name="notes">Dọn hàng ngày: Thay ga giường và bổ sung khăn tắm mới.</field>
-        </record>
-
-        <!-- Sự cố 1: P.108 Bị rò rỉ vòi sen phòng tắm (Khóa phòng) -->
+        <!-- Sự cố 1: P.205 Bị rò rỉ vòi sen phòng tắm (Khóa phòng bảo trì) -->
         <record id="incident_demo_1" model="hotel.incident">
             <field name="title">Hỏng van vòi sen nóng lạnh</field>
-            <field name="room_id" ref="m_hotel_base.room_108"/>
+            <field name="room_id" ref="m_hotel_base.room_205"/>
             <field name="severity">critical</field>
             <field name="block_room" eval="True"/>
             <field name="state">in_progress</field>
-            <field name="description">Van nóng lạnh bị rò rỉ nước liên tục xuống sàn nhà tắm, cần thợ điện nước thay lõi chia nước mới.</field>
+            <field name="description">Van nóng lạnh bị rò rỉ nước xuống sàn nhà tắm, cần thợ kỹ thuật thay van mới.</field>
         </record>
     </data>
 </odoo>

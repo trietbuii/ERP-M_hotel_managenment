@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
-        <!-- 1. Chi Nhánh / Công Ty Thứ 2 -->
+        <!-- 1. Trụ sở chính (Cơ sở 1 Gia Lai) & Chi nhánh mở rộng (Cơ sở 2 Vũng Tàu) -->
+        <record id="base.main_company" model="res.company">
+            <field name="name">Khách Sạn M (Cơ sở 1 - Gia Lai)</field>
+            <field name="street">Thôn Dương Liễu Tây, xã Bình Dương</field>
+            <field name="city">Gia Lai</field>
+            <field name="phone">0269 388 8888</field>
+            <field name="email">gialai@m-hotel.vn</field>
+            <field name="website">https://m-hotel.vn</field>
+            <field name="vat">4101567890</field>
+        </record>
+
         <record id="company_mhotel_vungtau" model="res.company">
             <field name="name">M-Hotel Vũng Tàu Resort</field>
             <field name="street">125 Thùy Vân, Phường Thắng Tam</field>
@@ -10,142 +20,152 @@
             <field name="email">vungtau@m-hotel.vn</field>
         </record>
 
-        <!-- 2. Hạng Phòng -->
+        <!-- 2. Hạng Phòng Thực Tế Tại Cơ Sở 1 (Gia Lai) -->
         <record id="room_type_std" model="hotel.room.type">
-            <field name="name">Standard Cozy</field>
-            <field name="code">STD</field>
+            <field name="name">Phòng đơn</field>
+            <field name="code">DON</field>
+            <field name="company_id" ref="base.main_company"/>
             <field name="capacity">2</field>
             <field name="extra_capacity">1</field>
-            <field name="bed_type">queen</field>
-            <field name="base_price_night">450000</field>
-            <field name="base_price_hour">120000</field>
-            <field name="amenities">Smart TV 43", Wifi tốc độ cao, Điều hòa Inverter, Bàn làm việc</field>
-            <field name="description">Phòng tiêu chuẩn ấm cúng, phù hợp cho cặp đôi hoặc chuyến công tác ngắn ngày.</field>
+            <field name="bed_type">double</field>
+            <field name="base_price_night">250000</field>
+            <field name="base_price_hour">70000</field>
+            <field name="amenities">1 Giường đôi lớn, Wifi tốc độ cao, Quạt máy, Bàn làm việc, Cửa sổ thoáng</field>
+            <field name="description">Phòng đơn ấm cúng với 1 giường đôi lớn, phù hợp cho 2 khách hoặc công tác ngắn ngày.</field>
         </record>
 
         <record id="room_type_sup" model="hotel.room.type">
-            <field name="name">Superior City View</field>
-            <field name="code">SUP</field>
-            <field name="capacity">2</field>
+            <field name="name">Phòng đôi</field>
+            <field name="code">DOI</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="capacity">4</field>
             <field name="extra_capacity">1</field>
-            <field name="bed_type">king</field>
-            <field name="base_price_night">650000</field>
-            <field name="base_price_hour">160000</field>
-            <field name="amenities">Cửa sổ lớn nhìn phố, Giường King 1m8, Két an toàn, Minibar</field>
-            <field name="description">Phòng thoáng mát với tầm nhìn bao quát thành phố, nội thất gỗ trang nhã.</field>
+            <field name="bed_type">double_2</field>
+            <field name="base_price_night">350000</field>
+            <field name="base_price_hour">100000</field>
+            <field name="amenities">2 Giường đôi rộng rãi, Điều hòa nhiệt độ, Tivi truyền hình cáp, Tủ lạnh nhỏ</field>
+            <field name="description">Phòng đôi tiện nghi với 2 giường đôi, không gian rộng rãi dành cho 4 khách.</field>
         </record>
 
         <record id="room_type_dlx" model="hotel.room.type">
-            <field name="name">Deluxe Ocean / Panorama</field>
-            <field name="code">DLX</field>
-            <field name="capacity">2</field>
+            <field name="name">Phòng ba giường</field>
+            <field name="code">BA</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="capacity">6</field>
             <field name="extra_capacity">1</field>
-            <field name="bed_type">king</field>
-            <field name="base_price_night">950000</field>
-            <field name="base_price_hour">220000</field>
-            <field name="amenities">Ban công riêng, Bồn tắm nằm view kính, Máy pha cà phê Espresso, Loa Bluetooth</field>
-            <field name="description">Trải nghiệm cao cấp với ban công riêng lộng gió và bồn tắm thư giãn sang trọng.</field>
-        </record>
-
-        <record id="room_type_sui" model="hotel.room.type">
-            <field name="name">Executive Suite</field>
-            <field name="code">SUI</field>
-            <field name="capacity">3</field>
-            <field name="extra_capacity">1</field>
-            <field name="bed_type">king</field>
-            <field name="base_price_night">1600000</field>
-            <field name="base_price_hour">350000</field>
-            <field name="amenities">Phòng khách &amp; phòng ngủ riêng biệt, Sofa da cao cấp, Smart TV 65", Bồn sục Jacuzzi</field>
-            <field name="description">Căn hộ thượng lưu dành cho doanh nhân và khách nghỉ dưỡng đẳng cấp.</field>
+            <field name="bed_type">triple</field>
+            <field name="base_price_night">500000</field>
+            <field name="base_price_hour">150000</field>
+            <field name="amenities">3 Giường đơn hoặc đôi, Điều hòa Inverter, Phòng tắm nước nóng, Ban công thoáng mát</field>
+            <field name="description">Phòng ba giường sức chứa tối đa 6 khách, phù hợp cho nhóm bạn hoặc gia đình đông người.</field>
         </record>
 
         <record id="room_type_fam" model="hotel.room.type">
-            <field name="name">Family Penthouse Suite</field>
-            <field name="code">FAM</field>
-            <field name="capacity">5</field>
+            <field name="name">Phòng tập thể</field>
+            <field name="code">TAPTHE</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="capacity">6</field>
             <field name="extra_capacity">2</field>
-            <field name="bed_type">twin</field>
-            <field name="base_price_night">2400000</field>
+            <field name="bed_type">dorm</field>
+            <field name="base_price_night">1000000</field>
+            <field name="base_price_hour">250000</field>
+            <field name="amenities">6 Giường đơn hoặc tầng, Tủ đồ cá nhân, 2 Khu vệ sinh khép kín, Bàn sinh hoạt chung</field>
+            <field name="description">Không gian phòng tập thể tiện lợi với 6 giường, phục vụ đoàn du lịch hoặc nhóm trải nghiệm.</field>
+        </record>
+
+        <record id="room_type_fam_suite" model="hotel.room.type">
+            <field name="name">Phòng gia đình</field>
+            <field name="code">GD</field>
+            <field name="capacity">4</field>
+            <field name="extra_capacity">2</field>
+            <field name="bed_type">queen</field>
+            <field name="base_price_night">1400000</field>
+            <field name="base_price_hour">300000</field>
+            <field name="amenities">1 Giường Queen, 2 Giường đơn, Khu tiếp khách riêng, Ban công thoáng mát</field>
+            <field name="description">Không gian phòng gia đình ấm cúng và rộng rãi, lý tưởng cho kỳ nghỉ gia đình có trẻ nhỏ.</field>
+        </record>
+
+        <record id="room_type_penthouse" model="hotel.room.type">
+            <field name="name">Căn hộ áp mái</field>
+            <field name="code">APMAI</field>
+            <field name="capacity">4</field>
+            <field name="extra_capacity">2</field>
+            <field name="bed_type">king</field>
+            <field name="base_price_night">2200000</field>
             <field name="base_price_hour">500000</field>
-            <field name="amenities">2 Phòng ngủ độc lập, Bếp mini, Bàn ăn gia đình, Ban công Panorama 180 độ</field>
-            <field name="description">Không gian nghỉ dưỡng tuyệt vời cho đại gia đình với đầy đủ tiện nghi sinh hoạt.</field>
+            <field name="amenities">1 Giường King siêu lớn, Bồn tắm sục thư giãn, Phòng khách sang trọng, Ban công ngắm trọn cảnh biển</field>
+            <field name="description">Căn hộ áp mái cao cấp nhất tại tầng thượng, thiết kế sang trọng với tầm nhìn toàn cảnh biển.</field>
         </record>
 
-        <!-- 3. Biểu Giá Cuối Tuần / Mùa Lễ Hội -->
-        <record id="rate_summer_dlx" model="hotel.room.rate">
-            <field name="name">Mùa Hè Du Lịch Biển 2026</field>
-            <field name="room_type_id" ref="room_type_dlx"/>
-            <field name="rate_type">season</field>
-            <field name="start_date">2026-06-01</field>
-            <field name="end_date">2026-08-31</field>
-            <field name="price_night">1200000</field>
-            <field name="price_hour">260000</field>
+        <!-- 3. Biểu Giá Ngày Lễ / Mùa Du Lịch Gia Lai -->
+        <record id="rate_holiday_don" model="hotel.room.rate">
+            <field name="name">Dịp Lễ Tết Phòng Đơn</field>
+            <field name="room_type_id" ref="room_type_std"/>
+            <field name="rate_type">holiday</field>
+            <field name="start_date">2026-04-28</field>
+            <field name="end_date">2026-05-03</field>
+            <field name="price_night">350000</field>
+            <field name="price_hour">90000</field>
         </record>
 
-        <record id="rate_weekend_sui" model="hotel.room.rate">
-            <field name="name">Cuối Tuần Nghỉ Dưỡng Suite</field>
-            <field name="room_type_id" ref="room_type_sui"/>
-            <field name="rate_type">weekend</field>
-            <field name="start_date">2026-01-01</field>
-            <field name="end_date">2026-12-31</field>
-            <field name="price_night">1850000</field>
-            <field name="price_hour">400000</field>
+        <record id="rate_holiday_doi" model="hotel.room.rate">
+            <field name="name">Dịp Lễ Tết Phòng Đôi</field>
+            <field name="room_type_id" ref="room_type_sup"/>
+            <field name="rate_type">holiday</field>
+            <field name="start_date">2026-04-28</field>
+            <field name="end_date">2026-05-03</field>
+            <field name="price_night">450000</field>
+            <field name="price_hour">130000</field>
         </record>
 
-        <!-- 4. Danh Mục 44 Phòng Thực Tế -->
-        <!-- Tầng 1 (8 phòng) -->
-        <record id="room_101" model="hotel.room"><field name="name">P.101</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_std"/><field name="status">available</field></record>
-        <record id="room_102" model="hotel.room"><field name="name">P.102</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_std"/><field name="status">available</field></record>
-        <record id="room_103" model="hotel.room"><field name="name">P.103</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_std"/><field name="status">cleaning</field></record>
-        <record id="room_104" model="hotel.room"><field name="name">P.104</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_sup"/><field name="status">occupied</field><field name="current_guest">Nguyễn Văn An</field></record>
-        <record id="room_105" model="hotel.room"><field name="name">P.105</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_sup"/><field name="status">reserved</field></record>
-        <record id="room_106" model="hotel.room"><field name="name">P.106</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_sup"/><field name="status">available</field></record>
-        <record id="room_107" model="hotel.room"><field name="name">P.107</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_dlx"/><field name="status">available</field></record>
-        <record id="room_108" model="hotel.room"><field name="name">P.108</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_dlx"/><field name="status">maintenance</field></record>
+        <!-- 4. Danh Mục 13 Phòng Tại Cơ Sở 1 (Gia Lai) - Bố trí Tầng 1 đến Tầng 3 -->
+        <!-- Tầng 1 (5 phòng) -->
+        <record id="room_101" model="hotel.room"><field name="name">P.101</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_std"/><field name="company_id" ref="base.main_company"/><field name="status">available</field></record>
+        <record id="room_102" model="hotel.room"><field name="name">P.102</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_std"/><field name="company_id" ref="base.main_company"/><field name="status">cleaning</field></record>
+        <record id="room_103" model="hotel.room"><field name="name">P.103</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_std"/><field name="company_id" ref="base.main_company"/><field name="status">available</field></record>
+        <record id="room_104" model="hotel.room"><field name="name">P.104</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_sup"/><field name="company_id" ref="base.main_company"/><field name="status">occupied</field><field name="current_guest">Nguyễn Văn An</field></record>
+        <record id="room_105" model="hotel.room"><field name="name">P.105</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_sup"/><field name="company_id" ref="base.main_company"/><field name="status">available</field></record>
 
-        <!-- Tầng 2 (10 phòng) -->
-        <record id="room_201" model="hotel.room"><field name="name">P.201</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_std"/><field name="status">available</field></record>
-        <record id="room_202" model="hotel.room"><field name="name">P.202</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_std"/><field name="status">available</field></record>
-        <record id="room_203" model="hotel.room"><field name="name">P.203</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_std"/><field name="status">occupied</field><field name="current_guest">Trần Thị Bích</field></record>
-        <record id="room_204" model="hotel.room"><field name="name">P.204</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_sup"/><field name="status">available</field></record>
-        <record id="room_205" model="hotel.room"><field name="name">P.205</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_sup"/><field name="status">cleaning</field></record>
-        <record id="room_206" model="hotel.room"><field name="name">P.206</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_sup"/><field name="status">available</field></record>
-        <record id="room_207" model="hotel.room"><field name="name">P.207</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_dlx"/><field name="status">available</field></record>
-        <record id="room_208" model="hotel.room"><field name="name">P.208</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_dlx"/><field name="status">occupied</field><field name="current_guest">Lê Hoàng Nam</field></record>
-        <record id="room_209" model="hotel.room"><field name="name">P.209</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_sui"/><field name="status">available</field></record>
-        <record id="room_210" model="hotel.room"><field name="name">P.210</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_sui"/><field name="status">available</field></record>
+        <!-- Tầng 2 (5 phòng) -->
+        <record id="room_201" model="hotel.room"><field name="name">P.201</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_std"/><field name="company_id" ref="base.main_company"/><field name="status">available</field></record>
+        <record id="room_202" model="hotel.room"><field name="name">P.202</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_std"/><field name="company_id" ref="base.main_company"/><field name="status">available</field></record>
+        <record id="room_203" model="hotel.room"><field name="name">P.203</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_sup"/><field name="company_id" ref="base.main_company"/><field name="status">reserved</field></record>
+        <record id="room_204" model="hotel.room"><field name="name">P.204</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_sup"/><field name="company_id" ref="base.main_company"/><field name="status">available</field></record>
+        <record id="room_205" model="hotel.room"><field name="name">P.205</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_dlx"/><field name="company_id" ref="base.main_company"/><field name="status">maintenance</field></record>
 
-        <!-- Tầng 3 (10 phòng) -->
-        <record id="room_301" model="hotel.room"><field name="name">P.301</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_std"/><field name="status">available</field></record>
-        <record id="room_302" model="hotel.room"><field name="name">P.302</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_std"/><field name="status">available</field></record>
-        <record id="room_303" model="hotel.room"><field name="name">P.303</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_sup"/><field name="status">available</field></record>
-        <record id="room_304" model="hotel.room"><field name="name">P.304</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_sup"/><field name="status">occupied</field><field name="current_guest">David Miller</field></record>
-        <record id="room_305" model="hotel.room"><field name="name">P.305</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_sup"/><field name="status">available</field></record>
-        <record id="room_306" model="hotel.room"><field name="name">P.306</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_dlx"/><field name="status">available</field></record>
-        <record id="room_307" model="hotel.room"><field name="name">P.307</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_dlx"/><field name="status">cleaning</field></record>
-        <record id="room_308" model="hotel.room"><field name="name">P.308</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_dlx"/><field name="status">available</field></record>
-        <record id="room_309" model="hotel.room"><field name="name">P.309</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_sui"/><field name="status">available</field></record>
-        <record id="room_310" model="hotel.room"><field name="name">P.310</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_sui"/><field name="status">reserved</field></record>
+        <!-- Tầng 3 (3 phòng) -->
+        <record id="room_301" model="hotel.room"><field name="name">P.301</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_sup"/><field name="company_id" ref="base.main_company"/><field name="status">available</field></record>
+        <record id="room_302" model="hotel.room"><field name="name">P.302</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_dlx"/><field name="company_id" ref="base.main_company"/><field name="status">available</field></record>
+        <record id="room_303" model="hotel.room"><field name="name">P.303</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_fam"/><field name="company_id" ref="base.main_company"/><field name="status">available</field></record>
 
-        <!-- Tầng 4 (8 phòng) -->
-        <record id="room_401" model="hotel.room"><field name="name">P.401</field><field name="floor">Tầng 4</field><field name="room_type_id" ref="room_type_sup"/><field name="status">available</field></record>
-        <record id="room_402" model="hotel.room"><field name="name">P.402</field><field name="floor">Tầng 4</field><field name="room_type_id" ref="room_type_sup"/><field name="status">available</field></record>
-        <record id="room_403" model="hotel.room"><field name="name">P.403</field><field name="floor">Tầng 4</field><field name="room_type_id" ref="room_type_dlx"/><field name="status">available</field></record>
-        <record id="room_404" model="hotel.room"><field name="name">P.404</field><field name="floor">Tầng 4</field><field name="room_type_id" ref="room_type_dlx"/><field name="status">occupied</field><field name="current_guest">Phạm Thu Trang</field></record>
-        <record id="room_405" model="hotel.room"><field name="name">P.405</field><field name="floor">Tầng 4</field><field name="room_type_id" ref="room_type_dlx"/><field name="status">available</field></record>
-        <record id="room_406" model="hotel.room"><field name="name">P.406</field><field name="floor">Tầng 4</field><field name="room_type_id" ref="room_type_sui"/><field name="status">available</field></record>
-        <record id="room_407" model="hotel.room"><field name="name">P.407</field><field name="floor">Tầng 4</field><field name="room_type_id" ref="room_type_sui"/><field name="status">available</field></record>
-        <record id="room_408" model="hotel.room"><field name="name">P.408</field><field name="floor">Tầng 4</field><field name="room_type_id" ref="room_type_fam"/><field name="status">available</field></record>
+        <!-- 5. Danh Mục Mở Rộng 18 Phòng Tại Cơ Sở 2 (Vũng Tàu) - Bố trí Tầng 1 đến Tầng 5 -->
+        <!-- Tầng 1 (4 phòng) -->
+        <record id="room_vt_101" model="hotel.room"><field name="name">P.101</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_std"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">available</field></record>
+        <record id="room_vt_102" model="hotel.room"><field name="name">P.102</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_std"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">cleaning</field></record>
+        <record id="room_vt_103" model="hotel.room"><field name="name">P.103</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_sup"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">available</field></record>
+        <record id="room_vt_104" model="hotel.room"><field name="name">P.104</field><field name="floor">Tầng 1</field><field name="room_type_id" ref="room_type_sup"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">available</field></record>
 
-        <!-- Tầng 5 (8 phòng Penthouse & VIP) -->
-        <record id="room_501" model="hotel.room"><field name="name">P.501</field><field name="floor">Tầng 5</field><field name="room_type_id" ref="room_type_dlx"/><field name="status">available</field></record>
-        <record id="room_502" model="hotel.room"><field name="name">P.502</field><field name="floor">Tầng 5</field><field name="room_type_id" ref="room_type_dlx"/><field name="status">available</field></record>
-        <record id="room_503" model="hotel.room"><field name="name">P.503</field><field name="floor">Tầng 5</field><field name="room_type_id" ref="room_type_sui"/><field name="status">available</field></record>
-        <record id="room_504" model="hotel.room"><field name="name">P.504</field><field name="floor">Tầng 5</field><field name="room_type_id" ref="room_type_sui"/><field name="status">available</field></record>
-        <record id="room_505" model="hotel.room"><field name="name">P.505</field><field name="floor">Tầng 5</field><field name="room_type_id" ref="room_type_fam"/><field name="status">occupied</field><field name="current_guest">Vũ Tuấn Kiệt</field></record>
-        <record id="room_506" model="hotel.room"><field name="name">P.506</field><field name="floor">Tầng 5</field><field name="room_type_id" ref="room_type_fam"/><field name="status">available</field></record>
-        <record id="room_507" model="hotel.room"><field name="name">P.507</field><field name="floor">Tầng 5</field><field name="room_type_id" ref="room_type_fam"/><field name="status">cleaning</field></record>
-        <record id="room_508" model="hotel.room"><field name="name">P.508</field><field name="floor">Tầng 5</field><field name="room_type_id" ref="room_type_fam"/><field name="status">available</field></record>
+        <!-- Tầng 2 (4 phòng) -->
+        <record id="room_vt_201" model="hotel.room"><field name="name">P.201</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_std"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">available</field></record>
+        <record id="room_vt_202" model="hotel.room"><field name="name">P.202</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_std"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">available</field></record>
+        <record id="room_vt_203" model="hotel.room"><field name="name">P.203</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_sup"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">occupied</field><field name="current_guest">Trần Minh Tuấn</field></record>
+        <record id="room_vt_204" model="hotel.room"><field name="name">P.204</field><field name="floor">Tầng 2</field><field name="room_type_id" ref="room_type_sup"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">available</field></record>
+
+        <!-- Tầng 3 (4 phòng) -->
+        <record id="room_vt_301" model="hotel.room"><field name="name">P.301</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_std"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">available</field></record>
+        <record id="room_vt_302" model="hotel.room"><field name="name">P.302</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_sup"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">available</field></record>
+        <record id="room_vt_303" model="hotel.room"><field name="name">P.303</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_dlx"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">available</field></record>
+        <record id="room_vt_304" model="hotel.room"><field name="name">P.304</field><field name="floor">Tầng 3</field><field name="room_type_id" ref="room_type_fam_suite"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">reserved</field></record>
+
+        <!-- Tầng 4 (4 phòng) -->
+        <record id="room_vt_401" model="hotel.room"><field name="name">P.401</field><field name="floor">Tầng 4</field><field name="room_type_id" ref="room_type_sup"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">available</field></record>
+        <record id="room_vt_402" model="hotel.room"><field name="name">P.402</field><field name="floor">Tầng 4</field><field name="room_type_id" ref="room_type_dlx"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">available</field></record>
+        <record id="room_vt_403" model="hotel.room"><field name="name">P.403</field><field name="floor">Tầng 4</field><field name="room_type_id" ref="room_type_fam"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">available</field></record>
+        <record id="room_vt_404" model="hotel.room"><field name="name">P.404</field><field name="floor">Tầng 4</field><field name="room_type_id" ref="room_type_fam_suite"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">available</field></record>
+
+        <!-- Tầng 5 (2 phòng) -->
+        <record id="room_vt_501" model="hotel.room"><field name="name">P.501</field><field name="floor">Tầng 5</field><field name="room_type_id" ref="room_type_penthouse"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">occupied</field><field name="current_guest">Vũ Hoàng Long</field></record>
+        <record id="room_vt_502" model="hotel.room"><field name="name">P.502</field><field name="floor">Tầng 5</field><field name="room_type_id" ref="room_type_penthouse"/><field name="company_id" ref="company_mhotel_vungtau"/><field name="status">available</field></record>
 
         <!-- 5. Khách Hàng Lưu Trú Mẫu -->
         <record id="partner_guest_1" model="res.partner">
@@ -155,84 +175,68 @@
             <field name="id_card_number">079094001234</field>
             <field name="gender">male</field>
             <field name="hotel_guest_type">vip</field>
-            <field name="hotel_notes">Khách VIP doanh nghiệp, ưu tiên phòng yên tĩnh tầng cao.</field>
+            <field name="hotel_notes">Khách quen, ưu tiên phòng tầng 2 thoáng mát.</field>
         </record>
 
         <record id="partner_guest_2" model="res.partner">
             <field name="name">Trần Thị Bích</field>
             <field name="phone">0918654321</field>
             <field name="email">bich.tran@email.vn</field>
-            <field name="id_card_number">079198005678</field>
+            <field name="id_card_number">077196005678</field>
             <field name="gender">female</field>
-            <field name="hotel_guest_type">standard</field>
+            <field name="hotel_guest_type">regular</field>
         </record>
 
         <record id="partner_guest_3" model="res.partner">
-            <field name="name">David Miller</field>
-            <field name="phone">+1 415 555 2671</field>
-            <field name="email">david.m@globetravel.com</field>
-            <field name="id_card_number">B987654321</field>
+            <field name="name">Lê Hoàng Nam</field>
+            <field name="phone">0987112233</field>
+            <field name="email">nam.le@email.vn</field>
+            <field name="id_card_number">001099009876</field>
             <field name="gender">male</field>
-            <field name="hotel_guest_type">vip</field>
-            <field name="hotel_notes">Du khách quốc tế, yêu cầu hỗ trợ tiếng Anh.</field>
+            <field name="hotel_guest_type">regular</field>
         </record>
 
-        <!-- 6. Sản phẩm Dịch vụ & Minibar -->
+        <!-- 6. Dịch Vụ & Hàng Tiêu Dùng Phổ Biến -->
         <record id="product_laundry" model="product.product">
-            <field name="name">Giặt ủi quần áo cao cấp</field>
+            <field name="name">Dịch vụ giặt ủi quần áo</field>
             <field name="type">service</field>
-            <field name="list_price">60000</field>
+            <field name="lst_price">50000</field>
             <field name="is_hotel_service" eval="True"/>
         </record>
 
         <record id="product_breakfast" model="product.product">
-            <field name="name">Buffet sáng Á - Âu</field>
+            <field name="name">Suất ăn sáng tại phòng</field>
             <field name="type">service</field>
-            <field name="list_price">150000</field>
-            <field name="is_hotel_service" eval="True"/>
-        </record>
-
-        <record id="product_airport_shuttle" model="product.product">
-            <field name="name">Đưa đón sân bay 7 chỗ</field>
-            <field name="type">service</field>
-            <field name="list_price">350000</field>
+            <field name="lst_price">40000</field>
             <field name="is_hotel_service" eval="True"/>
         </record>
 
         <record id="product_lavie" model="product.product">
-            <field name="name">Nước khoáng Lavie 500ml</field>
+            <field name="name">Nước khoáng đóng chai 500ml</field>
             <field name="type">consu</field>
-            <field name="list_price">20000</field>
+            <field name="lst_price">15000</field>
             <field name="is_hotel_minibar" eval="True"/>
         </record>
 
-        <record id="product_heineken" model="product.product">
-            <field name="name">Bia Heineken lon 330ml</field>
+        <record id="product_softdrink" model="product.product">
+            <field name="name">Nước ngọt lon các loại</field>
             <field name="type">consu</field>
-            <field name="list_price">40000</field>
+            <field name="lst_price">20000</field>
             <field name="is_hotel_minibar" eval="True"/>
         </record>
 
-        <record id="product_chips" model="product.product">
-            <field name="name">Snack khoai tây lon</field>
-            <field name="type">consu</field>
-            <field name="list_price">50000</field>
-            <field name="is_hotel_minibar" eval="True"/>
-        </record>
-
-        <!-- Vật tư buồng phòng tiêu hao -->
         <record id="product_amenity_toothbrush" model="product.product">
-            <field name="name">Bộ bàn chải &amp; kem đánh răng</field>
+            <field name="name">Bàn chải và kem đánh răng dùng 1 lần</field>
             <field name="type">consu</field>
-            <field name="list_price">10000</field>
-            <field name="is_hotel_supply" eval="True"/>
+            <field name="lst_price">0</field>
+            <field name="is_hotel_amenity" eval="True"/>
         </record>
 
         <record id="product_amenity_shampoo" model="product.product">
-            <field name="name">Chai dầu gội &amp; sữa tắm mini</field>
+            <field name="name">Gói dầu gội và sữa tắm</field>
             <field name="type">consu</field>
-            <field name="list_price">15000</field>
-            <field name="is_hotel_supply" eval="True"/>
+            <field name="lst_price">0</field>
+            <field name="is_hotel_amenity" eval="True"/>
         </record>
     </data>
 </odoo>

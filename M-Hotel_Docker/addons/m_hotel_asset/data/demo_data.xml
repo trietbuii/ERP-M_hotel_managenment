@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
-        <!-- Thiết bị phòng 104 -->
+        <!-- Thiết bị phòng P.104 (Phòng đôi) Gia Lai -->
         <record id="equipment_tv_104" model="maintenance.equipment">
-            <field name="name">Smart TV Samsung 43" 4K</field>
-            <field name="serial_no">SAM-43-104-VN</field>
+            <field name="name">Tivi Samsung 43 inch</field>
+            <field name="serial_no">SAM-43-104-GL</field>
             <field name="room_id" ref="m_hotel_base.room_104"/>
         </record>
 
         <record id="equipment_ac_104" model="maintenance.equipment">
-            <field name="name">Điều hòa Daikin Inverter 1.5HP</field>
-            <field name="serial_no">DAIKIN-15-104</field>
+            <field name="name">Điều hòa Daikin 1.5HP</field>
+            <field name="serial_no">DAIKIN-15-104-GL</field>
             <field name="room_id" ref="m_hotel_base.room_104"/>
         </record>
 
-        <record id="equipment_minibar_104" model="maintenance.equipment">
-            <field name="name">Tủ lạnh Minibar Electrolux 50L</field>
-            <field name="serial_no">ELEC-MINI-104</field>
-            <field name="room_id" ref="m_hotel_base.room_104"/>
-        </record>
-
-        <!-- Thiết bị phòng 108 -->
-        <record id="equipment_ac_108" model="maintenance.equipment">
+        <!-- Thiết bị phòng P.205 (Phòng ba giường) Gia Lai -->
+        <record id="equipment_ac_205" model="maintenance.equipment">
             <field name="name">Điều hòa Panasonic 2.0HP</field>
-            <field name="serial_no">PANA-20-108</field>
-            <field name="room_id" ref="m_hotel_base.room_108"/>
+            <field name="serial_no">PANA-20-205-GL</field>
+            <field name="room_id" ref="m_hotel_base.room_205"/>
+        </record>
+
+        <record id="equipment_waterheater_205" model="maintenance.equipment">
+            <field name="name">Bình nước nóng Ariston 30L</field>
+            <field name="serial_no">ARI-30-205-GL</field>
+            <field name="room_id" ref="m_hotel_base.room_205"/>
         </record>
     </data>
 </odoo>

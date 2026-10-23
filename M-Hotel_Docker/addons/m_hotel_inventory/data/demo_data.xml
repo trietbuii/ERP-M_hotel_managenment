@@ -1,41 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
-        <!-- Định mức Standard: 2 bàn chải, 2 dầu gội -->
-        <record id="norm_std_toothbrush" model="hotel.supply.norm">
+        <!-- Định mức Phòng đơn (2 khách): 2 bàn chải, 2 gói dầu gội -->
+        <record id="norm_don_toothbrush" model="hotel.supply.norm">
             <field name="room_type_id" ref="m_hotel_base.room_type_std"/>
             <field name="product_id" ref="m_hotel_base.product_amenity_toothbrush"/>
             <field name="quantity">2</field>
             <field name="task_type">all</field>
         </record>
 
-        <record id="norm_std_shampoo" model="hotel.supply.norm">
+        <record id="norm_don_shampoo" model="hotel.supply.norm">
             <field name="room_type_id" ref="m_hotel_base.room_type_std"/>
             <field name="product_id" ref="m_hotel_base.product_amenity_shampoo"/>
             <field name="quantity">2</field>
             <field name="task_type">all</field>
         </record>
 
-        <!-- Định mức Deluxe: 2 bàn chải, 2 dầu gội, 2 nước Lavie -->
-        <record id="norm_dlx_toothbrush" model="hotel.supply.norm">
+        <!-- Định mức Phòng đôi (4 khách): 4 bàn chải, 4 gói dầu gội -->
+        <record id="norm_doi_toothbrush" model="hotel.supply.norm">
+            <field name="room_type_id" ref="m_hotel_base.room_type_sup"/>
+            <field name="product_id" ref="m_hotel_base.product_amenity_toothbrush"/>
+            <field name="quantity">4</field>
+            <field name="task_type">all</field>
+        </record>
+
+        <record id="norm_doi_shampoo" model="hotel.supply.norm">
+            <field name="room_type_id" ref="m_hotel_base.room_type_sup"/>
+            <field name="product_id" ref="m_hotel_base.product_amenity_shampoo"/>
+            <field name="quantity">4</field>
+            <field name="task_type">all</field>
+        </record>
+
+        <!-- Định mức Phòng ba giường (6 khách): 6 bàn chải, 6 gói dầu gội -->
+        <record id="norm_ba_toothbrush" model="hotel.supply.norm">
             <field name="room_type_id" ref="m_hotel_base.room_type_dlx"/>
             <field name="product_id" ref="m_hotel_base.product_amenity_toothbrush"/>
-            <field name="quantity">2</field>
+            <field name="quantity">6</field>
             <field name="task_type">all</field>
         </record>
 
-        <record id="norm_dlx_shampoo" model="hotel.supply.norm">
+        <record id="norm_ba_shampoo" model="hotel.supply.norm">
             <field name="room_type_id" ref="m_hotel_base.room_type_dlx"/>
             <field name="product_id" ref="m_hotel_base.product_amenity_shampoo"/>
-            <field name="quantity">2</field>
+            <field name="quantity">6</field>
             <field name="task_type">all</field>
         </record>
 
-        <record id="norm_dlx_water" model="hotel.supply.norm">
-            <field name="room_type_id" ref="m_hotel_base.room_type_dlx"/>
-            <field name="product_id" ref="m_hotel_base.product_lavie"/>
-            <field name="quantity">2</field>
-            <field name="task_type">checkout_clean</field>
+        <!-- Định mức Phòng tập thể (6 khách): 6 bàn chải, 6 gói dầu gội -->
+        <record id="norm_fam_toothbrush" model="hotel.supply.norm">
+            <field name="room_type_id" ref="m_hotel_base.room_type_fam"/>
+            <field name="product_id" ref="m_hotel_base.product_amenity_toothbrush"/>
+            <field name="quantity">6</field>
+            <field name="task_type">all</field>
+        </record>
+
+        <record id="norm_fam_shampoo" model="hotel.supply.norm">
+            <field name="room_type_id" ref="m_hotel_base.room_type_fam"/>
+            <field name="product_id" ref="m_hotel_base.product_amenity_shampoo"/>
+            <field name="quantity">6</field>
+            <field name="task_type">all</field>
         </record>
     </data>
 </odoo>
