@@ -44,14 +44,14 @@ class HotelBooking(models.Model):
     hour_end = fields.Float(string='Giờ kết thúc', compute='_compute_hour_end', store=True)
     hours_duration = fields.Integer(string='Số giờ thuê', default=2)
 
-    room_price = fields.Float(string='Đơn giá phòng (VNĐ)', compute='_compute_room_price', readonly=False, store=True)
+    room_price = fields.Float(string='Đơn giá phòng (VNĐ)', compute='_compute_room_price', readonly=False, store=True, digits=(16, 0))
     line_ids = fields.One2many('hotel.booking.line', 'booking_id', string='Dịch vụ & Minibar (Folio)')
 
-    amount_room = fields.Float(string='Tiền phòng', compute='_compute_totals', store=True, tracking=True)
-    amount_services = fields.Float(string='Tiền dịch vụ', compute='_compute_totals', store=True)
-    amount_total = fields.Float(string='Tổng cộng', compute='_compute_totals', store=True, tracking=True)
-    deposit_amount = fields.Float(string='Tiền đặt cọc', default=0.0, tracking=True)
-    amount_residual = fields.Float(string='Còn lại thanh toán', compute='_compute_totals', store=True)
+    amount_room = fields.Float(string='Tiền phòng', compute='_compute_totals', store=True, tracking=True, digits=(16, 0))
+    amount_services = fields.Float(string='Tiền dịch vụ', compute='_compute_totals', store=True, digits=(16, 0))
+    amount_total = fields.Float(string='Tổng cộng', compute='_compute_totals', store=True, tracking=True, digits=(16, 0))
+    deposit_amount = fields.Float(string='Tiền đặt cọc', default=0.0, tracking=True, digits=(16, 0))
+    amount_residual = fields.Float(string='Còn lại thanh toán', compute='_compute_totals', store=True, digits=(16, 0))
 
     state = fields.Selection([
         ('draft', 'Dự thảo'),
@@ -261,8 +261,8 @@ class HotelBookingLine(models.Model):
                                  domain="['|', ('is_hotel_service', '=', True), ('is_hotel_minibar', '=', True)]")
     name = fields.Char(string='Diễn giải', required=True)
     quantity = fields.Float(string='Số lượng', default=1.0, required=True)
-    price_unit = fields.Float(string='Đơn giá (VNĐ)', required=True)
-    price_subtotal = fields.Float(string='Thành tiền', compute='_compute_subtotal', store=True)
+    price_unit = fields.Float(string='Đơn giá (VNĐ)', required=True, digits=(16, 0))
+    price_subtotal = fields.Float(string='Thành tiền', compute='_compute_subtotal', store=True, digits=(16, 0))
 
     @api.onchange('product_id')
     def _onchange_product_id(self):

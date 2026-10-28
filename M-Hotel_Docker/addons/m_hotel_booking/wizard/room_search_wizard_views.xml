@@ -28,8 +28,8 @@
                         <field name="name"/>
                         <field name="floor"/>
                         <field name="room_type_id"/>
-                        <field name="price_night" widget="monetary"/>
-                        <field name="price_hour" widget="monetary"/>
+                        <field name="price_night" widget="monetary" options="{'digits': [16, 0]}"/>
+                        <field name="price_hour" widget="monetary" options="{'digits': [16, 0]}"/>
                     </list>
                 </field>
                 <group invisible="not available_room_ids">

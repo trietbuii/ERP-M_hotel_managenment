@@ -29,9 +29,9 @@ class HotelOccupancyReport(models.Model):
     hours_duration = fields.Integer(string='Số giờ đã bán', readonly=True)
     booking_count = fields.Integer(string='Lượt đặt phòng', readonly=True)
     
-    amount_room = fields.Float(string='Doanh thu phòng (VNĐ)', readonly=True)
-    amount_services = fields.Float(string='Doanh thu dịch vụ (VNĐ)', readonly=True)
-    amount_total = fields.Float(string='Tổng doanh thu (VNĐ)', readonly=True)
+    amount_room = fields.Float(string='Doanh thu phòng (VNĐ)', readonly=True, digits=(16, 0))
+    amount_services = fields.Float(string='Doanh thu dịch vụ (VNĐ)', readonly=True, digits=(16, 0))
+    amount_total = fields.Float(string='Tổng doanh thu (VNĐ)', readonly=True, digits=(16, 0))
 
     def init(self):
         tools.drop_view_if_exists(self.env.cr, self._table)

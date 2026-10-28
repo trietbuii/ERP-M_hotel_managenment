@@ -21,8 +21,8 @@ class HotelRoomRate(models.Model):
     start_date = fields.Date(string='Ngày bắt đầu', required=True)
     end_date = fields.Date(string='Ngày kết thúc', required=True)
 
-    price_night = fields.Float(string='Giá thuê theo đêm (VNĐ)', required=True)
-    price_hour = fields.Float(string='Giá thuê theo giờ (VNĐ)', required=True)
+    price_night = fields.Float(string='Giá thuê theo đêm (VNĐ)', required=True, digits=(16, 0))
+    price_hour = fields.Float(string='Giá thuê theo giờ (VNĐ)', required=True, digits=(16, 0))
     active = fields.Boolean(string='Kích hoạt', default=True)
 
     @api.constrains('start_date', 'end_date')

@@ -18,8 +18,8 @@
                 <field name="rent_type"/>
                 <field name="check_in"/>
                 <field name="check_out"/>
-                <field name="amount_total" widget="monetary"/>
-                <field name="amount_residual" widget="monetary"/>
+                <field name="amount_total" widget="monetary" options="{'digits': [16, 0]}"/>
+                <field name="amount_residual" widget="monetary" options="{'digits': [16, 0]}"/>
                 <field name="company_id" groups="base.group_multi_company"/>
                 <field name="state" widget="badge"
                        decoration-muted="state == 'cancel'"
@@ -59,8 +59,8 @@
                 <header>
                     <field name="invoice_id" invisible="1"/>
                     <button name="action_confirm" string="Xác Nhận Giữ Phòng" type="object" class="btn-primary" invisible="state != 'draft'"/>
-                    <button name="action_check_in" string="Check-in (Nhận Phòng)" type="object" class="btn-success" invisible="state != 'confirmed'"/>
-                    <button name="action_check_out" string="Check-out (Trả Phòng)" type="object" class="btn-warning" invisible="state != 'check_in'"/>
+                    <button name="action_check_in" string="Nhận Phòng" type="object" class="btn-success" invisible="state != 'confirmed'"/>
+                    <button name="action_check_out" string="Trả Phòng" type="object" class="btn-warning" invisible="state != 'check_in'"/>
                     <button name="action_create_invoice" string="Tạo Hóa Đơn Khách Hàng" type="object" class="btn-info" invisible="state not in ('check_out', 'check_in') or invoice_id"/>
                     <button name="action_cancel" string="Hủy Đặt Phòng" type="object" invisible="state not in ('draft', 'confirmed')"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,check_in,check_out,invoiced"/>
@@ -97,26 +97,26 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Dịch Vụ &amp; Minibar (Folio)" name="folio">
+                        <page string="Dịch Vụ &amp; Minibar" name="folio">
                             <field name="line_ids">
                                 <list editable="bottom">
                                     <field name="product_id"/>
                                     <field name="name"/>
                                     <field name="quantity"/>
-                                    <field name="price_unit" widget="monetary"/>
-                                    <field name="price_subtotal" widget="monetary"/>
+                                    <field name="price_unit" widget="monetary" options="{'digits': [16, 0]}"/>
+                                    <field name="price_subtotal" widget="monetary" options="{'digits': [16, 0]}"/>
                                 </list>
                             </field>
                             <group class="oe_subtotal_footer oe_right">
-                                <field name="room_price"/>
-                                <field name="amount_room"/>
-                                <field name="amount_services"/>
+                                <field name="room_price" widget="monetary" options="{'digits': [16, 0]}"/>
+                                <field name="amount_room" widget="monetary" options="{'digits': [16, 0]}"/>
+                                <field name="amount_services" widget="monetary" options="{'digits': [16, 0]}"/>
                                 <div class="oe_subtotal_footer_separator oe_inline o_td_label">
                                     <label for="amount_total" string="Tổng cộng"/>
                                 </div>
-                                <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator"/>
-                                <field name="deposit_amount"/>
-                                <field name="amount_residual" class="oe_subtotal_footer_separator"/>
+                                <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'digits': [16, 0]}"/>
+                                <field name="deposit_amount" widget="monetary" options="{'digits': [16, 0]}"/>
+                                <field name="amount_residual" class="oe_subtotal_footer_separator" widget="monetary" options="{'digits': [16, 0]}"/>
                             </group>
                         </page>
                         <page string="Ghi chú &amp; Giấy tờ" name="notes">

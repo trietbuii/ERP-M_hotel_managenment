@@ -10,8 +10,8 @@
                 <field name="rate_type"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
-                <field name="price_night" widget="monetary"/>
-                <field name="price_hour" widget="monetary"/>
+                <field name="price_night" widget="monetary" options="{'digits': [16, 0]}"/>
+                <field name="price_hour" widget="monetary" options="{'digits': [16, 0]}"/>
                 <field name="company_id" groups="base.group_multi_company"/>
                 <field name="active" widget="boolean_toggle"/>
             </list>
@@ -38,8 +38,8 @@
                         <group string="Thời gian &amp; Giá áp dụng">
                             <field name="start_date"/>
                             <field name="end_date"/>
-                            <field name="price_night"/>
-                            <field name="price_hour"/>
+                            <field name="price_night" options="{'digits': [16, 0]}"/>
+                            <field name="price_hour" options="{'digits': [16, 0]}"/>
                         </group>
                     </group>
                 </sheet>

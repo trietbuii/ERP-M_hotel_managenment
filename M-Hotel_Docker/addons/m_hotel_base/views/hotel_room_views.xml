@@ -115,8 +115,8 @@
                             <field name="company_id" groups="base.group_multi_company"/>
                         </group>
                         <group string="Giá phòng &amp; Khách hiện tại">
-                            <field name="price_night"/>
-                            <field name="price_hour"/>
+                            <field name="price_night" options="{'digits': [16, 0]}"/>
+                            <field name="price_hour" options="{'digits': [16, 0]}"/>
                             <field name="current_guest" readonly="1"/>
                         </group>
                     </group>
