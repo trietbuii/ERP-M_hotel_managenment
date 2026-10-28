@@ -23,8 +23,8 @@ class HotelRoom(models.Model):
 
     current_guest = fields.Char(string='Khách lưu trú hiện tại', tracking=True)
     
-    price_night = fields.Float(string='Giá theo đêm (VNĐ)', related='room_type_id.base_price_night', readonly=False, store=True)
-    price_hour = fields.Float(string='Giá theo giờ (VNĐ)', related='room_type_id.base_price_hour', readonly=False, store=True)
+    price_night = fields.Float(string='Giá theo đêm (VNĐ)', digits=(16, 0), related='room_type_id.base_price_night', readonly=False, store=True)
+    price_hour = fields.Float(string='Giá theo giờ (VNĐ)', digits=(16, 0), related='room_type_id.base_price_hour', readonly=False, store=True)
     
     note = fields.Text(string='Ghi chú đặc biệt')
     color = fields.Integer(string='Color Index', compute='_compute_color')

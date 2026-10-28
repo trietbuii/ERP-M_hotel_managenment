@@ -23,8 +23,8 @@ class HotelRoomType(models.Model):
         ('king', '1 Giường King'),
     ], string='Loại giường', default='double', required=True)
     
-    base_price_night = fields.Float(string='Giá tiêu chuẩn theo đêm (VNĐ)', required=True, default=500000.0)
-    base_price_hour = fields.Float(string='Giá tiêu chuẩn theo giờ (VNĐ)', required=True, default=150000.0)
+    base_price_night = fields.Float(string='Giá tiêu chuẩn theo đêm (VNĐ)', digits=(16, 0), required=True, default=500000.0)
+    base_price_hour = fields.Float(string='Giá tiêu chuẩn theo giờ (VNĐ)', digits=(16, 0), required=True, default=150000.0)
     
     amenities = fields.Text(string='Tiện ích nổi bật')
     description = fields.Text(string='Mô tả chi tiết')
