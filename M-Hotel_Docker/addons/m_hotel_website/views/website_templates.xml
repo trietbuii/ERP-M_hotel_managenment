@@ -510,8 +510,8 @@
                                         <span class="text-muted small d-block">Mã Đặt Phòng ERP:</span>
                                         <span class="h4 fw-bold text-primary mb-0" t-esc="booking.name"/>
                                     </div>
-                                    <span class="badge bg-success px-3 py-2 rounded-pill fs-6">
-                                        Trạng thái: Đã Xác Nhận
+                                    <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fs-6 fw-bold">
+                                        Trạng thái: Đã Giữ Phòng - Chờ Thanh Toán
                                     </span>
                                 </div>
 
@@ -541,10 +541,75 @@
                                         <strong class="text-danger fs-6" t-esc="booking.check_out.strftime('%d/%m/%Y %H:%M') if booking.check_out else ''"/>
                                     </div>
                                     <div class="col-12 pt-3 border-top d-flex justify-content-between align-items-baseline">
-                                        <span class="h6 mb-0 text-dark">Giá phòng niêm yết:</span>
+                                        <span class="h6 mb-0 text-dark">Tổng tiền phòng thanh toán:</span>
                                         <span class="h4 fw-bold text-danger mb-0">
                                             <t t-esc="'{:,.0f}'.format(booking.room_price)"/> đ
                                         </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- VietQR Techcombank Payment Card -->
+                            <div class="card border-danger border-2 text-start p-4 rounded-3 mb-4 shadow-sm" style="background: #fffdfd;">
+                                <div class="d-flex align-items-center gap-2 border-bottom pb-3 mb-3">
+                                    <div class="bg-danger text-white rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                        <i class="fa fa-qrcode fa-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold text-danger mb-0">QUÉT MÃ QR THANH TOÁN CHUYỂN KHOẢN (TECHCOMBANK)</h5>
+                                        <small class="text-muted">Quét bằng ứng dụng Ngân hàng (Techcombank, Vietcombank, MB, Momo...)</small>
+                                    </div>
+                                </div>
+
+                                <div class="row align-items-center g-4">
+                                    <!-- QR Code Column -->
+                                    <div class="col-md-5 text-center">
+                                        <t t-if="vietqr_url">
+                                            <img t-att-src="vietqr_url" class="img-fluid rounded border shadow-sm p-2 bg-white" style="max-width: 240px;" alt="Mã VietQR Techcombank"/>
+                                            <div class="small text-muted mt-2">
+                                                <i class="fa fa-camera me-1"></i> Mở App Ngân hàng quét mã này
+                                            </div>
+                                        </t>
+                                    </div>
+
+                                    <!-- Bank Transfer Details Column -->
+                                    <div class="col-md-7">
+                                        <table class="table table-sm table-borderless mb-0">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-muted" style="width: 140px;">Ngân hàng:</td>
+                                                    <td><strong class="text-dark">Techcombank (TCB)</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-muted">Số tài khoản:</td>
+                                                    <td>
+                                                        <strong class="fs-5 text-danger" t-esc="bank_account_no or '2101200646'"/>
+                                                        <span class="badge bg-light text-secondary border ms-2">Chính thức</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-muted">Chủ tài khoản:</td>
+                                                    <td><strong class="text-dark" t-esc="bank_account_name or 'BUI MINH TRIET'"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-muted">Số tiền chuyển:</td>
+                                                    <td>
+                                                        <strong class="fs-5 text-danger">
+                                                            <t t-esc="'{:,.0f}'.format(transfer_amount or booking.room_price)"/> đ
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-muted">Nội dung CK:</td>
+                                                    <td>
+                                                        <code class="fs-6 fw-bold text-primary bg-light px-2 py-1 rounded" t-esc="transfer_memo or ('MHOTEL ' + booking.name.replace('/', ''))"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="alert alert-light border small text-muted mt-3 mb-0">
+                                            <i class="fa fa-check-circle text-success me-1"></i> Hệ thống tự động ghi nhận giữ phòng ngay sau khi nhận được chuyển khoản hợp lệ.
+                                        </div>
                                     </div>
                                 </div>
                             </div>

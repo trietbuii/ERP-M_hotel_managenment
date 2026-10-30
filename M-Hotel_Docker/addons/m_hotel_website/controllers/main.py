@@ -67,42 +67,84 @@ class MHotelWebsite(http.Controller):
                 'email': email or False,
                 'comment': f'CCCD/Passport: {id_number}' if id_number else False,
             })
+        elif customer_name and partner.name != customer_name:
+            partner.write({'name': customer_name})
 
-        # 2. Room lookup (prioritize available room of selected type and branch)
+        # Helper parse datetime
+        def _parse_datetime(dt_str, fallback):
+            if not dt_str:
+                return fallback
+            clean = dt_str.replace('T', ' ').replace(',', ' ').strip()
+            for fmt in ['%Y-%m-%d %H:%M', '%Y-%m-%d %H:%M:%S', '%m/%d/%Y %H:%M', '%d/%m/%Y %H:%M', '%Y/%m/%d %H:%M']:
+                try:
+                    return datetime.strptime(clean[:16], fmt)
+                except Exception:
+                    pass
+            return fallback
+
+        now = datetime.now()
+        check_in = _parse_datetime(check_in_str, now + timedelta(days=1, hours=14))
+        check_out = _parse_datetime(check_out_str, check_in + (timedelta(hours=4) if rent_type == 'hour' else timedelta(days=2)))
+
+        # 2. Xử lý thời gian thuê theo giờ
+        hour_date = check_in.date()
+        hour_start = check_in.hour + (check_in.minute / 60.0)
+        if check_out and check_out.date() == hour_date and check_out > check_in:
+            hour_end = check_out.hour + (check_out.minute / 60.0)
+            hours_duration = max(1, int(round(hour_end - hour_start)))
+        else:
+            hours_duration = 2
+            hour_end = hour_start + hours_duration
+
+        # 3. Thuật toán tìm phòng trống thông minh (Quét tất cả phòng của hạng phòng và cơ sở)
         Room = request.env['hotel.room'].sudo()
-        room = Room.search([
+        Booking = request.env['hotel.booking'].sudo()
+
+        candidate_rooms = Room.search([
             ('room_type_id', '=', room_type_id),
             ('company_id', '=', company_id),
-            ('status', '=', 'available'),
-        ], limit=1)
-        if not room:
-            room = Room.search([
-                ('room_type_id', '=', room_type_id),
-                ('company_id', '=', company_id),
-            ], limit=1)
-        if not room:
-            room = Room.search([('room_type_id', '=', room_type_id)], limit=1)
+            ('status', 'not in', ['maintenance', 'out_of_service']),
+        ], order='status asc, id asc')
 
-        # 3. Datetime parse
-        try:
-            check_in = datetime.strptime(check_in_str.replace('T', ' ')[:16], '%Y-%m-%d %H:%M')
-        except Exception:
-            check_in = datetime.now() + timedelta(days=1, hours=14)
-        try:
-            check_out = datetime.strptime(check_out_str.replace('T', ' ')[:16], '%Y-%m-%d %H:%M')
-        except Exception:
-            check_out = check_in + timedelta(days=2)
+        selected_room = False
+        for r in candidate_rooms:
+            conflict_domain = [
+                ('room_id', '=', r.id),
+                ('state', 'in', ['confirmed', 'check_in', 'check_out', 'invoiced']),
+            ]
+            existing_bookings = Booking.search(conflict_domain)
+            is_busy = False
 
-        # 4. Room price calculation
+            if rent_type == 'night':
+                for eb in existing_bookings:
+                    if eb.rent_type == 'night' and eb.check_in and eb.check_out:
+                        if check_in < eb.check_out and check_out > eb.check_in:
+                            is_busy = True
+                            break
+            else:
+                for eb in existing_bookings:
+                    if eb.rent_type == 'hour' and eb.hour_date == hour_date:
+                        eb_hour_end = (eb.hour_start or 0.0) + (eb.hours_duration or 0)
+                        if hour_start < eb_hour_end and hour_end > eb.hour_start:
+                            is_busy = True
+                            break
+
+            if not is_busy:
+                selected_room = r
+                break
+
+        if not selected_room:
+            selected_room = candidate_rooms[0] if candidate_rooms else Room.search([('room_type_id', '=', room_type_id)], limit=1)
+
+        # 4. Tính toán giá phòng
         rt = request.env['hotel.room.type'].sudo().browse(room_type_id)
         room_price = rt.base_price_night if rent_type == 'night' else rt.base_price_hour
 
-        # 5. Create booking in hotel.booking
-        Booking = request.env['hotel.booking'].sudo()
-        booking = Booking.create({
+        # 5. Khởi tạo đơn đặt phòng
+        booking_vals = {
             'partner_id': partner.id,
             'company_id': company_id,
-            'room_id': room.id,
+            'room_id': selected_room.id,
             'room_type_id': room_type_id,
             'rent_type': rent_type,
             'check_in': check_in,
@@ -110,7 +152,31 @@ class MHotelWebsite(http.Controller):
             'room_price': room_price,
             'state': 'confirmed',
             'note': f'Đặt trực tuyến từ Website M-Hotel. Yêu cầu của khách: {note}' if note else 'Đặt trực tuyến từ Website M-Hotel',
-        })
+        }
+        if rent_type == 'hour':
+            booking_vals.update({
+                'hour_date': hour_date,
+                'hour_start': hour_start,
+                'hours_duration': hours_duration,
+            })
+
+        booking = False
+        try:
+            booking = Booking.create(booking_vals)
+        except Exception:
+            # Nếu phòng được chọn bị lỗi ràng buộc, tự động thử các phòng còn lại
+            for alt_room in candidate_rooms:
+                if alt_room.id != selected_room.id:
+                    try:
+                        booking_vals['room_id'] = alt_room.id
+                        booking = Booking.create(booking_vals)
+                        break
+                    except Exception:
+                        continue
+
+        if not booking:
+            # Fallback nếu tất cả đều quá tải
+            booking = Booking.create(booking_vals)
 
         return request.redirect(f'/hotel/booking/confirmation?booking_id={booking.id}')
 
@@ -121,6 +187,21 @@ class MHotelWebsite(http.Controller):
         booking = request.env['hotel.booking'].sudo().browse(int(booking_id))
         if not booking.exists():
             return request.redirect('/hotel')
+
+        # Cấu hình thanh toán VietQR - Ngân hàng Techcombank (TCB)
+        bank_id = 'TCB'
+        account_no = '2101200646'
+        account_name = 'BUI MINH TRIET'
+        amount = int(booking.amount_total or booking.room_price or 0)
+        memo = f"MHOTEL {booking.name.replace('/', '').replace(' ', '')}"
+        vietqr_url = f"https://img.vietqr.io/image/{bank_id}-{account_no}-compact2.png?amount={amount}&addInfo={memo}&accountName={account_name}"
+
         return request.render('m_hotel_website.hotel_booking_confirmation', {
             'booking': booking,
+            'vietqr_url': vietqr_url,
+            'bank_account_no': account_no,
+            'bank_account_name': account_name,
+            'bank_name': 'Techcombank (Ngân hàng Kỹ thương Việt Nam)',
+            'transfer_amount': amount,
+            'transfer_memo': memo,
         })
