@@ -430,18 +430,18 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label class="form-label fw-bold text-secondary">Hình Thức Thuê <span class="text-danger">*</span></label>
-                                        <select class="form-select form-select-lg" name="rent_type" required="required">
+                                        <select class="form-select form-select-lg" name="rent_type" id="select_rent_type" required="required">
                                             <option value="night" selected="selected">Thuê theo đêm</option>
                                             <option value="hour">Thuê theo giờ</option>
                                         </select>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="form-label fw-bold text-secondary">Thời Gian Nhận Phòng <span class="text-danger">*</span></label>
-                                        <input type="datetime-local" class="form-control form-control-lg" name="check_in" t-att-value="default_check_in" required="required"/>
+                                        <input type="datetime-local" class="form-control form-control-lg" name="check_in" id="input_check_in" t-att-value="default_check_in" required="required"/>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="form-label fw-bold text-secondary">Thời Gian Trả Phòng <span class="text-danger">*</span></label>
-                                        <input type="datetime-local" class="form-control form-control-lg" name="check_out" t-att-value="default_check_out" required="required"/>
+                                        <input type="datetime-local" class="form-control form-control-lg" name="check_out" id="input_check_out" t-att-value="default_check_out" required="required"/>
                                     </div>
                                 </div>
 
@@ -491,8 +491,9 @@
                                 </button>
                             </form>
 
-                            <!-- JavaScript Lọc Phòng Tự Động Theo Chi Nhánh & Hạng Phòng -->
+                            <!-- JavaScript Lọc Phòng Tự Động Theo Chi Nhánh & Hạng Phòng & Validate Thời Gian -->
                             <script type="text/javascript">
+                            //<![CDATA[
                                 document.addEventListener('DOMContentLoaded', function() {
                                     var selectCompany = document.getElementById('select_company_id');
                                     var selectType = document.getElementById('select_room_type_id');
@@ -517,10 +518,10 @@
                                         var typeId = selectType.value;
                                         var currentVal = selectRoom.value;
 
-                                        selectRoom.innerHTML = '&lt;option value=""&gt;-- Tự động xếp phòng trống tốt nhất --&lt;/option&gt;';
+                                        selectRoom.innerHTML = '<option value="">-- Tự động xếp phòng trống tốt nhất --</option>';
                                         
                                         var matched = allRooms.filter(function(r) {
-                                            return (!compId || r.companyId == compId) &amp;&amp; (!typeId || r.typeId == typeId);
+                                            return (!compId || r.companyId == compId) && (!typeId || r.typeId == typeId);
                                         });
 
                                         if (matched.length === 0) {
@@ -545,7 +546,66 @@
                                     selectCompany.addEventListener('change', filterRooms);
                                     selectType.addEventListener('change', filterRooms);
                                     filterRooms();
+
+                                    // Đồng bộ và kiểm tra tính hợp lệ của Thời Gian Nhận / Trả Phòng
+                                    var selectRentType = document.getElementById('select_rent_type');
+                                    var inputCheckIn = document.getElementById('input_check_in');
+                                    var inputCheckOut = document.getElementById('input_check_out');
+
+                                    function padZero(n) { return n < 10 ? '0' + n : n; }
+                                    function toLocalISO(d) {
+                                        return d.getFullYear() + '-' + padZero(d.getMonth() + 1) + '-' + padZero(d.getDate()) + 'T' + padZero(d.getHours()) + ':' + padZero(d.getMinutes());
+                                    }
+
+                                    if (selectRentType && inputCheckIn && inputCheckOut) {
+                                        selectRentType.addEventListener('change', function() {
+                                            var dIn = new Date(inputCheckIn.value);
+                                            if (isNaN(dIn.getTime())) dIn = new Date();
+                                            if (selectRentType.value === 'hour') {
+                                                // Thuê theo giờ: mặc định trả phòng sau 2 tiếng cùng ngày
+                                                var dOut = new Date(dIn.getTime() + 2 * 3600 * 1000);
+                                                inputCheckOut.value = toLocalISO(dOut);
+                                            } else {
+                                                // Thuê theo đêm: mặc định trả phòng ngày hôm sau 12:00 trưa
+                                                var dOut = new Date(dIn.getTime() + 24 * 3600 * 1000);
+                                                dOut.setHours(12, 0, 0, 0);
+                                                inputCheckOut.value = toLocalISO(dOut);
+                                            }
+                                            inputCheckOut.min = inputCheckIn.value;
+                                        });
+
+                                        inputCheckIn.addEventListener('change', function() {
+                                            var dIn = new Date(inputCheckIn.value);
+                                            var dOut = new Date(inputCheckOut.value);
+                                            if (!isNaN(dIn.getTime())) {
+                                                inputCheckOut.min = inputCheckIn.value;
+                                                if (isNaN(dOut.getTime()) || dOut <= dIn) {
+                                                    if (selectRentType.value === 'hour') {
+                                                        inputCheckOut.value = toLocalISO(new Date(dIn.getTime() + 2 * 3600 * 1000));
+                                                    } else {
+                                                        var nextDay = new Date(dIn.getTime() + 24 * 3600 * 1000);
+                                                        nextDay.setHours(12, 0, 0, 0);
+                                                        inputCheckOut.value = toLocalISO(nextDay);
+                                                    }
+                                                }
+                                            }
+                                        });
+
+                                        inputCheckOut.addEventListener('change', function() {
+                                            var dIn = new Date(inputCheckIn.value);
+                                            var dOut = new Date(inputCheckOut.value);
+                                            if (!isNaN(dIn.getTime()) && !isNaN(dOut.getTime()) && dOut <= dIn) {
+                                                alert('Thời gian trả phòng phải sau thời gian nhận phòng!');
+                                                if (selectRentType.value === 'hour') {
+                                                    inputCheckOut.value = toLocalISO(new Date(dIn.getTime() + 2 * 3600 * 1000));
+                                                } else {
+                                                    inputCheckOut.value = toLocalISO(new Date(dIn.getTime() + 24 * 3600 * 1000));
+                                                }
+                                            }
+                                        });
+                                    }
                                 });
+                            //]]>
                             </script>
                         </div>
                     </div>

@@ -124,6 +124,22 @@ class HotelBooking(models.Model):
             rec.invoice_count = 1 if rec.invoice_id else 0
 
     # ==========================================
+    # RÀNG BUỘC THỜI GIAN HỢP LỆ
+    # ==========================================
+    @api.constrains('check_in', 'check_out', 'rent_type', 'hour_start', 'hour_end')
+    def _check_valid_times(self):
+        for rec in self:
+            if rec.check_in and rec.check_out and rec.check_out <= rec.check_in:
+                raise ValidationError(_("Ngày giờ trả phòng (%s) phải lớn hơn ngày giờ nhận phòng (%s)!") % (
+                    fields.Datetime.to_string(rec.check_out), fields.Datetime.to_string(rec.check_in)
+                ))
+            if rec.rent_type == 'hour' and rec.hour_start is not False and rec.hour_end is not False:
+                if rec.hour_end <= rec.hour_start:
+                    raise ValidationError(_("Giờ kết thúc (%.1fh) phải lớn hơn giờ bắt đầu (%.1fh)!") % (
+                        rec.hour_end, rec.hour_start
+                    ))
+
+    # ==========================================
     # CHỐNG TRÙNG LỊCH ĐẶT PHÒNG
     # ==========================================
     @api.constrains('room_id', 'state', 'check_in', 'check_out', 'rent_type', 'hour_date', 'hour_start', 'hour_end')

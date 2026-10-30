@@ -1,6 +1,9 @@
 from odoo import http
 from odoo.http import request
 from datetime import datetime, timedelta
+import pytz
+
+VN_TZ = pytz.timezone('Asia/Ho_Chi_Minh')
 
 class MHotelWebsite(http.Controller):
 
@@ -76,7 +79,7 @@ class MHotelWebsite(http.Controller):
         elif customer_name and partner.name != customer_name:
             partner.write({'name': customer_name})
 
-        # Helper parse datetime
+        # Helper parse datetime (local Vietnam time input)
         def _parse_datetime(dt_str, fallback):
             if not dt_str:
                 return fallback
@@ -89,18 +92,33 @@ class MHotelWebsite(http.Controller):
             return fallback
 
         now = datetime.now()
-        check_in = _parse_datetime(check_in_str, now + timedelta(days=1, hours=14))
-        check_out = _parse_datetime(check_out_str, check_in + (timedelta(hours=4) if rent_type == 'hour' else timedelta(days=2)))
+        local_check_in = _parse_datetime(check_in_str, now + timedelta(days=1, hours=14))
+        local_check_out = _parse_datetime(check_out_str, local_check_in + (timedelta(hours=2) if rent_type == 'hour' else timedelta(days=1)))
 
-        # 2. Xử lý thời gian thuê theo giờ
-        hour_date = check_in.date()
-        hour_start = check_in.hour + (check_in.minute / 60.0)
-        if check_out and check_out.date() == hour_date and check_out > check_in:
-            hour_end = check_out.hour + (check_out.minute / 60.0)
-            hours_duration = max(1, int(round(hour_end - hour_start)))
+        # 2. Xử lý logic thời gian chặt chẽ & chống ngược giờ
+        if local_check_out <= local_check_in:
+            if rent_type == 'hour':
+                local_check_out = local_check_in + timedelta(hours=2)
+            else:
+                local_check_out = local_check_in + timedelta(days=1)
+
+        hour_date = local_check_in.date()
+        hour_start = local_check_in.hour + (local_check_in.minute / 60.0)
+        if rent_type == 'hour':
+            if local_check_out.date() == hour_date and local_check_out > local_check_in:
+                hour_end = local_check_out.hour + (local_check_out.minute / 60.0)
+                hours_duration = max(1, int(round(hour_end - hour_start)))
+            else:
+                hours_duration = 2
+                hour_end = hour_start + hours_duration
+                local_check_out = local_check_in + timedelta(hours=hours_duration)
         else:
-            hours_duration = 2
-            hour_end = hour_start + hours_duration
+            hours_duration = 0
+            hour_end = 0.0
+
+        # Chuyển đổi từ Giờ địa phương Việt Nam (GMT+7) sang UTC để lưu vào Database Odoo
+        utc_check_in = VN_TZ.localize(local_check_in).astimezone(pytz.utc).replace(tzinfo=None)
+        utc_check_out = VN_TZ.localize(local_check_out).astimezone(pytz.utc).replace(tzinfo=None)
 
         # 3. Thuật toán tìm phòng trống thông minh (Quét tất cả phòng của hạng phòng và cơ sở)
         Room = request.env['hotel.room'].sudo()
@@ -124,7 +142,7 @@ class MHotelWebsite(http.Controller):
             if rent_type == 'night':
                 for eb in existing_bookings:
                     if eb.rent_type == 'night' and eb.check_in and eb.check_out:
-                        if check_in < eb.check_out and check_out > eb.check_in:
+                        if utc_check_in < eb.check_out and utc_check_out > eb.check_in:
                             is_busy = True
                             break
             else:
@@ -162,8 +180,8 @@ class MHotelWebsite(http.Controller):
             'room_id': selected_room.id,
             'room_type_id': room_type_id,
             'rent_type': rent_type,
-            'check_in': check_in,
-            'check_out': check_out,
+            'check_in': utc_check_in,
+            'check_out': utc_check_out,
             'room_price': room_price,
             'state': 'confirmed',
             'note': f'Đặt trực tuyến từ Website M-Hotel. Yêu cầu của khách: {note}' if note else 'Đặt trực tuyến từ Website M-Hotel',
