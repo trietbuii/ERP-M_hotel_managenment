@@ -28,12 +28,17 @@ class MHotelWebsite(http.Controller):
     def hotel_booking(self, type_id=None, company_id=None, **kw):
         room_types = request.env['hotel.room.type'].sudo().search([('active', '=', True)])
         companies = request.env['res.company'].sudo().search([('id', 'in', [1, 2])])
+        rooms = request.env['hotel.room'].sudo().search([
+            ('active', '=', True),
+            ('status', 'not in', ['maintenance', 'out_of_service'])
+        ], order='company_id asc, floor asc, name asc')
         now = datetime.now()
         default_check_in = (now + timedelta(days=1)).strftime('%Y-%m-%dT14:00')
         default_check_out = (now + timedelta(days=3)).strftime('%Y-%m-%dT12:00')
         return request.render('m_hotel_website.hotel_booking_form', {
             'room_types': room_types,
             'companies': companies,
+            'rooms': rooms,
             'selected_type_id': int(type_id) if type_id else (room_types[0].id if room_types else None),
             'selected_company_id': int(company_id) if company_id else 1,
             'default_check_in': default_check_in,
@@ -48,6 +53,7 @@ class MHotelWebsite(http.Controller):
         id_number = post.get('id_number', '').strip()
         company_id = int(post.get('company_id', 1))
         room_type_id = int(post.get('room_type_id', 1))
+        room_id_str = post.get('room_id', '').strip()
         rent_type = post.get('rent_type', 'night')
         check_in_str = post.get('check_in')
         check_out_str = post.get('check_out')
@@ -135,6 +141,15 @@ class MHotelWebsite(http.Controller):
 
         if not selected_room:
             selected_room = candidate_rooms[0] if candidate_rooms else Room.search([('room_type_id', '=', room_type_id)], limit=1)
+
+        # Nếu khách chọn phòng cụ thể trên giao diện
+        if room_id_str:
+            try:
+                explicit_room = Room.browse(int(room_id_str))
+                if explicit_room.exists():
+                    selected_room = explicit_room
+            except Exception:
+                pass
 
         # 4. Tính toán giá phòng
         rt = request.env['hotel.room.type'].sudo().browse(room_type_id)

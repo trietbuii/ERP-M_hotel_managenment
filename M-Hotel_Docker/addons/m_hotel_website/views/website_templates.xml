@@ -400,19 +400,31 @@
                                     <i class="fa fa-building-o text-warning me-2"></i> 1. Thông Tin Lưu Trú
                                 </h2>
                                 <div class="row g-3 mb-4">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label class="form-label fw-bold text-secondary">Chi Nhánh Khách Sạn <span class="text-danger">*</span></label>
-                                        <select class="form-select form-select-lg" name="company_id" required="required">
+                                        <select class="form-select form-select-lg" name="company_id" id="select_company_id" required="required">
                                             <t t-foreach="companies" t-as="c">
                                                 <option t-att-value="c.id" t-att-selected="c.id == selected_company_id" t-esc="c.name"/>
                                             </t>
                                         </select>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label class="form-label fw-bold text-secondary">Hạng Phòng <span class="text-danger">*</span></label>
-                                        <select class="form-select form-select-lg" name="room_type_id" required="required">
+                                        <select class="form-select form-select-lg" name="room_type_id" id="select_room_type_id" required="required">
                                             <t t-foreach="room_types" t-as="rt">
                                                 <option t-att-value="rt.id" t-att-selected="rt.id == selected_type_id" t-esc="'%s (%s đ/đêm)' % (rt.name, '{:,.0f}'.format(rt.base_price_night))"/>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-bold text-secondary">Số Phòng Cụ Thể <span class="badge bg-light text-secondary border">Tùy chọn</span></label>
+                                        <select class="form-select form-select-lg" name="room_id" id="select_room_id">
+                                            <option value="">-- Tự động xếp phòng trống tốt nhất --</option>
+                                            <t t-foreach="rooms" t-as="r">
+                                                <option t-att-value="r.id" 
+                                                        t-att-data-company="r.company_id.id"
+                                                        t-att-data-type="r.room_type_id.id"
+                                                        t-esc="'Phòng %s - %s (%s)' % (r.name, r.floor or 'Tầng 1', r.company_id.name)"/>
                                             </t>
                                         </select>
                                     </div>
@@ -502,6 +514,19 @@
                             <p class="text-muted mb-4 lead">
                                 Cảm ơn quý khách đã tin tưởng và lựa chọn <strong>M-Hotel Hospitality</strong>.
                             </p>
+
+                            <!-- Prominent Room Box -->
+                            <div class="card border-primary text-center p-3 mb-4 rounded-3 shadow-sm" style="background: linear-gradient(135deg, #f0f7ff, #e0efff);">
+                                <span class="text-uppercase text-muted fw-bold small">Số Phòng Khách Sạn Xếp Cho Quý Khách</span>
+                                <h1 class="display-5 fw-bold text-primary my-1">
+                                    <i class="fa fa-key text-warning me-2"></i>PHÒNG <t t-esc="booking.room_id.name"/>
+                                </h1>
+                                <div class="text-secondary fw-semibold">
+                                    <span class="badge bg-primary px-3 py-1 me-2"><t t-esc="booking.room_id.floor or 'Tầng 1'"/></span>
+                                    <span><t t-esc="booking.room_type_id.name"/></span> • 
+                                    <strong class="text-dark"><t t-esc="booking.company_id.name"/></strong>
+                                </div>
+                            </div>
 
                             <!-- Booking Receipt Card -->
                             <div class="card bg-light border text-start p-4 rounded-3 mb-4">
