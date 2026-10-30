@@ -424,7 +424,7 @@
                                                 <option t-att-value="r.id" 
                                                         t-att-data-company="r.company_id.id"
                                                         t-att-data-type="r.room_type_id.id"
-                                                        t-esc="'Phòng %s - %s (%s)' % (r.name, r.floor or 'Tầng 1', r.company_id.name)"/>
+                                                        t-esc="'Phòng %s (%s)' % (r.name, r.floor or 'Tầng 1')"/>
                                             </t>
                                         </select>
                                     </div>
@@ -490,6 +490,63 @@
                                     <i class="fa fa-check-circle me-2"></i> XÁC NHẬN ĐẶT PHÒNG NGAY
                                 </button>
                             </form>
+
+                            <!-- JavaScript Lọc Phòng Tự Động Theo Chi Nhánh & Hạng Phòng -->
+                            <script type="text/javascript">
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var selectCompany = document.getElementById('select_company_id');
+                                    var selectType = document.getElementById('select_room_type_id');
+                                    var selectRoom = document.getElementById('select_room_id');
+                                    if (!selectCompany || !selectType || !selectRoom) return;
+
+                                    var allRooms = [];
+                                    var initialOptions = selectRoom.querySelectorAll('option');
+                                    initialOptions.forEach(function(opt) {
+                                        if (opt.value) {
+                                            allRooms.push({
+                                                id: opt.value,
+                                                companyId: opt.getAttribute('data-company'),
+                                                typeId: opt.getAttribute('data-type'),
+                                                text: opt.textContent.trim()
+                                            });
+                                        }
+                                    });
+
+                                    function filterRooms() {
+                                        var compId = selectCompany.value;
+                                        var typeId = selectType.value;
+                                        var currentVal = selectRoom.value;
+
+                                        selectRoom.innerHTML = '&lt;option value=""&gt;-- Tự động xếp phòng trống tốt nhất --&lt;/option&gt;';
+                                        
+                                        var matched = allRooms.filter(function(r) {
+                                            return (!compId || r.companyId == compId) &amp;&amp; (!typeId || r.typeId == typeId);
+                                        });
+
+                                        if (matched.length === 0) {
+                                            var emptyOpt = document.createElement('option');
+                                            emptyOpt.value = "";
+                                            emptyOpt.disabled = true;
+                                            emptyOpt.textContent = "(Chưa có phòng thuộc hạng phòng này)";
+                                            selectRoom.appendChild(emptyOpt);
+                                        } else {
+                                            matched.forEach(function(r) {
+                                                var opt = document.createElement('option');
+                                                opt.value = r.id;
+                                                opt.textContent = r.text;
+                                                if (r.id === currentVal) {
+                                                    opt.selected = true;
+                                                }
+                                                selectRoom.appendChild(opt);
+                                            });
+                                        }
+                                    }
+
+                                    selectCompany.addEventListener('change', filterRooms);
+                                    selectType.addEventListener('change', filterRooms);
+                                    filterRooms();
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>
