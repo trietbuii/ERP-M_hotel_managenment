@@ -75,8 +75,14 @@ class HotelRoomSearchWizard(models.TransientModel):
         if not self.selected_room_id:
             raise UserError(_("Vui lòng chọn 1 phòng trong danh sách phòng trống bên dưới!"))
         
+        # Tìm khách hàng mặc định (ưu tiên Nguyễn Văn An hoặc khách hàng đầu tiên)
+        default_partner = self.env['res.partner'].search([('name', 'ilike', 'Nguyễn Văn An')], limit=1)
+        if not default_partner:
+            default_partner = self.env['res.partner'].search([('id', '!=', self.env.ref('base.partner_admin').id)], limit=1) or self.env.user.partner_id
+
         vals = {
             'company_id': self.company_id.id,
+            'partner_id': default_partner.id,
             'room_id': self.selected_room_id.id,
             'rent_type': self.rent_type,
         }
