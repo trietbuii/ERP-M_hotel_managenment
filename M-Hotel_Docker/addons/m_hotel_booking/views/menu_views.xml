@@ -3,7 +3,8 @@
     <menuitem id="menu_hotel_booking_parent"
               name="Lễ Tân &amp; Đặt Phòng"
               parent="m_hotel_base.menu_hotel_root"
-              sequence="20"/>
+              sequence="20"
+              groups="m_hotel_base.group_hotel_receptionist,m_hotel_base.group_hotel_manager"/>
 
     <menuitem id="menu_hotel_booking_wizard"
               name="Tìm Phòng Trống Nhanh"

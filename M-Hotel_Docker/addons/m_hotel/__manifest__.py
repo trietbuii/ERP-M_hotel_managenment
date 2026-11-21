@@ -14,7 +14,6 @@ A comprehensive hotel operations management system built entirely on standard Od
 4. m_hotel_inventory: Room supply norms (linens, amenities), automatic stock consumption upon task completion.
 5. m_hotel_asset: Room equipment registry and maintenance request integration.
 6. m_hotel_report: Dynamic Pivot & Graph analytics for room occupancy and multi-dimensional revenue.
-7. m_hotel_website: Public hotel portal and online booking engine.
     """,
     'author': 'Group 12 — Enterprise Resource Planning (ERP)',
     'license': 'LGPL-3',
@@ -25,7 +24,6 @@ A comprehensive hotel operations management system built entirely on standard Od
         'm_hotel_inventory',
         'm_hotel_asset',
         'm_hotel_report',
-        'm_hotel_website',
     ],
     'data': [],
     'application': True,

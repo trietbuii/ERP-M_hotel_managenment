@@ -4,7 +4,7 @@
               name="Báo Cáo &amp; Phân Tích"
               parent="m_hotel_base.menu_hotel_root"
               sequence="90"
-              groups="m_hotel_base.group_hotel_manager"/>
+              groups="m_hotel_base.group_hotel_manager,m_hotel_base.group_hotel_accountant"/>
 
     <menuitem id="menu_hotel_occupancy_report"
               name="Công Suất &amp; Doanh Thu Phòng"

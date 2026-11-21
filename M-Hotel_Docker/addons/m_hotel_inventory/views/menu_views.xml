@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <menuitem id="menu_hotel_supply_parent"
+              name="Kho &amp; Vật Tư"
+              parent="m_hotel_base.menu_hotel_root"
+              sequence="45"
+              groups="m_hotel_base.group_hotel_stock,m_hotel_base.group_hotel_manager"/>
+
     <menuitem id="menu_hotel_supply_norm"
               name="Định Mức Vật Tư Tiêu Hao"
-              parent="m_hotel_housekeeping.menu_hotel_housekeeping_parent"
+              parent="menu_hotel_supply_parent"
               action="action_hotel_supply_norm"
-              sequence="10"/>
+              sequence="10"
+              groups="m_hotel_base.group_hotel_stock,m_hotel_base.group_hotel_manager"/>
 </odoo>

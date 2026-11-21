@@ -30,7 +30,6 @@ The repository is modularized into 7 specialized business packages:
 | **Inventory & Supply** | `m_hotel_inventory` | Room supply consumption norms (Amenities & Minibar), automated stock deduction via Odoo `stock.picking`. |
 | **Asset & Maintenance** | `m_hotel_asset` | In-room equipment tracking (AC, Smart TV, Adel smart locks) linked to Odoo `maintenance` requests. |
 | **Management Reports** | `m_hotel_report` | SQL analysis view for Occupancy Rate (buồng phòng), revenue breakdown, Pivot and Graph dashboards. |
-| **Guest Website** | `m_hotel_website` | Public responsive booking engine and room catalog for prospective guests. |
 | **Umbrella Package** | `m_hotel` | Meta-package for one-click installation of all suite components. |
 
 ---
@@ -58,6 +57,7 @@ docker compose ps
 - **Database Manager:** [http://localhost:8069/web/database/manager](http://localhost:8069/web/database/manager)
 - **Database Name:** `mhotel_dev`
 - **Default Admin Account:** `admin` / `admin`
+- 👉 **Chi tiết tài khoản & phân quyền các bộ phận:** Xem tài liệu đầy đủ tại [THONG_TIN_TAI_KHOAN_PHAN_QUYEN.md](file:///home/trietbui/Documents/HK5/Hoach_Dinh/ERP-M_hotel_managenment/THONG_TIN_TAI_KHOAN_PHAN_QUYEN.md)
 
 ---
 

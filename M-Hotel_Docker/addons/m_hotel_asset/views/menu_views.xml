@@ -3,7 +3,8 @@
     <menuitem id="menu_hotel_asset_parent"
               name="Kỹ Thuật &amp; Thiết Bị"
               parent="m_hotel_base.menu_hotel_root"
-              sequence="50"/>
+              sequence="50"
+              groups="m_hotel_base.group_hotel_maintenance,m_hotel_base.group_hotel_manager"/>
 
     <record id="action_hotel_room_equipments" model="ir.actions.act_window">
         <field name="name">Trang Thiết Bị Buồng Phòng</field>

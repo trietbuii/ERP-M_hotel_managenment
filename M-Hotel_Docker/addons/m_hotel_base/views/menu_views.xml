@@ -10,7 +10,8 @@
     <menuitem id="menu_hotel_rooms_parent"
               name="Sơ Đồ &amp; Phòng"
               parent="menu_hotel_root"
-              sequence="10"/>
+              sequence="10"
+              groups="group_hotel_receptionist,group_hotel_housekeeping,group_hotel_manager"/>
 
     <menuitem id="menu_hotel_room_map"
               name="Sơ Đồ Phòng Trực Quan"
@@ -22,7 +23,8 @@
               name="Danh Sách Phòng"
               parent="menu_hotel_rooms_parent"
               action="action_hotel_room_list"
-              sequence="2"/>
+              sequence="2"
+              groups="group_hotel_receptionist,group_hotel_manager"/>
 
     <!-- Menu Khách lưu trú -->
     <record id="action_hotel_guests" model="ir.actions.act_window">
@@ -36,7 +38,8 @@
     <menuitem id="menu_hotel_guest_parent"
               name="Khách Hàng"
               parent="menu_hotel_root"
-              sequence="40"/>
+              sequence="40"
+              groups="group_hotel_receptionist,group_hotel_manager"/>
 
     <menuitem id="menu_hotel_guest_list"
               name="Hồ Sơ Khách Lưu Trú"

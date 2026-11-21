@@ -227,6 +227,7 @@ class HotelBooking(models.Model):
             'move_type': 'out_invoice',
             'partner_id': self.partner_id.id,
             'company_id': self.company_id.id,
+            'currency_id': self.company_id.currency_id.id,
             'invoice_date': fields.Date.today(),
             'hotel_booking_id': self.id,
             'narration': f"Thanh toán đơn đặt phòng {self.name} - Phòng {self.room_id.name}",
