@@ -46,16 +46,18 @@ Hệ thống hỗ trợ 2 kiểu đăng nhập: **Tên đầy đủ theo bộ ph
 
 ## 3. Danh Sách Tài Khoản Cá Nhân Thành Viên Nhóm 12
 
-Các thành viên nhóm đã được gắn quyền đúng với vai trò phân công trong Project Charter:
+Các thành viên nhóm đã được gắn quyền chuẩn xác theo phân công công việc và vai trò trong hệ thống:
 
-| STT | Thành viên nhóm | Vai trò phụ trách | Tên đăng nhập (Login) | Mật khẩu |
-| :---: | :--- | :--- | :---: | :---: |
-| 1 | **Bùi Minh Triết** | Project Manager / Ban Giám Đốc | `triet.bm` | `admin` |
-| 2 | **Dương Đình Thảo** | Bộ phận Lễ tân (Booking, Check-in/out) | `thao.dd` | `admin` |
-| 3 | **Trần Hoàng Phúc** | Bộ phận Buồng phòng (Dọn phòng & Sự cố) | `phuc.th` | `admin` |
-| 4 | **Mai Anh Tuấn** | Bộ phận Kỹ thuật & Bảo trì (Thiết bị) | `tuan.ma` | `admin` |
-| 5 | **Nguyễn Quốc Triệu** | Bộ phận Kho (Định mức vật tư, DevOps) | `trieu.nq` | `admin` |
-| 6 | **Đặng Thị Mai Hương** | Bộ phận Tài chính - Kế toán (Hóa đơn & Doanh thu) | `huong.dtm` | `admin` |
+| STT | Thành viên nhóm | Vai trò phụ trách | Tên đăng nhập (Login) | Mật khẩu | Quyền truy cập & Menu |
+| :---: | :--- | :--- | :---: | :---: | :--- |
+| 1 | **Bùi Minh Triết** | Project Manager / Ban Giám Đốc | `triet.bm` | `admin` | **Toàn quyền:** Thấy đầy đủ 8 menu quản trị hệ thống. |
+| 2 | **Dương Đình Thảo** | Bộ phận Lễ tân (Booking, Check-in/out) | `thao.dd` | `admin` | **Lễ tân:** Sơ đồ phòng, Đặt phòng, Khách hàng, Báo sự cố. |
+| 3 | **Trần Hoàng Phúc** | Bộ phận Buồng phòng (Trưởng nhóm Buồng phòng) | `phuc.th` | `admin` | **Buồng phòng:** Sơ đồ phòng, Nhiệm vụ dọn phòng, Báo sự cố. |
+| 4 | **Lê Minh Khoa** | Bộ phận Buồng phòng (Nhân viên buồng phòng) | `khoa.lm` | `admin` | **Buồng phòng:** Sơ đồ phòng, Nhiệm vụ dọn phòng, Báo sự cố. |
+| 5 | **Nguyễn Hoàng Nam** | Bộ phận Buồng phòng (Nhân viên buồng phòng) | `nam.nh` | `admin` | **Buồng phòng:** Sơ đồ phòng, Nhiệm vụ dọn phòng, Báo sự cố. |
+| 6 | **Mai Anh Tuấn** | Bộ phận Kỹ thuật & Bảo trì (Thiết bị) | `tuan.ma` | `admin` | **Kỹ thuật:** Thiết bị phòng, Phiếu sửa chữa, Báo sự cố. |
+| 7 | **Nguyễn Quốc Triệu** | Bộ phận Kho (Định mức vật tư, DevOps) | `trieu.nq` | `admin` | **Kho vật tư:** Kho hàng, Định mức vật tư tiêu hao. |
+| 8 | **Đặng Thị Mai Hương** | Bộ phận Tài chính - Kế toán (Hóa đơn & Doanh thu) | `huong.dtm` | `admin` | **Kế toán:** Báo cáo doanh thu & công suất, Phân hệ Hóa đơn. |
 
 ---
 
