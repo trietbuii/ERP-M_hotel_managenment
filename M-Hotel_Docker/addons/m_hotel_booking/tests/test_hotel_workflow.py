@@ -133,3 +133,21 @@ class TestHotelWorkflow(TransactionCase):
         self.assertTrue(booking.invoice_id)
         self.assertEqual(booking.invoice_id.move_type, 'out_invoice')
         self.assertEqual(booking.state, 'invoiced')
+
+    def test_06_minibar_stock_warning(self):
+        """TC06: Cảnh báo khi thêm số lượng minibar vượt quá tồn kho khả dụng"""
+        # Tạo sản phẩm minibar mẫu có tồn kho 2 chai
+        minibar_product = self.env['product.product'].create({
+            'name': 'Coca Cola Test',
+            'is_hotel_minibar': True,
+            'lst_price': 25000.0,
+            'type': 'consu',
+        })
+        line = self.BookingLine.new({
+            'product_id': minibar_product,
+            'quantity': 3.0,
+        })
+        warning_res = line._onchange_product_id()
+        self.assertIsNotNone(warning_res)
+        self.assertIn('warning', warning_res)
+        self.assertIn('Cảnh Báo Tồn Kho Minibar', warning_res['warning']['title'])

@@ -281,11 +281,29 @@ class HotelBookingLine(models.Model):
     price_unit = fields.Float(string='Đơn giá (VNĐ)', required=True, digits=(16, 0))
     price_subtotal = fields.Float(string='Thành tiền', compute='_compute_subtotal', store=True, digits=(16, 0))
 
-    @api.onchange('product_id')
+    @api.onchange('product_id', 'quantity')
     def _onchange_product_id(self):
         if self.product_id:
             self.name = self.product_id.name
             self.price_unit = self.product_id.lst_price
+
+            # Kiểm tra số lượng tồn kho khả dụng đối với đồ Minibar
+            if self.product_id.is_hotel_minibar and self.quantity > 0:
+                available_qty = getattr(self.product_id, 'qty_available', 0.0)
+                if available_qty < self.quantity:
+                    return {
+                        'warning': {
+                            'title': _('Cảnh Báo Tồn Kho Minibar'),
+                            'message': _(
+                                "Mặt hàng '%(product)s' trong kho hiện chỉ còn %(qty)s sản phẩm (yêu cầu: %(req)s).\n\n"
+                                "👉 Vui lòng thông báo cho khách hàng để đổi sang mặt hàng khác hoặc liên hệ bộ phận Kho bổ sung trước khi phục vụ!"
+                            ) % {
+                                'product': self.product_id.name,
+                                'qty': int(available_qty),
+                                'req': int(self.quantity)
+                            }
+                        }
+                    }
 
     @api.depends('quantity', 'price_unit')
     def _compute_subtotal(self):
