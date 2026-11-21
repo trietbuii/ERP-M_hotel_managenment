@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict vSFtXJI3haYpWUZpOSTfGuppn8fBseLh6o50k6pDewBZTQND37HcqhbGb3tzLdZ
+\restrict h7yjX9BvCYTNbkmVJJ1w3GFIW1uNpapUGjDC2bSo8T4os2BSX296nXJFdWHI8iP
 
 -- Dumped from database version 15.19 (Debian 15.19-1.pgdg13+2)
 -- Dumped by pg_dump version 15.19 (Debian 15.19-1.pgdg13+2)
@@ -52342,6 +52342,7 @@ COPY public.bus_bus (id, create_uid, write_uid, channel, message, create_date, w
 761	1	1	["mhotel_dev","res.partner",2]	{"type":"mail.record/insert","payload":{"mail.message":[{"author_guest_id":false,"author_id":3,"body":["markup","<div style=\\"margin:0px; padding:0px; font-size:13px\\">\\n    Th\\u00e2n g\\u1eedi <span>Mai Anh Tu\\u1ea5n</span>,\\n    <br><br>\\n    <p>\\n        <span>Ban Gi\\u00e1m \\u0110\\u1ed1c</span> v\\u1eeba ph\\u00e2n c\\u00f4ng cho b\\u1ea1n ho\\u1ea1t \\u0111\\u1ed9ng sau:\\n        </p><ul>\\n            <li>T\\u00e0i li\\u1ec7u: \\"[P.203] Kh\\u00e1ch l\\u00e0m v\\u1ee1 g\\u01b0\\u01a1ng ph\\u00f2ng t\\u1eafm\\"\\n                 (Y\\u00eau c\\u1ea7u b\\u1ea3o d\\u01b0\\u1ee1ng)\\n            </li>\\n            <li>T\\u00f3m t\\u1eaft: <span>Y\\u00eau c\\u1ea7u b\\u1ea3o d\\u01b0\\u1ee1ng</span></li>\\n            <li>Th\\u1eddi h\\u1ea1n: <span>04/11/2026</span></li>\\n        </ul>\\n    \\n</div>"],"date":"2026-11-21 13:56:26","id":2046,"message_type":"user_notification","notification_ids":[70],"thread":{"id":2,"model":"maintenance.request"}}],"mail.notification":[{"failure_type":"mail_smtp","id":70,"mail_email_address":false,"mail_message_id":2046,"notification_status":"exception","notification_type":"email","res_partner_id":382}],"mail.thread":[{"display_name":"[P.203] Kh\\u00e1ch l\\u00e0m v\\u1ee1 g\\u01b0\\u01a1ng ph\\u00f2ng t\\u1eafm","id":2,"model":"maintenance.request","modelName":"Y\\u00eau c\\u1ea7u b\\u1ea3o d\\u01b0\\u1ee1ng"}],"res.partner":[{"email":"tuanma@mhotel.vn","id":382,"name":"Mai Anh Tu\\u1ea5n"}]}}	2026-11-21 13:56:26.65291	2026-11-21 13:56:26.65291
 763	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"offline","im_status":"offline","partner_id":3}}	2026-11-21 14:15:19.732682	2026-11-21 14:15:19.732682
 772	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"online","im_status":"online","partner_id":3}}	2026-11-21 15:09:27.659896	2026-11-21 15:09:27.659896
+779	1	1	["mhotel_dev","res.partner",2]	{"type":"mail.activity/updated","payload":{"activity_created":true,"count_diff":1}}	2026-11-21 15:45:01.112641	2026-11-21 15:45:01.112641
 762	1	1	["mhotel_dev","res.partner",3]	{"type":"mail.record/insert","payload":{"mail.message":[{"author_guest_id":false,"author_id":3,"body":["markup","<div style=\\"margin:0px; padding:0px; font-size:13px\\">\\n    Th\\u00e2n g\\u1eedi <span>Mai Anh Tu\\u1ea5n</span>,\\n    <br><br>\\n    <p>\\n        <span>Ban Gi\\u00e1m \\u0110\\u1ed1c</span> v\\u1eeba ph\\u00e2n c\\u00f4ng cho b\\u1ea1n ho\\u1ea1t \\u0111\\u1ed9ng sau:\\n        </p><ul>\\n            <li>T\\u00e0i li\\u1ec7u: \\"[P.203] Kh\\u00e1ch l\\u00e0m v\\u1ee1 g\\u01b0\\u01a1ng ph\\u00f2ng t\\u1eafm\\"\\n                 (Y\\u00eau c\\u1ea7u b\\u1ea3o d\\u01b0\\u1ee1ng)\\n            </li>\\n            <li>T\\u00f3m t\\u1eaft: <span>Y\\u00eau c\\u1ea7u b\\u1ea3o d\\u01b0\\u1ee1ng</span></li>\\n            <li>Th\\u1eddi h\\u1ea1n: <span>04/11/2026</span></li>\\n        </ul>\\n    \\n</div>"],"date":"2026-11-21 13:56:26","id":2046,"message_type":"user_notification","notification_ids":[70],"thread":{"id":2,"model":"maintenance.request"}}],"mail.notification":[{"failure_type":"mail_smtp","id":70,"mail_email_address":false,"mail_message_id":2046,"notification_status":"exception","notification_type":"email","res_partner_id":382}],"mail.thread":[{"display_name":"[P.203] Kh\\u00e1ch l\\u00e0m v\\u1ee1 g\\u01b0\\u01a1ng ph\\u00f2ng t\\u1eafm","id":2,"model":"maintenance.request","modelName":"Y\\u00eau c\\u1ea7u b\\u1ea3o d\\u01b0\\u1ee1ng"}],"res.partner":[{"email":"tuanma@mhotel.vn","id":382,"name":"Mai Anh Tu\\u1ea5n"}]}}	2026-11-21 13:56:26.65291	2026-11-21 13:56:26.65291
 764	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"online","im_status":"online","partner_id":3}}	2026-11-21 14:15:47.624976	2026-11-21 14:15:47.624976
 765	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"offline","im_status":"offline","partner_id":3}}	2026-11-21 15:03:52.492781	2026-11-21 15:03:52.492781
@@ -52353,6 +52354,9 @@ COPY public.bus_bus (id, create_uid, write_uid, channel, message, create_date, w
 774	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"online","im_status":"online","partner_id":3}}	2026-11-21 15:09:51.99657	2026-11-21 15:09:51.99657
 775	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"offline","im_status":"offline","partner_id":3}}	2026-11-21 15:10:20.283767	2026-11-21 15:10:20.283767
 776	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"online","im_status":"online","partner_id":3}}	2026-11-21 15:10:21.234207	2026-11-21 15:10:21.234207
+777	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"offline","im_status":"offline","partner_id":3}}	2026-11-21 15:30:51.613327	2026-11-21 15:30:51.613327
+778	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"online","im_status":"online","partner_id":3}}	2026-11-21 15:30:52.441833	2026-11-21 15:30:52.441833
+780	1	1	["mhotel_dev","res.partner",2]	{"type":"mail.record/insert","payload":{"mail.message":[{"author_guest_id":false,"author_id":2,"body":["markup","<div style=\\"margin:0px; padding:0px; font-size:13px\\">\\n    Th\\u00e2n g\\u1eedi <span>Ban Gi\\u00e1m \\u0110\\u1ed1c</span>,\\n    <br><br>\\n    <p>\\n        <span>OdooBot</span> v\\u1eeba ph\\u00e2n c\\u00f4ng cho b\\u1ea1n ho\\u1ea1t \\u0111\\u1ed9ng sau:\\n        </p><ul>\\n            <li>T\\u00e0i li\\u1ec7u: \\"Ki\\u1ec3m tra \\u0111\\u1ecbnh k\\u1ef3 &amp; \\u0111o \\u0111i\\u1ec7n \\u00e1p pin kh\\u00f3a t\\u1eeb - Ph\\u00f2ng P.101\\"\\n                 (Y\\u00eau c\\u1ea7u b\\u1ea3o d\\u01b0\\u1ee1ng)\\n            </li>\\n            <li>T\\u00f3m t\\u1eaft: <span>Maintenance Request</span></li>\\n            <li>Th\\u1eddi h\\u1ea1n: <span>26/11/2026</span></li>\\n        </ul>\\n    \\n</div>"],"date":"2026-11-21 15:45:01","id":2110,"message_type":"user_notification","notification_ids":[71],"thread":{"id":11,"model":"maintenance.request"}}],"mail.notification":[{"failure_type":"mail_smtp","id":71,"mail_email_address":false,"mail_message_id":2110,"notification_status":"exception","notification_type":"email","res_partner_id":3}],"mail.thread":[{"display_name":"Ki\\u1ec3m tra \\u0111\\u1ecbnh k\\u1ef3 & \\u0111o \\u0111i\\u1ec7n \\u00e1p pin kh\\u00f3a t\\u1eeb - Ph\\u00f2ng P.101","id":11,"model":"maintenance.request","modelName":"Y\\u00eau c\\u1ea7u b\\u1ea3o d\\u01b0\\u1ee1ng"}],"res.partner":[{"email":false,"id":3,"name":"Ban Gi\\u00e1m \\u0110\\u1ed1c"}]}}	2026-11-21 15:45:01.352242	2026-11-21 15:45:01.352242
 \.
 
 
@@ -54768,14 +54772,14 @@ COPY public.ir_cron (id, ir_actions_server_id, user_id, interval_number, priorit
 6	131	1	5	5	0	1	1	Mail: Fetchmail Service	minutes	f	2026-10-13 11:41:34	\N	\N	2026-10-13 11:41:32.69387	2026-10-13 11:41:32.69387
 13	222	1	10	5	0	1	1	Payment: Post-process transactions	minutes	f	2026-10-13 11:46:46	\N	\N	2026-10-13 11:46:45.457521	2026-10-13 11:46:45.457521
 12	218	1	1	5	0	1	1	Digest Emails	days	t	2026-11-22 13:46:45	2026-11-21 13:46:59	\N	2026-10-13 11:46:45.238861	2026-10-13 11:46:45.238861
-8	133	1	1	5	0	1	1	Notification: Notify scheduled messages	hours	t	2026-11-21 15:41:34	2026-11-21 14:41:49	\N	2026-10-13 11:41:32.69387	2026-10-13 11:41:32.69387
-3	128	1	1	6	0	1	1	Mail: Email Queue Manager	hours	t	2026-11-21 15:41:34	2026-11-21 14:41:49	\N	2026-10-13 11:41:32.69387	2026-10-13 11:41:32.69387
 14	302	1	1	5	0	1	1	Account: Post draft entries with auto_post enabled and accounting date up to today	days	t	2026-11-22 02:00:50	2026-11-21 08:04:01	\N	2026-10-13 11:46:47.690611	2026-10-13 11:46:47.690611
 7	132	1	1	5	0	1	1	Mail: Post scheduled messages	days	t	2026-11-22 11:41:34	2026-11-21 11:41:51	\N	2026-10-13 11:41:32.69387	2026-10-13 11:41:32.69387
 1	35	1	1	3	0	1	1	Base: Auto-vacuum internal data	days	t	2026-11-22 11:41:28	2026-11-21 15:04:54	\N	2026-10-13 11:41:24.189279	2026-10-13 11:41:32.69387
 20	456	1	1	5	0	1	1	Purchase reminder	days	t	2026-11-22 15:03:42	2026-11-21 15:04:55	\N	2026-11-21 15:03:40.146544	2026-11-21 15:03:40.146544
+8	133	1	1	5	0	1	1	Notification: Notify scheduled messages	hours	t	2026-11-21 16:41:34	2026-11-21 15:41:34	\N	2026-10-13 11:41:32.69387	2026-10-13 11:41:32.69387
 9	134	1	1	5	0	1	1	Mail: send web push notification	days	t	2026-11-22 11:41:34	2026-11-21 11:41:52	\N	2026-10-13 11:41:32.69387	2026-10-13 11:41:32.69387
 10	135	1	1	5	0	1	1	Discuss: channel member unmute	days	t	2026-11-22 11:41:34	2026-11-21 11:41:52	\N	2026-10-13 11:41:32.69387	2026-10-13 11:41:32.69387
+3	128	1	1	6	0	1	1	Mail: Email Queue Manager	hours	t	2026-11-21 16:41:34	2026-11-21 15:41:34	\N	2026-10-13 11:41:32.69387	2026-10-13 11:41:32.69387
 5	130	1	1	5	0	1	1	Notification: Delete Notifications older than 6 Months	months	t	2026-12-13 11:41:34	2026-11-21 08:04:01	\N	2026-10-13 11:41:32.69387	2026-10-13 11:41:32.69387
 4	129	1	1	1000	0	1	1	Publisher: Update Notification	weeks	t	2026-11-24 11:41:34	2026-11-21 08:04:01	\N	2026-10-13 11:41:32.69387	2026-10-13 11:41:32.69387
 11	155	1	1	6	0	1	1	Users: Notify About Unregistered Users	days	t	2026-11-22 11:41:35	2026-11-21 11:41:52	\N	2026-10-13 11:41:35.461371	2026-10-13 11:41:35.461371
@@ -54800,6 +54804,8 @@ COPY public.ir_cron_progress (id, cron_id, remaining, done, timed_out_counter, c
 527	3	0	0	0	1	1	\N	2026-11-21 14:41:49.877718	2026-11-21 14:41:49.885686
 518	16	0	3	0	1	1	\N	2026-11-21 11:46:52.405715	2026-11-21 11:46:52.457861
 519	17	0	0	0	1	1	\N	2026-11-21 11:47:14.70542	2026-11-21 11:47:14.710239
+530	8	0	0	0	1	1	\N	2026-11-21 15:41:34.166739	2026-11-21 15:41:34.174266
+531	3	0	0	0	1	1	\N	2026-11-21 15:41:34.1792	2026-11-21 15:41:34.184884
 507	8	0	0	0	1	1	\N	2026-11-21 10:41:48.204697	2026-11-21 10:41:48.219677
 508	3	0	0	0	1	1	\N	2026-11-21 10:41:48.225907	2026-11-21 10:41:48.231422
 520	8	0	0	0	1	1	\N	2026-11-21 12:41:55.462989	2026-11-21 12:41:55.482814
@@ -91969,6 +91975,9 @@ COPY public.lot_label_layout_stock_move_line_rel (lot_label_layout_id, stock_mov
 
 COPY public.mail_activity (id, res_model_id, res_id, activity_type_id, user_id, recommended_activity_type_id, previous_activity_type_id, create_uid, write_uid, res_model, res_name, summary, user_tz, date_deadline, date_done, note, feedback, automated, active, create_date, write_date) FROM stdin;
 1	392	2	7	8	\N	\N	2	2	maintenance.request	[P.203] Khách làm vỡ gương phòng tắm	Yêu cầu bảo dưỡng	\N	2026-11-04	\N	\N	\N	t	t	2026-11-21 13:56:26.560833	2026-11-21 13:56:26.560833
+2	392	10	7	1	\N	\N	1	1	maintenance.request	Bảo dưỡng định kỳ hệ thống điều hòa Quý 4 - Phòng P.104	Maintenance Request	\N	2026-11-24	\N	<p>Request planned for <a href="#" data-oe-model="maintenance.equipment" data-oe-id="2">Điều hòa Daikin Inverter 1.5HP/DAIKIN-15-104</a></p>	\N	t	t	2026-11-21 15:45:01.112641	2026-11-21 15:45:01.112641
+4	392	12	7	1	\N	\N	1	1	maintenance.request	Kiểm tra an toàn điện & vệ sinh tản nhiệt Smart TV - Phòng P.201	Maintenance Request	\N	2026-11-13	\N	<p>Request planned for <a href="#" data-oe-model="maintenance.equipment" data-oe-id="5">Smart TV Samsung Crystal 50" 4K/SS-50-P201</a></p>	\N	t	t	2026-11-21 15:45:01.112641	2026-11-21 15:45:01.112641
+3	392	11	7	2	\N	\N	1	1	maintenance.request	Kiểm tra định kỳ & đo điện áp pin khóa từ - Phòng P.101	Maintenance Request	Asia/Ho_Chi_Minh	2026-11-26	\N	<p>Request planned for <a href="#" data-oe-model="maintenance.equipment" data-oe-id="18">Khóa từ thông minh Kaadas M500</a></p>	\N	t	t	2026-11-21 15:45:01.112641	2026-11-21 15:45:01.112641
 \.
 
 
@@ -92217,6 +92226,9 @@ COPY public.mail_followers (id, res_id, partner_id, res_model) FROM stdin;
 91	391	3	hotel.booking
 92	8	380	maintenance.equipment
 93	2	382	maintenance.request
+94	10	2	maintenance.request
+95	11	3	maintenance.request
+96	12	2	maintenance.request
 \.
 
 
@@ -92334,6 +92346,12 @@ COPY public.mail_followers_mail_message_subtype_rel (mail_followers_id, mail_mes
 92	6
 93	1
 93	5
+94	1
+94	5
+95	1
+95	5
+96	1
+96	5
 \.
 
 
@@ -92459,6 +92477,7 @@ COPY public.mail_mail (id, mail_message_id, fetchmail_server_id, create_uid, wri
 111	1985	\N	1	1	\N	exception	\N	\n<html>\n<head>\n    <meta http-equiv="Content-Type" content="text/html charset=UTF-8"/>\n</head>\n<body>\n<div style="display: none; max-height: 0px; overflow: hidden; color:#fff; font-size:0px; line-height:0px">Dear Bộ phận tài chính - kế toán, Your account password has been updated Here are some details about the connection: Date: 08:50:20 UTC 21 tháng 11, 2026 IP Address: 111.222.333.444 If [...]\n    \n    ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ \n</div>\n<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">\n<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 24px; background-color: white; color: #454748; border-collapse:separate;">\n<tbody>\n    \n    <tr>\n        <td align="center" style="min-width: 590px;">\n            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: white; padding: 0; border-collapse:separate;">\n                <tr><td valign="middle">\n                    <span style="font-size: 10px;">Your Account</span>\n                    <br/>\n                        <span style="font-size: 20px; font-weight: bold;">\n                            Bộ phận tài chính - kế toán\n                        </span>\n                </td><td valign="middle" align="right">\n                    <img style="padding: 0px; margin: 0px; height: 48px;" src="http://localhost:8069/logo.png?company=1" alt="Khách Sạn M (Cơ sở 1 - Gia Lai)"/>\n                </td></tr>\n                <tr><td colspan="2" style="text-align:center;">\n                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:4px 0px 32px 0px;"/>\n                </td></tr>\n            </table>\n        </td>\n    </tr>\n    \n    <tr>\n        <td style="min-width: 590px;">\n            \n        <div>\n            Dear Bộ phận tài chính - kế toán,<br/><br/>\n            Your account password has been updated <br/><br/>\n\n            Here are some details about the connection:<br/>\n            <ul>\n                <li><span style="font-weight: bold">\n                    Date:</span> 08:50:20 UTC 21 tháng 11, 2026</li>\n                <li><span style="font-weight: bold">\n                    IP Address:</span> 111.222.333.444</li>\n            </ul>\n\n            <div class="o_mail_account_security_suggestions">\n                If you don't recognize it, you should change your password immediately via this link:<br/>\n                <div style="margin: 16px 0px 16px 0px">\n                    <a style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px" href="http://localhost:8069/web/reset_password">\n                        Reset Password\n                    </a>\n                </div>\n                Otherwise, you can safely ignore this email.\n            </div>\n                <div>\n                    <span>Consider also</span>\n                    <a href="https://www.odoo.com/documentation/latest/applications/general/auth/2fa.html">\n                        activating Two-factor Authentication\n                    </a>\n                </div>\n        </div>\n        </td>\n    </tr>\n    \n    <tr>\n        <td align="center" style="min-width: 590px; padding: 0 8px 0 8px; font-size:11px;">\n            <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 4px 0px;"/>\n            <b>Khách Sạn M (Cơ sở 1 - Gia Lai)</b><br/>\n            <div style="color: #999999;">\n                0269 388 8888\n                 |\n                <a style="text-decoration:none; color: #999999;" href="mailto:gialai@m-hotel.vn">gialai@m-hotel.vn</a>\n            </div>\n        </td>\n    </tr>\n</tbody>\n</table>\n</td></tr>\n\n<tr><td align="center" style="min-width: 590px;">\n        Powered by <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=email" style="color: #875A7B;">Odoo</a>\n</td></tr>\n</table>\n</body>\n</html>	\N	\N	"Bộ phận tài chính - kế toán" <ketoan@m-hotel.vn>	111\nConnection refused	\N	t	\N	2026-11-21 08:50:14.389002	2026-11-21 08:50:14.389002
 112	2045	\N	2	1	\N	exception	\N	\n<html lang="vi_VN">\n<head>\n    <meta http-equiv="Content-Type" content="text/html charset=UTF-8"/>\n</head>\n<body style="font-family:Verdana, Arial,sans-serif; color: #454748;">\n\n<div style="display: none; max-height: 0px; overflow: hidden; color:#fff; font-size:0px; line-height:0px">\n        Người phụ trách:  → Dương Đình Thảo\n         |...\n    \n    ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ \n</div>\n<div style="max-width: 900px; width: 100%;">\n<div itemscope="itemscope" itemtype="http://schema.org/EmailMessage">\n    <div itemprop="potentialAction" itemscope="itemscope" itemtype="http://schema.org/ViewAction">\n        <link itemprop="target" href="http://localhost:8069/mail/view?model=maintenance.equipment&amp;res_id=8"/>\n        <link itemprop="url" href="http://localhost:8069/mail/view?model=maintenance.equipment&amp;res_id=8"/>\n        <meta itemprop="name" content="Xem Thiết bị bảo dưỡng"/>\n    </div>\n</div>\n<div summary="o_mail_notification" style="padding: 0px;">\n    <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="width: 100%; margin-top: 5px;">\n        <tbody>\n            <tr>\n                <td valign="center" style="white-space:nowrap;">\n                    <table cellspacing="0" cellpadding="0" border="0">\n                        <tbody>\n                            <tr>\n                                <td style="border-radius: 3px; text-align: center; background: #875A7B;">\n                                    <a href="http://localhost:8069/mail/view?model=maintenance.equipment&amp;res_id=8" style="font-size: 12px; color: #FFFFFF; display: block; padding: 8px 12px 11px; text-decoration: none !important; font-weight: bold;">\n                                        Xem Thiết bị bảo dưỡng\n                                    </a>\n                                </td>\n                                <td>&nbsp;&nbsp;</td>\n                                <td style="font-size: 12px;">\n                                        <span style="font-weight:bold;">Máy sấy tóc Philips 1800W/PL-18-P201</span>\n                                </td>\n\n                            </tr>\n                        </tbody>\n                    </table>\n                </td>\n            </tr>\n            <tr>\n                <td valign="center">\n                    <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin: 10px 0px;"/>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n\n<div style="font-size: 13px;"></div>\n<ul>\n        <li>Người phụ trách: <em>Không</em> → Dương Đình Thảo</li>\n        <li>Kỹ thuật viên: <em>Không</em> → Dương Đình Thảo</li>\n</ul>\n\n    <div class="o_signature" style="font-size: 13px;"><div>-- <br/><div>Administrator</div></div></div>\n\n\n</div>\n</body></html>	<705421142900501.1791896998.975616931915283-openerp-message-notify@7d71b2e6bbb5> <227862752487635.1795269222.375685214996338-openerp-8-maintenance.equipment@7d71b2e6bbb5>	{'X-Odoo-Objects': 'maintenance.equipment-8'}	\N	111\nConnection refused	t	t	\N	2026-11-21 13:53:42.334394	2026-11-21 13:53:42.428588
 113	2046	\N	2	1	\N	exception	\N	\n<html lang="vi_VN">\n<head>\n    <meta http-equiv="Content-Type" content="text/html charset=UTF-8"/>\n</head>\n<body style="font-family:Verdana, Arial,sans-serif; color: #454748;">\n\n<div style="display: none; max-height: 0px; overflow: hidden; color:#fff; font-size:0px; line-height:0px">\n    Trao đổi nội bộ: Thân gửi Mai Anh Tuấn, Ban Giám Đốc vừa phân công cho bạn hoạt động sau: Tài liệu: &#34;[P.203] Khách làm vỡ gương phòng tắm&#34; (Yêu cầu bảo dưỡng) Tóm tắt: Yêu cầu bảo dưỡng Thời hạn: 04/11/2026\n    \n    ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ \n</div>\n<div style="max-width: 900px; width: 100%;">\n<div itemscope="itemscope" itemtype="http://schema.org/EmailMessage">\n    <div itemprop="potentialAction" itemscope="itemscope" itemtype="http://schema.org/ViewAction">\n        <link itemprop="target" href="http://localhost:8069/mail/view?model=maintenance.request&amp;res_id=2"/>\n        <link itemprop="url" href="http://localhost:8069/mail/view?model=maintenance.request&amp;res_id=2"/>\n        <meta itemprop="name" content="Xem Yêu cầu bảo dưỡng"/>\n    </div>\n</div>\n<div summary="o_mail_notification" style="padding: 0px;">\n    <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="width: 100%; margin-top: 5px;">\n        <tbody>\n            <tr>\n                <td valign="center" style="white-space:nowrap;">\n                    <table cellspacing="0" cellpadding="0" border="0">\n                        <tbody>\n                            <tr>\n                                <td style="border-radius: 3px; text-align: center; background: #875A7B;">\n                                    <a href="http://localhost:8069/mail/view?model=maintenance.request&amp;res_id=2" style="font-size: 12px; color: #FFFFFF; display: block; padding: 8px 12px 11px; text-decoration: none !important; font-weight: bold;">\n                                        Xem Yêu cầu bảo dưỡng\n                                    </a>\n                                </td>\n                                <td>&nbsp;&nbsp;</td>\n                                <td style="font-size: 12px;">\n                                        <span style="font-weight:bold;">Hoạt động: Yêu cầu bảo dưỡng</span>\n                                        <br/>\n                                        <span style="">Thời hạn: 04/11/2026</span>\n                                </td>\n\n                            </tr>\n                        </tbody>\n                    </table>\n                </td>\n            </tr>\n            <tr>\n                <td valign="center">\n                    <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin: 10px 0px;"/>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n\n<div style="font-size: 13px;"><div style="margin:0px; padding:0px; font-size:13px">\n    Thân gửi <span>Mai Anh Tuấn</span>,\n    <br><br>\n    <p>\n        <span>Ban Giám Đốc</span> vừa phân công cho bạn hoạt động sau:\n        </p><ul>\n            <li>Tài liệu: "[P.203] Khách làm vỡ gương phòng tắm"\n                 (Yêu cầu bảo dưỡng)\n            </li>\n            <li>Tóm tắt: <span>Yêu cầu bảo dưỡng</span></li>\n            <li>Thời hạn: <span>04/11/2026</span></li>\n        </ul>\n    \n</div></div>\n\n    <div class="o_signature" style="font-size: 13px;"><div>-- <br/><div>Administrator</div></div></div>\n\n\n</div>\n</body></html>	<688031818008931.1791896998.853624582290649-openerp-2-maintenance.request@7d71b2e6bbb5> <676925320161275.1791902279.291488409042358-openerp-2-maintenance.request@7d71b2e6bbb5> <343468646756637.1795269386.601138591766357-openerp-message-notify@7d71b2e6bbb5>	{'X-Odoo-Objects': 'maintenance.request-2'}	\N	111\nConnection refused	t	t	\N	2026-11-21 13:56:26.560833	2026-11-21 13:56:26.65291
+114	2110	\N	1	1	\N	exception	\N	\n<html lang="vi_VN">\n<head>\n    <meta http-equiv="Content-Type" content="text/html charset=UTF-8"/>\n</head>\n<body style="font-family:Verdana, Arial,sans-serif; color: #454748;">\n\n<div style="display: none; max-height: 0px; overflow: hidden; color:#fff; font-size:0px; line-height:0px">\n    Trao đổi nội bộ: Thân gửi Ban Giám Đốc, OdooBot vừa phân công cho bạn hoạt động sau: Tài liệu: &#34;Kiểm tra định kỳ &amp; đo điện áp pin khóa từ - Phòng P.101&#34; (Yêu cầu bảo dưỡng) Tóm tắt: Maintenance Request [...]\n    \n    ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ ͏ ​ \n</div>\n<div style="max-width: 900px; width: 100%;">\n<div itemscope="itemscope" itemtype="http://schema.org/EmailMessage">\n    <div itemprop="potentialAction" itemscope="itemscope" itemtype="http://schema.org/ViewAction">\n        <link itemprop="target" href="http://localhost:8069/mail/view?model=maintenance.request&amp;res_id=11"/>\n        <link itemprop="url" href="http://localhost:8069/mail/view?model=maintenance.request&amp;res_id=11"/>\n        <meta itemprop="name" content="Xem Yêu cầu bảo dưỡng"/>\n    </div>\n</div>\n<div summary="o_mail_notification" style="padding: 0px;">\n    <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="width: 100%; margin-top: 5px;">\n        <tbody>\n            <tr>\n                <td valign="center" style="white-space:nowrap;">\n                    <table cellspacing="0" cellpadding="0" border="0">\n                        <tbody>\n                            <tr>\n                                <td style="border-radius: 3px; text-align: center; background: #875A7B;">\n                                    <a href="http://localhost:8069/mail/view?model=maintenance.request&amp;res_id=11" style="font-size: 12px; color: #FFFFFF; display: block; padding: 8px 12px 11px; text-decoration: none !important; font-weight: bold;">\n                                        Xem Yêu cầu bảo dưỡng\n                                    </a>\n                                </td>\n                                <td>&nbsp;&nbsp;</td>\n                                <td style="font-size: 12px;">\n                                        <span style="font-weight:bold;">Activity: Yêu cầu bảo dưỡng</span>\n                                        <br/>\n                                        <span style="">Deadline: 26/11/2026</span>\n                                </td>\n\n                            </tr>\n                        </tbody>\n                    </table>\n                </td>\n            </tr>\n            <tr>\n                <td valign="center">\n                    <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin: 10px 0px;"/>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n\n<div style="font-size: 13px;"><div style="margin:0px; padding:0px; font-size:13px">\n    Thân gửi <span>Ban Giám Đốc</span>,\n    <br><br>\n    <p>\n        <span>OdooBot</span> vừa phân công cho bạn hoạt động sau:\n        </p><ul>\n            <li>Tài liệu: "Kiểm tra định kỳ &amp; đo điện áp pin khóa từ - Phòng P.101"\n                 (Yêu cầu bảo dưỡng)\n            </li>\n            <li>Tóm tắt: <span>Maintenance Request</span></li>\n            <li>Thời hạn: <span>26/11/2026</span></li>\n        </ul>\n    \n</div></div>\n\n    <div class="o_signature" style="font-size: 13px;"><div>-- <br/><div>System</div></div></div>\n\n\n</div>\n</body></html>	<451859113881792.1795275901.183903217315674-openerp-11-maintenance.request@7d71b2e6bbb5> <172545287688914.1795275901.205116271972656-openerp-message-notify@7d71b2e6bbb5>	{'X-Odoo-Objects': 'maintenance.request-11'}	\N	111\nConnection refused	t	t	\N	2026-11-21 15:45:01.112641	2026-11-21 15:45:01.352242
 \.
 
 
@@ -92528,6 +92547,7 @@ COPY public.mail_mail_res_partner_rel (mail_mail_id, res_partner_id) FROM stdin;
 75	379
 112	380
 113	382
+114	3
 \.
 
 
@@ -93675,6 +93695,10 @@ COPY public.mail_message (id, parent_id, res_id, record_alias_domain_id, record_
 2016	\N	7	\N	1	1	\N	2	\N	\N	17	17	\N	discuss.channel	comment	"OdooBot" <odoobot@example.com>	\N	\N	<537188632586395.1795252644.581881999969482-openerp-7-discuss.channel@7d71b2e6bbb5>	"OdooBot" <odoobot@example.com>	\N	<p>Xin chào,<br>Ứng dụng trò chuyện của Odoo giúp nhân viên cộng tác hiệu quả. Tôi ở đây để giúp bạn khám phá các tính năng của ứng dụng này.<br><b>Hãy thử gửi cho tôi một biểu tượng cảm xúc</b> <span class="o_odoobot_command">:)</span></p>	\N	\N	\N	t	2026-11-21 09:17:24	\N	2026-11-21 09:17:24.556155	2026-11-21 09:17:24.556155
 2017	\N	8	\N	1	1	\N	2	\N	\N	16	16	\N	discuss.channel	comment	"OdooBot" <odoobot@example.com>	\N	\N	<116991282216330.1795252851.198675394058228-openerp-8-discuss.channel@7d71b2e6bbb5>	"OdooBot" <odoobot@example.com>	\N	<p>Xin chào,<br>Ứng dụng trò chuyện của Odoo giúp nhân viên cộng tác hiệu quả. Tôi ở đây để giúp bạn khám phá các tính năng của ứng dụng này.<br><b>Hãy thử gửi cho tôi một biểu tượng cảm xúc</b> <span class="o_odoobot_command">:)</span></p>	\N	\N	\N	t	2026-11-21 09:20:51	\N	2026-11-21 09:20:51.173592	2026-11-21 09:20:51.173592
 2018	\N	9	\N	1	1	\N	2	\N	\N	13	13	\N	discuss.channel	comment	"OdooBot" <odoobot@example.com>	\N	\N	<719530691251412.1795252915.843012809753418-openerp-9-discuss.channel@7d71b2e6bbb5>	"OdooBot" <odoobot@example.com>	\N	<p>Xin chào,<br>Ứng dụng trò chuyện của Odoo giúp nhân viên cộng tác hiệu quả. Tôi ở đây để giúp bạn khám phá các tính năng của ứng dụng này.<br><b>Hãy thử gửi cho tôi một biểu tượng cảm xúc</b> <span class="o_odoobot_command">:)</span></p>	\N	\N	\N	t	2026-11-21 09:21:55	\N	2026-11-21 09:21:55.8172	2026-11-21 09:21:55.8172
+2108	\N	10	\N	1	4	\N	2	\N	\N	1	1	\N	maintenance.request	notification	"OdooBot" <odoobot@example.com>	\N	\N	<559299497397942.1795275901.165676832199097-openerp-10-maintenance.request@7d71b2e6bbb5>	"OdooBot" <odoobot@example.com>	\N	<div summary="o_mail_notification"><p>Maintenance Request created</p></div>	\N	\N	\N	t	2026-11-21 15:45:01	\N	2026-11-21 15:45:01.112641	2026-11-21 15:45:01.112641
+2109	\N	11	\N	1	4	\N	2	\N	\N	1	1	\N	maintenance.request	notification	"OdooBot" <odoobot@example.com>	\N	\N	<451859113881792.1795275901.183903217315674-openerp-11-maintenance.request@7d71b2e6bbb5>	"OdooBot" <odoobot@example.com>	\N	<div summary="o_mail_notification"><p>Maintenance Request created</p></div>	\N	\N	\N	t	2026-11-21 15:45:01	\N	2026-11-21 15:45:01.112641	2026-11-21 15:45:01.112641
+2110	\N	11	\N	1	2	\N	2	\N	\N	1	1	"Kiểm tra định kỳ & đo điện áp pin khóa từ - Phòng P.101: Maintenance Request" assigned to you	maintenance.request	user_notification	"OdooBot" <odoobot@example.com>	\N	\N	<172545287688914.1795275901.205116271972656-openerp-message-notify@7d71b2e6bbb5>	"OdooBot" <odoobot@example.com>	mail.mail_notification_layout	<div style="margin:0px; padding:0px; font-size:13px">\n    Thân gửi <span>Ban Giám Đốc</span>,\n    <br><br>\n    <p>\n        <span>OdooBot</span> vừa phân công cho bạn hoạt động sau:\n        </p><ul>\n            <li>Tài liệu: "Kiểm tra định kỳ &amp; đo điện áp pin khóa từ - Phòng P.101"\n                 (Yêu cầu bảo dưỡng)\n            </li>\n            <li>Tóm tắt: <span>Maintenance Request</span></li>\n            <li>Thời hạn: <span>26/11/2026</span></li>\n        </ul>\n    \n</div>	\N	t	\N	t	2026-11-21 15:45:01	\N	2026-11-21 15:45:01.112641	2026-11-21 15:45:01.112641
+2111	\N	12	\N	1	4	\N	2	\N	\N	1	1	\N	maintenance.request	notification	"OdooBot" <odoobot@example.com>	\N	\N	<425461752343375.1795275901.323380470275879-openerp-12-maintenance.request@7d71b2e6bbb5>	"OdooBot" <odoobot@example.com>	\N	<div summary="o_mail_notification"><p>Maintenance Request created</p></div>	\N	\N	\N	t	2026-11-21 15:45:01	\N	2026-11-21 15:45:01.112641	2026-11-21 15:45:01.112641
 2045	439	8	\N	1	6	\N	3	\N	\N	2	2	Máy sấy tóc Philips 1800W/PL-18-P201	maintenance.equipment	notification	\N	\N	\N	<227862752487635.1795269222.375685214996338-openerp-8-maintenance.equipment@7d71b2e6bbb5>	\N	\N		\N	\N	\N	t	2026-11-21 13:53:42	\N	2026-11-21 13:53:42.334394	2026-11-21 13:53:42.334394
 2046	\N	2	\N	1	2	\N	3	\N	\N	2	2	"[P.203] Khách làm vỡ gương phòng tắm: Yêu cầu bảo dưỡng" được phân công cho bạn	maintenance.request	user_notification	\N	\N	\N	<343468646756637.1795269386.601138591766357-openerp-message-notify@7d71b2e6bbb5>	\N	mail.mail_notification_layout	<div style="margin:0px; padding:0px; font-size:13px">\n    Thân gửi <span>Mai Anh Tuấn</span>,\n    <br><br>\n    <p>\n        <span>Ban Giám Đốc</span> vừa phân công cho bạn hoạt động sau:\n        </p><ul>\n            <li>Tài liệu: "[P.203] Khách làm vỡ gương phòng tắm"\n                 (Yêu cầu bảo dưỡng)\n            </li>\n            <li>Tóm tắt: <span>Yêu cầu bảo dưỡng</span></li>\n            <li>Thời hạn: <span>04/11/2026</span></li>\n        </ul>\n    \n</div>	\N	t	\N	t	2026-11-21 13:56:26	\N	2026-11-21 13:56:26.560833	2026-11-21 13:56:26.560833
 \.
@@ -93757,6 +93781,7 @@ COPY public.mail_message_res_partner_rel (mail_message_id, res_partner_id) FROM 
 1835	379
 1860	379
 2046	382
+2110	3
 \.
 
 
@@ -93872,6 +93897,7 @@ COPY public.mail_notification (id, author_id, mail_message_id, mail_mail_id, res
 68	3	1860	75	379	\N	email	exception	mail_smtp	\N	t	2026-10-30 13:31:52
 69	3	2045	112	380	\N	email	exception	mail_smtp	\N	t	2026-11-21 13:53:42
 70	3	2046	113	382	\N	email	exception	mail_smtp	\N	t	2026-11-21 13:56:26
+71	2	2110	114	3	\N	email	exception	mail_smtp	\N	t	2026-11-21 15:45:01
 \.
 
 
@@ -93884,7 +93910,7 @@ COPY public.mail_presence (id, user_id, guest_id, status, last_poll, last_presen
 10	17	\N	offline	2026-11-21 09:46:25	2026-11-21 09:46:24.84
 8	21	\N	offline	2026-11-21 09:12:14	2026-11-21 09:05:45.174
 7	18	\N	offline	2026-11-21 09:21:16	2026-11-21 09:21:15.813
-6	2	\N	online	2026-11-21 15:10:21	2026-11-21 15:10:20.352
+6	2	\N	online	2026-11-21 15:30:52	2026-11-21 15:30:51.421
 12	13	\N	offline	2026-11-21 09:29:16	2026-11-21 09:29:15.825
 11	16	\N	offline	2026-11-21 09:29:34	2026-11-21 09:29:33.824
 \.
@@ -94558,13 +94584,11 @@ COPY public.mail_tracking_value (id, field_id, old_value_integer, new_value_inte
 COPY public.maintenance_equipment (id, company_id, maintenance_team_id, technician_user_id, maintenance_count, maintenance_open_count, expected_mtbf, owner_user_id, category_id, partner_id, color, create_uid, write_uid, partner_ref, model, serial_no, effective_date, assign_date, warranty_date, scrap_date, name, equipment_properties, note, active, create_date, write_date, cost, location_id, room_id) FROM stdin;
 1	1	\N	\N	0	0	\N	\N	\N	\N	\N	1	1	\N	\N	SAM-43-104-VN	2026-10-13	\N	\N	\N	{"en_US": "Smart TV Samsung 43\\" 4K"}	\N	\N	t	2026-10-13 11:46:56.601734	2026-10-13 11:46:56.601734	\N	\N	4
 3	1	\N	\N	0	0	\N	\N	\N	\N	\N	1	1	\N	\N	ELEC-MINI-104	2026-10-13	\N	\N	\N	{"en_US": "Tủ lạnh Minibar Electrolux 50L"}	\N	\N	t	2026-10-13 11:46:56.601734	2026-10-13 11:46:56.601734	\N	\N	4
-5	1	\N	\N	0	0	\N	\N	1	\N	\N	1	1	\N	\N	SS-50-P201	2026-10-13	\N	\N	\N	{"en_US": "Smart TV Samsung Crystal 50\\" 4K"}	\N	\N	t	2026-10-13 13:09:57.196449	2026-10-13 13:09:57.196449	\N	\N	9
 6	1	\N	\N	0	0	\N	\N	1	\N	\N	1	1	\N	\N	DK-15-P201	2026-10-13	\N	\N	\N	{"en_US": "Điều hòa Inverter Daikin 1.5HP"}	\N	\N	t	2026-10-13 13:09:57.196449	2026-10-13 13:09:57.196449	\N	\N	9
 7	1	\N	\N	0	0	\N	\N	1	\N	\N	1	1	\N	\N	CS-44-P201	2026-10-13	\N	\N	\N	{"en_US": "Tủ lạnh Minibar Casper 44L"}	\N	\N	t	2026-10-13 13:09:57.196449	2026-10-13 13:09:57.196449	\N	\N	9
 9	1	\N	\N	0	0	\N	\N	1	\N	\N	1	1	\N	\N	BF-SAFE-P201	2026-10-13	\N	\N	\N	{"en_US": "Két sắt điện tử chống cháy Bofa"}	\N	\N	t	2026-10-13 13:09:57.196449	2026-10-13 13:09:57.196449	\N	\N	9
 4	1	\N	\N	0	0	\N	\N	\N	\N	\N	1	1	\N	\N	PANA-20-103	2026-10-13	\N	\N	\N	{"en_US": "Điều hòa Panasonic 2.0HP"}	\N	\N	t	2026-10-13 11:46:56.601734	2026-10-13 11:46:56.601734	\N	\N	3
 10	2	\N	\N	0	0	\N	\N	1	\N	\N	1	1	\N	\N	SN-55-P501	2026-10-13	\N	\N	\N	{"en_US": "Smart TV Sony Bravia 55\\" OLED"}	\N	\N	t	2026-10-13 13:09:57.196449	2026-10-13 13:09:57.196449	\N	\N	95
-2	1	\N	\N	1	1	\N	\N	\N	\N	\N	1	1	\N	\N	DAIKIN-15-104	2026-10-13	\N	\N	\N	{"en_US": "Điều hòa Daikin Inverter 1.5HP"}	\N	\N	t	2026-10-13 11:46:56.601734	2026-10-13 14:37:54.500797	\N	\N	4
 16	1	\N	2	1	1	\N	\N	\N	\N	\N	1	1	\N	\N	\N	2026-10-13	\N	\N	\N	{"en_US": "Hệ thống chiếu sáng LED Philips"}	\N	\N	t	2026-10-13 13:20:41.80943	2026-10-13 14:37:54.500797	\N	\N	5
 17	1	\N	2	1	0	\N	\N	\N	\N	\N	1	1	\N	\N	\N	2026-10-13	\N	\N	\N	{"en_US": "Sen cây tắm đứng TOTO"}	\N	\N	t	2026-10-13 13:20:41.80943	2026-10-13 14:37:54.500797	\N	\N	12
 11	2	\N	\N	0	0	\N	\N	1	\N	\N	1	1	\N	\N	DK-25-P501	2026-10-13	\N	\N	\N	{"en_US": "Điều hòa Daikin âm trần 2.5HP"}	\N	\N	t	2026-10-13 13:09:57.196449	2026-10-13 13:09:57.196449	\N	\N	95
@@ -94572,13 +94596,15 @@ COPY public.maintenance_equipment (id, company_id, maintenance_team_id, technici
 14	2	\N	\N	0	0	\N	\N	1	\N	\N	1	1	\N	\N	NP-COF-V1	2026-10-13	\N	\N	\N	{"en_US": "Máy pha cà phê Nespresso Essenza"}	\N	\N	t	2026-10-13 13:09:57.196449	2026-10-13 13:09:57.196449	\N	\N	95
 15	2	\N	\N	0	0	\N	\N	1	\N	\N	1	1	\N	\N	MS-AUDIO-V1	2026-10-13	\N	\N	\N	{"en_US": "Hệ thống âm thanh Marshall Stanmore"}	\N	\N	t	2026-10-13 13:09:57.196449	2026-10-13 13:09:57.196449	\N	\N	95
 13	2	\N	\N	0	0	\N	\N	1	\N	\N	1	1	\N	\N	LG-55-VT301	2026-10-13	\N	\N	\N	{"en_US": "Smart TV LG NanoCell 55\\""}	\N	\N	t	2026-10-13 13:09:57.196449	2026-10-13 13:09:57.196449	\N	\N	96
-18	1	\N	2	1	1	\N	\N	\N	\N	\N	1	1	\N	\N	\N	2026-10-13	\N	\N	\N	{"en_US": "Khóa từ thông minh Kaadas M500"}	\N	\N	t	2026-10-13 13:20:41.80943	2026-10-13 14:37:54.500797	\N	\N	1
 19	1	\N	2	1	0	\N	\N	\N	\N	\N	1	1	\N	\N	\N	2026-10-13	\N	\N	\N	{"en_US": "Cửa trượt kính cường lực Eurowindow"}	\N	\N	t	2026-10-13 13:20:41.80943	2026-10-13 14:37:54.500797	\N	\N	19
 20	1	\N	\N	0	0	\N	\N	\N	\N	\N	1	1	\N	\N	SAM-43-104-GL	2026-10-23	\N	\N	\N	{"en_US": "Tivi Samsung 43 inch"}	\N	\N	t	2026-10-23 12:43:02.659568	2026-10-23 12:43:02.659568	\N	\N	4
 21	1	\N	\N	0	0	\N	\N	\N	\N	\N	1	1	\N	\N	DAIKIN-15-104-GL	2026-10-23	\N	\N	\N	{"en_US": "Điều hòa Daikin 1.5HP"}	\N	\N	t	2026-10-23 12:43:02.659568	2026-10-23 12:43:02.659568	\N	\N	4
 22	1	\N	\N	0	0	\N	\N	\N	\N	\N	1	1	\N	\N	PANA-20-205-GL	2026-10-23	\N	\N	\N	{"en_US": "Điều hòa Panasonic 2.0HP"}	\N	\N	t	2026-10-23 12:43:02.659568	2026-10-23 12:43:02.659568	\N	\N	13
 23	1	\N	\N	0	0	\N	\N	\N	\N	\N	1	1	\N	\N	ARI-30-205-GL	2026-10-23	\N	\N	\N	{"en_US": "Bình nước nóng Ariston 30L"}	\N	\N	t	2026-10-23 12:43:02.659568	2026-10-23 12:43:02.659568	\N	\N	13
 8	1	2	6	0	0	\N	6	1	\N	\N	1	2	\N	\N	PL-18-P201	2026-10-13	\N	\N	\N	{"en_US": "Máy sấy tóc Philips 1800W"}	\N	\N	t	2026-10-13 13:09:57.196449	2026-11-21 13:53:42.334394	\N	17	9
+5	1	\N	\N	1	0	\N	\N	1	\N	\N	1	1	\N	\N	SS-50-P201	2026-10-13	\N	\N	\N	{"en_US": "Smart TV Samsung Crystal 50\\" 4K"}	\N	\N	t	2026-10-13 13:09:57.196449	2026-11-21 15:45:01.112641	\N	\N	9
+2	1	\N	\N	2	2	\N	\N	\N	\N	\N	1	1	\N	\N	DAIKIN-15-104	2026-10-13	\N	\N	\N	{"en_US": "Điều hòa Daikin Inverter 1.5HP"}	\N	\N	t	2026-10-13 11:46:56.601734	2026-11-21 15:45:01.112641	\N	\N	4
+18	1	\N	2	2	2	\N	\N	\N	\N	\N	1	1	\N	\N	\N	2026-10-13	\N	\N	\N	{"en_US": "Khóa từ thông minh Kaadas M500"}	\N	\N	t	2026-10-13 13:20:41.80943	2026-11-21 15:45:01.112641	\N	\N	1
 \.
 
 
@@ -94605,6 +94631,9 @@ COPY public.maintenance_request (id, company_id, owner_user_id, category_id, equ
 8	1	1	\N	18	8	2	\N	2	1	1	1	\N	[Sự cố P.402] Khóa thẻ từ phòng không nhận thẻ khách	3	normal	corrective	text	\N	week	forever	2026-10-13	\N	\N	<p>Khóa từ báo lỗi hết pin và kẹt mô tơ chốt. Đã khóa phòng tạm thời để kỹ thuật thay bo mạch.</p>	\N	f	f	\N	\N	2026-10-13 13:20:41.80943	2026-10-13 14:37:54.500797	0	\N	\N
 9	1	1	\N	19	9	3	\N	2	1	1	1	\N	[Sự cố P.502] Cửa trượt kính ban công bị kẹt bánh xe	1	normal	corrective	text	\N	week	forever	2026-10-13	2026-10-13	\N	<p>Bánh xe ray trượt cửa ban công bị khô dầu, khách kéo bị nặng tay.</p>	\N	f	f	\N	\N	2026-10-13 13:20:41.80943	2026-10-13 14:37:54.500797	0	\N	\N
 2	1	1	\N	\N	8	2	\N	2	1	1	2	\N	[P.203] Khách làm vỡ gương phòng tắm	2	normal	corrective	text	\N	week	forever	2026-10-13	\N	\N	<p>Gương treo tường phòng tắm bị nứt vỡ một góc. Đã dọn dẹp mảnh vỡ an toàn và lập biên bản đền bù.</p>	\N	f	f	2026-11-04 13:00:00	2026-11-04 16:30:00	2026-10-13 13:09:57.196449	2026-11-21 13:56:26.560833	3.5	11	5
+10	1	1	\N	2	\N	1	\N	1	1	1	1	\N	Bảo dưỡng định kỳ hệ thống điều hòa Quý 4 - Phòng P.104	2	normal	preventive	text	\N	week	forever	2026-11-21	\N	\N	<p>Vệ sinh lưới lọc bụi dàn lạnh, kiểm tra áp suất gas R32, tra dầu quạt gió dàn nóng.</p>	\N	f	\N	2026-11-24 15:45:01.127585	2026-11-24 16:45:01.127585	2026-11-21 15:45:01.112641	2026-11-21 15:45:01.112641	1	93	\N
+11	1	1	\N	18	2	1	\N	1	1	1	1	\N	Kiểm tra định kỳ & đo điện áp pin khóa từ - Phòng P.101	1	normal	preventive	text	\N	week	forever	2026-11-19	\N	\N	<p>Kiểm tra độ nhạy cảm ứng vân tay và thay 4 viên pin AA Alkaline định kỳ 6 tháng.</p>	\N	f	\N	2026-11-26 15:45:01.179942	2026-11-26 16:45:01.179942	2026-11-21 15:45:01.112641	2026-11-21 15:45:01.112641	1	90	\N
+12	1	1	1	5	1	3	\N	1	1	1	1	\N	Kiểm tra an toàn điện & vệ sinh tản nhiệt Smart TV - Phòng P.201	1	normal	preventive	text	\N	week	forever	2026-11-11	2026-11-21	\N	<p>Đã hút bụi khe tản nhiệt TV 50 inch, kiểm tra dây nguồn và cổng HDMI tường. Đạt chuẩn.</p>	\N	f	\N	2026-11-13 15:45:01.319615	2026-11-13 16:45:01.319615	2026-11-21 15:45:01.112641	2026-11-21 15:45:01.112641	1	79	\N
 \.
 
 
@@ -102250,7 +102279,7 @@ SELECT pg_catalog.setval('public.bill_to_po_wizard_id_seq', 1, false);
 -- Name: bus_bus_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odoo
 --
 
-SELECT pg_catalog.setval('public.bus_bus_id_seq', 776, true);
+SELECT pg_catalog.setval('public.bus_bus_id_seq', 780, true);
 
 
 --
@@ -102502,7 +102531,7 @@ SELECT pg_catalog.setval('public.ir_cron_id_seq', 20, true);
 -- Name: ir_cron_progress_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odoo
 --
 
-SELECT pg_catalog.setval('public.ir_cron_progress_id_seq', 529, true);
+SELECT pg_catalog.setval('public.ir_cron_progress_id_seq', 531, true);
 
 
 --
@@ -102915,7 +102944,7 @@ SELECT pg_catalog.setval('public.lot_label_layout_id_seq', 1, false);
 -- Name: mail_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odoo
 --
 
-SELECT pg_catalog.setval('public.mail_activity_id_seq', 1, true);
+SELECT pg_catalog.setval('public.mail_activity_id_seq', 4, true);
 
 
 --
@@ -103006,7 +103035,7 @@ SELECT pg_catalog.setval('public.mail_followers_edit_id_seq', 1, false);
 -- Name: mail_followers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odoo
 --
 
-SELECT pg_catalog.setval('public.mail_followers_id_seq', 93, true);
+SELECT pg_catalog.setval('public.mail_followers_id_seq', 96, true);
 
 
 --
@@ -103041,14 +103070,14 @@ SELECT pg_catalog.setval('public.mail_link_preview_id_seq', 1, false);
 -- Name: mail_mail_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odoo
 --
 
-SELECT pg_catalog.setval('public.mail_mail_id_seq', 113, true);
+SELECT pg_catalog.setval('public.mail_mail_id_seq', 114, true);
 
 
 --
 -- Name: mail_message_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odoo
 --
 
-SELECT pg_catalog.setval('public.mail_message_id_seq', 2107, true);
+SELECT pg_catalog.setval('public.mail_message_id_seq', 2111, true);
 
 
 --
@@ -103090,7 +103119,7 @@ SELECT pg_catalog.setval('public.mail_message_translation_id_seq', 1, false);
 -- Name: mail_notification_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odoo
 --
 
-SELECT pg_catalog.setval('public.mail_notification_id_seq', 70, true);
+SELECT pg_catalog.setval('public.mail_notification_id_seq', 71, true);
 
 
 --
@@ -103167,7 +103196,7 @@ SELECT pg_catalog.setval('public.maintenance_equipment_id_seq', 24, true);
 -- Name: maintenance_request_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odoo
 --
 
-SELECT pg_catalog.setval('public.maintenance_request_id_seq', 9, true);
+SELECT pg_catalog.setval('public.maintenance_request_id_seq', 12, true);
 
 
 --
@@ -126995,5 +127024,5 @@ ALTER TABLE ONLY public.wizard_ir_model_menu_create
 -- PostgreSQL database dump complete
 --
 
-\unrestrict vSFtXJI3haYpWUZpOSTfGuppn8fBseLh6o50k6pDewBZTQND37HcqhbGb3tzLdZ
+\unrestrict h7yjX9BvCYTNbkmVJJ1w3GFIW1uNpapUGjDC2bSo8T4os2BSX296nXJFdWHI8iP
 
