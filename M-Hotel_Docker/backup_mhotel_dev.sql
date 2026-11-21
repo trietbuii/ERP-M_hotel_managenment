@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict WCFbFi9mFSAM1W1V9Ihy3R9Fm9ftnX0eWaLiidBZ0jNI8uPMYcPcSzBgHa5KVOn
+\restrict vSFtXJI3haYpWUZpOSTfGuppn8fBseLh6o50k6pDewBZTQND37HcqhbGb3tzLdZ
 
 -- Dumped from database version 15.19 (Debian 15.19-1.pgdg13+2)
 -- Dumped by pg_dump version 15.19 (Debian 15.19-1.pgdg13+2)
@@ -52341,12 +52341,18 @@ COPY public.bus_bus (id, create_uid, write_uid, channel, message, create_date, w
 760	2	2	["mhotel_dev","res.partner",382]	{"type":"mail.activity/updated","payload":{"activity_created":true,"count_diff":1}}	2026-11-21 13:56:26.560833	2026-11-21 13:56:26.560833
 761	1	1	["mhotel_dev","res.partner",2]	{"type":"mail.record/insert","payload":{"mail.message":[{"author_guest_id":false,"author_id":3,"body":["markup","<div style=\\"margin:0px; padding:0px; font-size:13px\\">\\n    Th\\u00e2n g\\u1eedi <span>Mai Anh Tu\\u1ea5n</span>,\\n    <br><br>\\n    <p>\\n        <span>Ban Gi\\u00e1m \\u0110\\u1ed1c</span> v\\u1eeba ph\\u00e2n c\\u00f4ng cho b\\u1ea1n ho\\u1ea1t \\u0111\\u1ed9ng sau:\\n        </p><ul>\\n            <li>T\\u00e0i li\\u1ec7u: \\"[P.203] Kh\\u00e1ch l\\u00e0m v\\u1ee1 g\\u01b0\\u01a1ng ph\\u00f2ng t\\u1eafm\\"\\n                 (Y\\u00eau c\\u1ea7u b\\u1ea3o d\\u01b0\\u1ee1ng)\\n            </li>\\n            <li>T\\u00f3m t\\u1eaft: <span>Y\\u00eau c\\u1ea7u b\\u1ea3o d\\u01b0\\u1ee1ng</span></li>\\n            <li>Th\\u1eddi h\\u1ea1n: <span>04/11/2026</span></li>\\n        </ul>\\n    \\n</div>"],"date":"2026-11-21 13:56:26","id":2046,"message_type":"user_notification","notification_ids":[70],"thread":{"id":2,"model":"maintenance.request"}}],"mail.notification":[{"failure_type":"mail_smtp","id":70,"mail_email_address":false,"mail_message_id":2046,"notification_status":"exception","notification_type":"email","res_partner_id":382}],"mail.thread":[{"display_name":"[P.203] Kh\\u00e1ch l\\u00e0m v\\u1ee1 g\\u01b0\\u01a1ng ph\\u00f2ng t\\u1eafm","id":2,"model":"maintenance.request","modelName":"Y\\u00eau c\\u1ea7u b\\u1ea3o d\\u01b0\\u1ee1ng"}],"res.partner":[{"email":"tuanma@mhotel.vn","id":382,"name":"Mai Anh Tu\\u1ea5n"}]}}	2026-11-21 13:56:26.65291	2026-11-21 13:56:26.65291
 763	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"offline","im_status":"offline","partner_id":3}}	2026-11-21 14:15:19.732682	2026-11-21 14:15:19.732682
+772	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"online","im_status":"online","partner_id":3}}	2026-11-21 15:09:27.659896	2026-11-21 15:09:27.659896
 762	1	1	["mhotel_dev","res.partner",3]	{"type":"mail.record/insert","payload":{"mail.message":[{"author_guest_id":false,"author_id":3,"body":["markup","<div style=\\"margin:0px; padding:0px; font-size:13px\\">\\n    Th\\u00e2n g\\u1eedi <span>Mai Anh Tu\\u1ea5n</span>,\\n    <br><br>\\n    <p>\\n        <span>Ban Gi\\u00e1m \\u0110\\u1ed1c</span> v\\u1eeba ph\\u00e2n c\\u00f4ng cho b\\u1ea1n ho\\u1ea1t \\u0111\\u1ed9ng sau:\\n        </p><ul>\\n            <li>T\\u00e0i li\\u1ec7u: \\"[P.203] Kh\\u00e1ch l\\u00e0m v\\u1ee1 g\\u01b0\\u01a1ng ph\\u00f2ng t\\u1eafm\\"\\n                 (Y\\u00eau c\\u1ea7u b\\u1ea3o d\\u01b0\\u1ee1ng)\\n            </li>\\n            <li>T\\u00f3m t\\u1eaft: <span>Y\\u00eau c\\u1ea7u b\\u1ea3o d\\u01b0\\u1ee1ng</span></li>\\n            <li>Th\\u1eddi h\\u1ea1n: <span>04/11/2026</span></li>\\n        </ul>\\n    \\n</div>"],"date":"2026-11-21 13:56:26","id":2046,"message_type":"user_notification","notification_ids":[70],"thread":{"id":2,"model":"maintenance.request"}}],"mail.notification":[{"failure_type":"mail_smtp","id":70,"mail_email_address":false,"mail_message_id":2046,"notification_status":"exception","notification_type":"email","res_partner_id":382}],"mail.thread":[{"display_name":"[P.203] Kh\\u00e1ch l\\u00e0m v\\u1ee1 g\\u01b0\\u01a1ng ph\\u00f2ng t\\u1eafm","id":2,"model":"maintenance.request","modelName":"Y\\u00eau c\\u1ea7u b\\u1ea3o d\\u01b0\\u1ee1ng"}],"res.partner":[{"email":"tuanma@mhotel.vn","id":382,"name":"Mai Anh Tu\\u1ea5n"}]}}	2026-11-21 13:56:26.65291	2026-11-21 13:56:26.65291
 764	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"online","im_status":"online","partner_id":3}}	2026-11-21 14:15:47.624976	2026-11-21 14:15:47.624976
 765	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"offline","im_status":"offline","partner_id":3}}	2026-11-21 15:03:52.492781	2026-11-21 15:03:52.492781
 766	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"online","im_status":"online","partner_id":3}}	2026-11-21 15:04:19.529032	2026-11-21 15:04:19.529032
 767	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"offline","im_status":"offline","partner_id":3}}	2026-11-21 15:04:29.485854	2026-11-21 15:04:29.485854
 770	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"online","im_status":"online","partner_id":3}}	2026-11-21 15:04:34.749059	2026-11-21 15:04:34.749059
+771	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"offline","im_status":"offline","partner_id":3}}	2026-11-21 15:09:26.646001	2026-11-21 15:09:26.646001
+773	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"offline","im_status":"offline","partner_id":3}}	2026-11-21 15:09:50.974392	2026-11-21 15:09:50.974392
+774	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"online","im_status":"online","partner_id":3}}	2026-11-21 15:09:51.99657	2026-11-21 15:09:51.99657
+775	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"offline","im_status":"offline","partner_id":3}}	2026-11-21 15:10:20.283767	2026-11-21 15:10:20.283767
+776	2	2	["mhotel_dev","res.partner",3,"presence"]	{"type":"bus.bus/im_status_updated","payload":{"presence_status":"online","im_status":"online","partner_id":3}}	2026-11-21 15:10:21.234207	2026-11-21 15:10:21.234207
 \.
 
 
@@ -93876,9 +93882,9 @@ COPY public.mail_notification (id, author_id, mail_message_id, mail_mail_id, res
 COPY public.mail_presence (id, user_id, guest_id, status, last_poll, last_presence) FROM stdin;
 9	20	\N	offline	2026-11-21 09:34:00	2026-11-21 09:33:59.85
 10	17	\N	offline	2026-11-21 09:46:25	2026-11-21 09:46:24.84
-6	2	\N	online	2026-11-21 15:04:35	2026-11-21 15:04:32.786
 8	21	\N	offline	2026-11-21 09:12:14	2026-11-21 09:05:45.174
 7	18	\N	offline	2026-11-21 09:21:16	2026-11-21 09:21:15.813
+6	2	\N	online	2026-11-21 15:10:21	2026-11-21 15:10:20.352
 12	13	\N	offline	2026-11-21 09:29:16	2026-11-21 09:29:15.825
 11	16	\N	offline	2026-11-21 09:29:34	2026-11-21 09:29:33.824
 \.
@@ -96977,9 +96983,9 @@ COPY public.properties_base_definition (id, properties_field_id, create_uid, wri
 --
 
 COPY public.purchase_order (id, partner_id, dest_address_id, currency_id, invoice_count, fiscal_position_id, payment_term_id, incoterm_id, user_id, company_id, reminder_date_before_receipt, create_uid, write_uid, access_token, name, priority, origin, partner_ref, state, invoice_status, note, amount_untaxed, amount_tax, amount_total, amount_total_cc, currency_rate, locked, acknowledged, receipt_reminder_email, date_order, date_approve, date_planned, date_calendar_start, create_date, write_date, picking_type_id, incoterm_location, receipt_status, effective_date) FROM stdin;
-3	435	\N	23	0	\N	\N	\N	1	2	1	1	1	\N	P00003	0	\N	YCBG-TB-2026/04	draft	no	\N	14100000	0	14100000	14100000	1.0	f	\N	f	2026-11-21 15:08:07.887784	\N	2026-11-24 15:08:07.887787	2026-11-21 15:08:07.887784	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	9	\N	\N	\N
-2	434	\N	23	0	\N	\N	\N	1	2	1	1	1	\N	P00002	0	\N	HD-AMEN-2026/89	purchase	no	\N	13350000	0	13350000	13350000	1.0	f	\N	f	2026-11-20 15:08:07.816517	2026-11-21 15:08:07	2026-11-22 15:08:07.816525	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	9	\N	pending	\N
-1	433	\N	23	0	\N	\N	\N	1	2	1	1	1	\N	P00001	0	\N	PO-NTB-2026/101	purchase	to invoice	\N	20800000	0	20800000	20800000	1.0	f	t	f	2026-11-16 15:08:07.65321	2026-11-21 15:08:07	2026-11-18 15:08:07.653216	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	9	\N	full	2026-11-21 15:08:07
+3	435	\N	23	0	\N	\N	\N	1	1	1	1	1	\N	P00003	0	\N	YCBG-TB-2026/04	draft	no	\N	14100000	0	14100000	14100000	1.0	f	\N	f	2026-11-21 15:08:07.887784	\N	2026-11-24 15:08:07.887787	2026-11-21 15:08:07.887784	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	9	\N	\N	\N
+2	434	\N	23	0	\N	\N	\N	1	1	1	1	1	\N	P00002	0	\N	HD-AMEN-2026/89	purchase	no	\N	13350000	0	13350000	13350000	1.0	f	\N	f	2026-11-20 15:08:07.816517	2026-11-21 15:08:07	2026-11-22 15:08:07.816525	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	9	\N	pending	\N
+1	433	\N	23	0	\N	\N	\N	1	1	1	1	1	\N	P00001	0	\N	PO-NTB-2026/101	purchase	to invoice	\N	20800000	0	20800000	20800000	1.0	f	t	f	2026-11-16 15:08:07.65321	2026-11-21 15:08:07	2026-11-18 15:08:07.653216	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	9	\N	full	2026-11-21 15:08:07
 \.
 
 
@@ -96988,17 +96994,17 @@ COPY public.purchase_order (id, partner_id, dest_address_id, currency_id, invoic
 --
 
 COPY public.purchase_order_line (id, sequence, product_uom_id, product_id, order_id, company_id, partner_id, create_uid, write_uid, qty_received_method, display_type, analytic_distribution, name, product_qty, discount, price_unit, price_subtotal, price_total, qty_invoiced, qty_received, qty_received_manual, qty_to_invoice, is_downpayment, date_planned, create_date, write_date, product_uom_qty, price_tax, technical_price_unit, orderpoint_id, location_final_id, product_description_variants, propagate_cancel) FROM stdin;
-1	10	1	39	1	2	433	1	1	stock_moves	\N	\N	Nước ngọt Coca-Cola 320ml	500.00	\N	12000.0	6000000	6000000	0.00	500.00	\N	500.00	\N	2026-11-18 15:08:07.654525	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	500	0	12000	\N	\N	\N	t
-2	10	1	4	1	2	433	1	1	stock_moves	\N	\N	Nước khoáng Lavie 500ml	600.00	\N	7000.0	4200000	4200000	0.00	600.00	\N	600.00	\N	2026-11-18 15:08:07.655507	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	600	0	7000	\N	\N	\N	t
-3	10	1	5	1	2	433	1	1	stock_moves	\N	\N	Bia Heineken lon 330ml	300.00	\N	22000.0	6600000	6600000	0.00	300.00	\N	300.00	\N	2026-11-18 15:08:07.656375	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	300	0	22000	\N	\N	\N	t
-4	10	1	38	1	2	433	1	1	stock_moves	\N	\N	Bia Tiger Crystal lon 330ml	200.00	\N	20000.0	4000000	4000000	0.00	200.00	\N	200.00	\N	2026-11-18 15:08:07.657339	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	200	0	20000	\N	\N	\N	t
-5	10	1	7	2	2	434	1	1	stock_moves	\N	\N	Bộ bàn chải & kem đánh răng	1000.00	\N	3500.0	3500000	3500000	0.00	0.00	\N	0.00	\N	2026-11-22 15:08:07.818328	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	1000	0	3500	\N	\N	\N	t
-6	10	1	8	2	2	434	1	1	stock_moves	\N	\N	Chai dầu gội & sữa tắm mini	1000.00	\N	5000.0	5000000	5000000	0.00	0.00	\N	0.00	\N	2026-11-22 15:08:07.819732	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	1000	0	5000	\N	\N	\N	t
-7	10	1	51	2	2	434	1	1	stock_moves	\N	\N	Xà phòng bánh rửa tay 30g	800.00	\N	2000.0	1600000	1600000	0.00	0.00	\N	0.00	\N	2026-11-22 15:08:07.820628	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	800	0	2000	\N	\N	\N	t
-8	10	1	52	2	2	434	1	1	stock_moves	\N	\N	Dép vải đi trong phòng	500.00	\N	6500.0	3250000	3250000	0.00	0.00	\N	0.00	\N	2026-11-22 15:08:07.821474	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	500	0	6500	\N	\N	\N	t
-9	10	1	6	3	2	435	1	1	stock_moves	\N	\N	Snack khoai tây lon	200.00	\N	25000.0	5000000	5000000	0.00	0.00	\N	0.00	\N	2026-11-24 15:08:07.88891	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	200	0	25000	\N	\N	\N	t
-10	10	1	43	3	2	435	1	1	stock_moves	\N	\N	Hạt điều rang muối cao cấp 150g	150.00	\N	42000.0	6300000	6300000	0.00	0.00	\N	0.00	\N	2026-11-24 15:08:07.88976	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	150	0	42000	\N	\N	\N	t
-11	10	1	45	3	2	435	1	1	stock_moves	\N	\N	Mì ly Modern lẩu thái tôm	200.00	\N	14000.0	2800000	2800000	0.00	0.00	\N	0.00	\N	2026-11-24 15:08:07.890605	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	200	0	14000	\N	\N	\N	t
+1	10	1	39	1	1	433	1	1	stock_moves	\N	\N	Nước ngọt Coca-Cola 320ml	500.00	\N	12000.0	6000000	6000000	0.00	500.00	\N	500.00	\N	2026-11-18 15:08:07.654525	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	500	0	12000	\N	\N	\N	t
+2	10	1	4	1	1	433	1	1	stock_moves	\N	\N	Nước khoáng Lavie 500ml	600.00	\N	7000.0	4200000	4200000	0.00	600.00	\N	600.00	\N	2026-11-18 15:08:07.655507	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	600	0	7000	\N	\N	\N	t
+3	10	1	5	1	1	433	1	1	stock_moves	\N	\N	Bia Heineken lon 330ml	300.00	\N	22000.0	6600000	6600000	0.00	300.00	\N	300.00	\N	2026-11-18 15:08:07.656375	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	300	0	22000	\N	\N	\N	t
+4	10	1	38	1	1	433	1	1	stock_moves	\N	\N	Bia Tiger Crystal lon 330ml	200.00	\N	20000.0	4000000	4000000	0.00	200.00	\N	200.00	\N	2026-11-18 15:08:07.657339	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	200	0	20000	\N	\N	\N	t
+5	10	1	7	2	1	434	1	1	stock_moves	\N	\N	Bộ bàn chải & kem đánh răng	1000.00	\N	3500.0	3500000	3500000	0.00	0.00	\N	0.00	\N	2026-11-22 15:08:07.818328	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	1000	0	3500	\N	\N	\N	t
+6	10	1	8	2	1	434	1	1	stock_moves	\N	\N	Chai dầu gội & sữa tắm mini	1000.00	\N	5000.0	5000000	5000000	0.00	0.00	\N	0.00	\N	2026-11-22 15:08:07.819732	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	1000	0	5000	\N	\N	\N	t
+7	10	1	51	2	1	434	1	1	stock_moves	\N	\N	Xà phòng bánh rửa tay 30g	800.00	\N	2000.0	1600000	1600000	0.00	0.00	\N	0.00	\N	2026-11-22 15:08:07.820628	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	800	0	2000	\N	\N	\N	t
+8	10	1	52	2	1	434	1	1	stock_moves	\N	\N	Dép vải đi trong phòng	500.00	\N	6500.0	3250000	3250000	0.00	0.00	\N	0.00	\N	2026-11-22 15:08:07.821474	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	500	0	6500	\N	\N	\N	t
+9	10	1	6	3	1	435	1	1	stock_moves	\N	\N	Snack khoai tây lon	200.00	\N	25000.0	5000000	5000000	0.00	0.00	\N	0.00	\N	2026-11-24 15:08:07.88891	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	200	0	25000	\N	\N	\N	t
+10	10	1	43	3	1	435	1	1	stock_moves	\N	\N	Hạt điều rang muối cao cấp 150g	150.00	\N	42000.0	6300000	6300000	0.00	0.00	\N	0.00	\N	2026-11-24 15:08:07.88976	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	150	0	42000	\N	\N	\N	t
+11	10	1	45	3	1	435	1	1	stock_moves	\N	\N	Mì ly Modern lẩu thái tôm	200.00	\N	14000.0	2800000	2800000	0.00	0.00	\N	0.00	\N	2026-11-24 15:08:07.890605	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	200	0	14000	\N	\N	\N	t
 \.
 
 
@@ -101052,14 +101058,14 @@ COPY public.stock_move (id, sequence, company_id, product_id, product_uom, locat
 4	10	1	4	1	1	5	\N	369	3	\N	\N	1	\N	\N	\N	\N	\N	1	1	1	0	done	\N	make_to_stock	\N	WH/IN/00003	\N	2026-10-13	Nhập kho: Nước khoáng Lavie 500ml	2000.0	2000.00	2000.00	t	t	\N	f	2026-10-13 14:37:58	\N	\N	2026-10-13 14:37:54.500797	2026-10-13 14:37:54.500797	\N	2000	\N	12000000.00	t	t	f	f	\N
 5	10	1	7	1	1	5	\N	368	4	\N	\N	1	\N	\N	\N	\N	\N	1	1	1	0	done	\N	make_to_stock	\N	WH/IN/00004	\N	2026-10-13	Nhập kho: Bộ bàn chải & kem đánh răng	2000.0	2000.00	2000.00	t	t	\N	f	2026-10-13 14:37:58	\N	\N	2026-10-13 14:37:54.500797	2026-10-13 14:37:54.500797	\N	2000	\N	7000000.00	t	t	f	f	\N
 6	10	1	8	1	1	5	\N	368	4	\N	\N	1	\N	\N	\N	\N	\N	1	1	1	0	done	\N	make_to_stock	\N	WH/IN/00004	\N	2026-10-13	Nhập kho: Chai dầu gội & sữa tắm mini	2500.0	2500.00	2500.00	t	t	\N	f	2026-10-13 14:37:58	\N	\N	2026-10-13 14:37:54.500797	2026-10-13 14:37:54.500797	\N	2500	\N	10000000.00	t	t	f	f	\N
-7	5	2	39	1	1	19	19	\N	5	\N	\N	9	\N	\N	2	\N	\N	1	1	1	0	done	P00001	make_to_stock	\N	KC/IN/00001	\N	2026-11-21	\N	500.0	500.00	500.00	t	t	\N	f	2026-11-21 15:08:07	2026-11-18 15:08:07.654525	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	12000	500	\N	6000000	t	t	f	f	1
-8	10	2	4	1	1	19	19	\N	5	\N	\N	9	\N	\N	2	\N	\N	1	1	1	0	done	P00001	make_to_stock	\N	KC/IN/00001	\N	2026-11-21	\N	600.0	600.00	600.00	t	t	\N	f	2026-11-21 15:08:07	2026-11-18 15:08:07.655507	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	7000	600	\N	4200000	t	t	f	f	2
-9	15	2	5	1	1	19	19	\N	5	\N	\N	9	\N	\N	2	\N	\N	1	1	1	0	done	P00001	make_to_stock	\N	KC/IN/00001	\N	2026-11-21	\N	300.0	300.00	300.00	t	t	\N	f	2026-11-21 15:08:07	2026-11-18 15:08:07.656375	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	22000	300	\N	6600000	t	t	f	f	3
-10	20	2	38	1	1	19	19	\N	5	\N	\N	9	\N	\N	2	\N	\N	1	1	1	0	done	P00001	make_to_stock	\N	KC/IN/00001	\N	2026-11-21	\N	200.0	200.00	200.00	t	t	\N	f	2026-11-21 15:08:07	2026-11-18 15:08:07.657339	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	20000	200	\N	4000000	t	t	f	f	4
-11	5	2	7	1	1	19	19	\N	6	\N	\N	9	\N	\N	2	\N	\N	1	1	1	0	assigned	P00002	make_to_stock	\N	KC/IN/00002	\N	2026-11-21	\N	1000.0	1000.00	1000.00	f	t	\N	f	2026-11-22 15:08:07.818328	2026-11-22 15:08:07.818328	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	3500	1000	\N	\N	t	f	f	f	5
-12	10	2	8	1	1	19	19	\N	6	\N	\N	9	\N	\N	2	\N	\N	1	1	1	0	assigned	P00002	make_to_stock	\N	KC/IN/00002	\N	2026-11-21	\N	1000.0	1000.00	1000.00	f	t	\N	f	2026-11-22 15:08:07.819732	2026-11-22 15:08:07.819732	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	5000	1000	\N	\N	t	f	f	f	6
-13	15	2	51	1	1	19	19	\N	6	\N	\N	9	\N	\N	2	\N	\N	1	1	1	0	assigned	P00002	make_to_stock	\N	KC/IN/00002	\N	2026-11-21	\N	800.0	800.00	800.00	f	t	\N	f	2026-11-22 15:08:07.820628	2026-11-22 15:08:07.820628	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	2000	800	\N	\N	t	f	f	f	7
-14	20	2	52	1	1	19	19	\N	6	\N	\N	9	\N	\N	2	\N	\N	1	1	1	0	assigned	P00002	make_to_stock	\N	KC/IN/00002	\N	2026-11-21	\N	500.0	500.00	500.00	f	t	\N	f	2026-11-22 15:08:07.821474	2026-11-22 15:08:07.821474	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	6500	500	\N	\N	t	f	f	f	8
+7	5	1	39	1	1	19	19	\N	5	\N	\N	9	\N	\N	2	\N	\N	1	1	1	0	done	P00001	make_to_stock	\N	KC/IN/00001	\N	2026-11-21	\N	500.0	500.00	500.00	t	t	\N	f	2026-11-21 15:08:07	2026-11-18 15:08:07.654525	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	12000	500	\N	6000000	t	t	f	f	1
+8	10	1	4	1	1	19	19	\N	5	\N	\N	9	\N	\N	2	\N	\N	1	1	1	0	done	P00001	make_to_stock	\N	KC/IN/00001	\N	2026-11-21	\N	600.0	600.00	600.00	t	t	\N	f	2026-11-21 15:08:07	2026-11-18 15:08:07.655507	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	7000	600	\N	4200000	t	t	f	f	2
+9	15	1	5	1	1	19	19	\N	5	\N	\N	9	\N	\N	2	\N	\N	1	1	1	0	done	P00001	make_to_stock	\N	KC/IN/00001	\N	2026-11-21	\N	300.0	300.00	300.00	t	t	\N	f	2026-11-21 15:08:07	2026-11-18 15:08:07.656375	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	22000	300	\N	6600000	t	t	f	f	3
+10	20	1	38	1	1	19	19	\N	5	\N	\N	9	\N	\N	2	\N	\N	1	1	1	0	done	P00001	make_to_stock	\N	KC/IN/00001	\N	2026-11-21	\N	200.0	200.00	200.00	t	t	\N	f	2026-11-21 15:08:07	2026-11-18 15:08:07.657339	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	20000	200	\N	4000000	t	t	f	f	4
+11	5	1	7	1	1	19	19	\N	6	\N	\N	9	\N	\N	2	\N	\N	1	1	1	0	assigned	P00002	make_to_stock	\N	KC/IN/00002	\N	2026-11-21	\N	1000.0	1000.00	1000.00	f	t	\N	f	2026-11-22 15:08:07.818328	2026-11-22 15:08:07.818328	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	3500	1000	\N	\N	t	f	f	f	5
+12	10	1	8	1	1	19	19	\N	6	\N	\N	9	\N	\N	2	\N	\N	1	1	1	0	assigned	P00002	make_to_stock	\N	KC/IN/00002	\N	2026-11-21	\N	1000.0	1000.00	1000.00	f	t	\N	f	2026-11-22 15:08:07.819732	2026-11-22 15:08:07.819732	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	5000	1000	\N	\N	t	f	f	f	6
+13	15	1	51	1	1	19	19	\N	6	\N	\N	9	\N	\N	2	\N	\N	1	1	1	0	assigned	P00002	make_to_stock	\N	KC/IN/00002	\N	2026-11-21	\N	800.0	800.00	800.00	f	t	\N	f	2026-11-22 15:08:07.820628	2026-11-22 15:08:07.820628	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	2000	800	\N	\N	t	f	f	f	7
+14	20	1	52	1	1	19	19	\N	6	\N	\N	9	\N	\N	2	\N	\N	1	1	1	0	assigned	P00002	make_to_stock	\N	KC/IN/00002	\N	2026-11-21	\N	500.0	500.00	500.00	f	t	\N	f	2026-11-22 15:08:07.821474	2026-11-22 15:08:07.821474	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703	6500	500	\N	\N	t	f	f	f	8
 \.
 
 
@@ -101081,14 +101087,14 @@ COPY public.stock_move_line (id, picking_id, move_id, company_id, product_id, pr
 3	3	4	1	4	1	\N	\N	\N	\N	\N	1	5	1	1	\N	done	2000.00	2000.00	t	\N	2026-10-13 14:37:58	2026-10-13 14:37:54.500797	2026-10-13 14:37:54.500797
 4	4	5	1	7	1	\N	\N	\N	\N	\N	1	5	1	1	\N	done	2000.00	2000.00	t	\N	2026-10-13 14:37:58	2026-10-13 14:37:54.500797	2026-10-13 14:37:54.500797
 5	4	6	1	8	1	\N	\N	\N	\N	\N	1	5	1	1	\N	done	2500.00	2500.00	t	\N	2026-10-13 14:37:58	2026-10-13 14:37:54.500797	2026-10-13 14:37:54.500797
-10	6	11	2	7	1	\N	\N	\N	\N	\N	1	19	1	1	\N	assigned	1000.00	1000.00	f	\N	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
-11	6	12	2	8	1	\N	\N	\N	\N	\N	1	19	1	1	\N	assigned	1000.00	1000.00	f	\N	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
-12	6	13	2	51	1	\N	\N	\N	\N	\N	1	19	1	1	\N	assigned	800.00	800.00	f	\N	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
-13	6	14	2	52	1	\N	\N	\N	\N	\N	1	19	1	1	\N	assigned	500.00	500.00	f	\N	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
-6	5	7	2	39	1	\N	\N	\N	\N	\N	1	19	1	1	\N	done	500.00	500.00	t	\N	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
-7	5	8	2	4	1	\N	\N	\N	\N	\N	1	19	1	1	\N	done	600.00	600.00	t	\N	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
-8	5	9	2	5	1	\N	\N	\N	\N	\N	1	19	1	1	\N	done	300.00	300.00	t	\N	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
-9	5	10	2	38	1	\N	\N	\N	\N	\N	1	19	1	1	\N	done	200.00	200.00	t	\N	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
+10	6	11	1	7	1	\N	\N	\N	\N	\N	1	19	1	1	\N	assigned	1000.00	1000.00	f	\N	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
+11	6	12	1	8	1	\N	\N	\N	\N	\N	1	19	1	1	\N	assigned	1000.00	1000.00	f	\N	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
+12	6	13	1	51	1	\N	\N	\N	\N	\N	1	19	1	1	\N	assigned	800.00	800.00	f	\N	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
+13	6	14	1	52	1	\N	\N	\N	\N	\N	1	19	1	1	\N	assigned	500.00	500.00	f	\N	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
+6	5	7	1	39	1	\N	\N	\N	\N	\N	1	19	1	1	\N	done	500.00	500.00	t	\N	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
+7	5	8	1	4	1	\N	\N	\N	\N	\N	1	19	1	1	\N	done	600.00	600.00	t	\N	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
+8	5	9	1	5	1	\N	\N	\N	\N	\N	1	19	1	1	\N	done	300.00	300.00	t	\N	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
+9	5	10	1	38	1	\N	\N	\N	\N	\N	1	19	1	1	\N	done	200.00	200.00	t	\N	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
 \.
 
 
@@ -101205,8 +101211,8 @@ COPY public.stock_picking (id, backorder_id, return_id, location_id, location_de
 2	\N	\N	1	5	1	367	1	8	\N	1	1	WH/IN/00002	PO-2026-001 (Đơn nhập đồ uống SABECO)	direct	done	0	\N	\N	0.00	f	\N	t	2026-10-13 14:37:58	\N	2026-10-13 14:37:58	2026-10-13 14:37:54.500797	2026-10-13 14:37:54.500797
 3	\N	\N	1	5	1	369	1	8	\N	1	1	WH/IN/00003	PO-2026-002 (Đơn nhập nước khoáng Lavie)	direct	done	0	\N	\N	0.00	f	\N	t	2026-10-13 14:37:58	\N	2026-10-13 14:37:58	2026-10-13 14:37:54.500797	2026-10-13 14:37:54.500797
 4	\N	\N	1	5	1	368	1	8	\N	1	1	WH/IN/00004	PO-2026-003 (Đơn nhập vật tư buồng phòng Eco)	direct	done	0	\N	\N	0.00	f	\N	t	2026-10-13 14:37:58	\N	2026-10-13 14:37:58	2026-10-13 14:37:54.500797	2026-10-13 14:37:54.500797
-6	\N	\N	1	19	9	434	2	\N	\N	1	1	KC/IN/00002	P00002	direct	assigned	0	\N	\N	0.00	f	\N	t	2026-11-22 15:08:07.818328	2026-11-22 15:08:07.818328	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
-5	\N	\N	1	19	9	433	2	\N	\N	1	1	KC/IN/00001	P00001	direct	done	0	\N	\N	0.00	t	\N	t	2026-11-21 15:08:07	2026-11-18 15:08:07.654525	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
+6	\N	\N	1	19	9	434	1	\N	\N	1	1	KC/IN/00002	P00002	direct	assigned	0	\N	\N	0.00	f	\N	t	2026-11-22 15:08:07.818328	2026-11-22 15:08:07.818328	\N	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
+5	\N	\N	1	19	9	433	1	\N	\N	1	1	KC/IN/00001	P00001	direct	done	0	\N	\N	0.00	t	\N	t	2026-11-21 15:08:07	2026-11-18 15:08:07.654525	2026-11-21 15:08:07	2026-11-21 15:08:07.586703	2026-11-21 15:08:07.586703
 \.
 
 
@@ -102244,7 +102250,7 @@ SELECT pg_catalog.setval('public.bill_to_po_wizard_id_seq', 1, false);
 -- Name: bus_bus_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odoo
 --
 
-SELECT pg_catalog.setval('public.bus_bus_id_seq', 770, true);
+SELECT pg_catalog.setval('public.bus_bus_id_seq', 776, true);
 
 
 --
@@ -126989,5 +126995,5 @@ ALTER TABLE ONLY public.wizard_ir_model_menu_create
 -- PostgreSQL database dump complete
 --
 
-\unrestrict WCFbFi9mFSAM1W1V9Ihy3R9Fm9ftnX0eWaLiidBZ0jNI8uPMYcPcSzBgHa5KVOn
+\unrestrict vSFtXJI3haYpWUZpOSTfGuppn8fBseLh6o50k6pDewBZTQND37HcqhbGb3tzLdZ
 
