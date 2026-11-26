@@ -19,7 +19,7 @@
         <record id="group_hotel_receptionist" model="res.groups">
             <field name="name">Nhân viên Lễ tân</field>
             <field name="privilege_id" ref="privilege_hotel_management"/>
-            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('account.group_account_invoice'))]"/>
         </record>
 
         <!-- 3. Nhóm Kỹ thuật / Bảo trì -->
@@ -33,7 +33,7 @@
         <record id="group_hotel_stock" model="res.groups">
             <field name="name">Thủ kho Vật tư Khách sạn</field>
             <field name="privilege_id" ref="privilege_hotel_management"/>
-            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('stock.group_stock_user')), (4, ref('purchase.group_purchase_user'))]"/>
         </record>
 
         <!-- 5. Nhóm Tài chính - Kế toán -->

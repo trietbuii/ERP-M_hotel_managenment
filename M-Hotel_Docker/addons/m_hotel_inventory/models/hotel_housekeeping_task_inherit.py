@@ -12,10 +12,11 @@ class HotelHousekeepingTask(models.Model):
             if not task.room_type_id:
                 continue
             
-            # Tra cứu định mức tương ứng với hạng phòng
+            # Tra cứu định mức tương ứng với hạng phòng và chi nhánh
             domain = [
                 ('room_type_id', '=', task.room_type_id.id),
                 ('task_type', 'in', ['all', task.task_type]),
+                ('company_id', 'in', [False, task.company_id.id]),
             ]
             norms = self.env['hotel.supply.norm'].search(domain)
             

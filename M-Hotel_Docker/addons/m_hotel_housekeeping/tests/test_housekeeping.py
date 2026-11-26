@@ -45,3 +45,16 @@ class TestHotelHousekeeping(TransactionCase):
         incident.action_resolve()
         self.assertEqual(incident.state, 'resolved')
         self.assertEqual(self.room.status, 'cleaning')
+
+    def test_03_incident_cancel_unlocks_room(self):
+        """TC: Hủy sự cố đã khóa phòng phải mở khóa về Cần dọn dẹp nếu không còn sự cố khác"""
+        incident = self.env['hotel.incident'].create({
+            'title': 'Báo nhầm khóa phòng',
+            'room_id': self.room.id,
+            'severity': 'critical',
+            'block_room': True,
+        })
+        self.assertEqual(self.room.status, 'maintenance')
+        incident.action_cancel()
+        self.assertEqual(incident.state, 'cancel')
+        self.assertEqual(self.room.status, 'cleaning')

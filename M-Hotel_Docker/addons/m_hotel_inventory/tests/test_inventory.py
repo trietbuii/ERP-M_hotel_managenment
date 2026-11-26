@@ -42,3 +42,28 @@ class TestHotelInventory(TransactionCase):
         self.assertEqual(len(consumed), 1)
         self.assertEqual(consumed.product_id.id, self.supply.id)
         self.assertEqual(consumed.quantity, 3.0)
+
+    def test_02_company_scoped_norm(self):
+        """TC: Chỉ trừ định mức đúng chi nhánh của phòng, không lấy nhầm định mức chi nhánh khác"""
+        other_company = self.env['res.company'].create({'name': 'Chi Nhánh Test Khác'})
+        other_supply = self.env['product.product'].create({
+            'name': 'Khăn riêng CN2',
+            'is_hotel_supply': True,
+            'type': 'consu',
+        })
+        self.env['hotel.supply.norm'].create({
+            'room_type_id': self.room_type.id,
+            'company_id': other_company.id,
+            'product_id': other_supply.id,
+            'quantity': 5.0,
+            'task_type': 'all',
+        })
+        task = self.env['hotel.housekeeping.task'].create({
+            'room_id': self.room.id,
+            'task_type': 'checkout_clean',
+            'state': 'pending',
+        })
+        task.action_start()
+        task.action_complete()
+        consumed = self.env['hotel.task.supply.consumed'].search([('task_id', '=', task.id)])
+        self.assertEqual(consumed.mapped('product_id').ids, [self.supply.id])

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, time, timedelta
+import pytz
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError
 
@@ -94,14 +95,16 @@ class HotelBooking(models.Model):
             if not rec.room_id:
                 rec.room_price = 0.0
                 continue
-            # Kiểm tra giá mùa nếu có
+            # Kiểm tra giá mùa theo chi nhánh (ưu tiên biểu giá riêng của chi nhánh trước biểu giá dùng chung)
             target_date = rec.check_in.date() if (rec.rent_type == 'night' and rec.check_in) else (rec.hour_date or fields.Date.today())
-            rate = self.env['hotel.room.rate'].search([
+            rates = self.env['hotel.room.rate'].search([
                 ('room_type_id', '=', rec.room_id.room_type_id.id),
+                ('company_id', 'in', [False, rec.company_id.id]),
                 ('start_date', '<=', target_date),
                 ('end_date', '>=', target_date),
                 ('active', '=', True)
-            ], limit=1)
+            ])
+            rate = rates.sorted(key=lambda r: 0 if r.company_id else 1)[:1]
 
             if rec.rent_type == 'night':
                 rec.room_price = rate.price_night if rate else rec.room_id.price_night
@@ -142,37 +145,57 @@ class HotelBooking(models.Model):
     # ==========================================
     # CHỐNG TRÙNG LỊCH ĐẶT PHÒNG
     # ==========================================
+    @api.model
+    def _get_rent_interval(self, rent_type, check_in, check_out, hour_date, hour_start, hour_end):
+        """Quy đổi khoảng lưu trú (theo đêm hoặc theo giờ) về chung múi giờ UTC để đối chiếu chéo."""
+        if rent_type == 'night':
+            if check_in and check_out:
+                return check_in, check_out
+            return False, False
+        if hour_date and hour_start is not False and hour_end is not False:
+            tz_name = self.env.context.get('tz') or self.env.user.tz or 'Asia/Ho_Chi_Minh'
+            local_tz = pytz.timezone(tz_name)
+            base_dt = datetime.combine(hour_date, time.min)
+            start_utc = local_tz.localize(base_dt + timedelta(hours=hour_start)).astimezone(pytz.utc).replace(tzinfo=None)
+            end_utc = local_tz.localize(base_dt + timedelta(hours=hour_end)).astimezone(pytz.utc).replace(tzinfo=None)
+            return start_utc, end_utc
+        return False, False
+
     @api.constrains('room_id', 'state', 'check_in', 'check_out', 'rent_type', 'hour_date', 'hour_start', 'hour_end')
     def _check_double_booking(self):
         for rec in self:
             if rec.state in ['cancel', 'draft'] or not rec.room_id:
                 continue
-            
+
+            rec_start, rec_end = self._get_rent_interval(
+                rec.rent_type, rec.check_in, rec.check_out, rec.hour_date, rec.hour_start, rec.hour_end
+            )
+            if not rec_start or not rec_end:
+                continue
+
             domain = [
                 ('id', '!=', rec.id),
                 ('room_id', '=', rec.room_id.id),
                 ('state', 'in', ['confirmed', 'check_in', 'check_out', 'invoiced']),
             ]
             conflicts = self.search(domain)
-            
+
             for c in conflicts:
-                if rec.rent_type == 'night' and c.rent_type == 'night':
-                    if rec.check_in and rec.check_out and c.check_in and c.check_out:
-                        # Overlap: max(start1, start2) < min(end1, end2)
-                        if rec.check_in < c.check_out and rec.check_out > c.check_in:
-                            raise ValidationError(
-                                _("Phòng %s đã được đặt hoặc đang có khách lưu trú bởi đơn %s (từ %s đến %s)! Vui lòng chọn phòng khác.") % (
-                                    rec.room_id.name, c.name, c.check_in, c.check_out
-                                )
-                            )
-                elif rec.rent_type == 'hour' and c.rent_type == 'hour':
-                    if rec.hour_date and c.hour_date and rec.hour_date == c.hour_date:
-                        if rec.hour_start < c.hour_end and rec.hour_end > c.hour_start:
-                            raise ValidationError(
-                                _("Phòng %s bị trùng giờ với đơn %s vào ngày %s (từ %.1fh đến %.1fh)!") % (
-                                    rec.room_id.name, c.name, c.hour_date, c.hour_start, c.hour_end
-                                )
-                            )
+                c_start, c_end = self._get_rent_interval(
+                    c.rent_type, c.check_in, c.check_out, c.hour_date, c.hour_start, c.hour_end
+                )
+                if not c_start or not c_end:
+                    continue
+                if rec_start < c_end and rec_end > c_start:
+                    if c.rent_type == 'night':
+                        time_desc = _("từ %s đến %s") % (c.check_in, c.check_out)
+                    else:
+                        time_desc = _("vào ngày %s (từ %.1fh đến %.1fh)") % (c.hour_date, c.hour_start, c.hour_end)
+                    raise ValidationError(
+                        _("Phòng %s bị trùng lịch với đơn %s (%s)! Vui lòng chọn phòng hoặc khung giờ khác.") % (
+                            rec.room_id.name, c.name, time_desc
+                        )
+                    )
 
     # ==========================================
     # WORKFLOW ACTIONS
@@ -187,6 +210,8 @@ class HotelBooking(models.Model):
         for rec in self:
             if rec.room_id.status == 'occupied' and rec.room_id.current_guest != rec.partner_id.name:
                 raise UserError(_("Phòng %s hiện đang có khách khác lưu trú (%s)!") % (rec.room_id.name, rec.room_id.current_guest))
+            if rec.room_id.status == 'cleaning':
+                raise UserError(_("Phòng %s đang chờ dọn dẹp, chưa sẵn sàng nhận khách!") % rec.room_id.name)
             if rec.room_id.status in ['maintenance', 'out_of_service']:
                 raise UserError(_("Phòng %s đang bảo trì hoặc tạm khóa, không thể nhận phòng!") % rec.room_id.name)
             
@@ -210,9 +235,18 @@ class HotelBooking(models.Model):
 
     def action_cancel(self):
         for rec in self:
+            prev_state = rec.state
             rec.write({'state': 'cancel'})
-            if rec.room_id.status in ['reserved', 'occupied']:
+            if prev_state == 'check_in' and rec.room_id.status == 'occupied' and rec.room_id.current_guest == rec.partner_id.name:
                 rec.room_id.write({'status': 'available', 'current_guest': False})
+            elif prev_state == 'confirmed' and rec.room_id.status == 'reserved':
+                other_confirmed = self.search_count([
+                    ('id', '!=', rec.id),
+                    ('room_id', '=', rec.room_id.id),
+                    ('state', '=', 'confirmed'),
+                ])
+                if not other_confirmed:
+                    rec.room_id.write({'status': 'available', 'current_guest': False})
 
     # ==========================================
     # XUẤT HÓA ĐƠN ODOO CHUẨN (ACCOUNT.MOVE)
@@ -250,6 +284,15 @@ class HotelBooking(models.Model):
                 'name': line.name or (line.product_id.name if line.product_id else 'Dịch vụ phụ trợ'),
                 'quantity': line.quantity,
                 'price_unit': line.price_unit,
+            }))
+
+        # Dòng khấu trừ tiền đặt cọc (nếu khách đã nộp cọc trước)
+        if self.deposit_amount > 0 and self.amount_total > 0:
+            deduct_amount = min(self.deposit_amount, self.amount_total)
+            invoice_vals['invoice_line_ids'].append((0, 0, {
+                'name': f"Khấu trừ tiền đặt cọc đã thu trước ({self.name})",
+                'quantity': 1,
+                'price_unit': -deduct_amount,
             }))
 
         move = self.env['account.move'].create(invoice_vals)

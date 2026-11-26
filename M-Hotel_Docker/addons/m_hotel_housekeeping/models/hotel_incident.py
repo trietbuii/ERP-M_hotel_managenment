@@ -49,8 +49,16 @@ class HotelIncident(models.Model):
         for rec in self:
             if rec.block_room and rec.state in ['reported', 'in_progress']:
                 rec.room_id.write({'status': 'maintenance'})
-            elif rec.state == 'resolved' and rec.room_id.status in ['maintenance', 'out_of_service']:
-                rec.room_id.write({'status': 'cleaning'})
+            elif rec.state in ['resolved', 'cancel'] and rec.room_id.status in ['maintenance', 'out_of_service']:
+                # Chỉ mở khóa khi không còn sự cố khác đang khóa phòng này
+                other_blocking = self.search_count([
+                    ('id', '!=', rec.id),
+                    ('room_id', '=', rec.room_id.id),
+                    ('block_room', '=', True),
+                    ('state', 'in', ['reported', 'in_progress']),
+                ])
+                if not other_blocking:
+                    rec.room_id.write({'status': 'cleaning'})
         return res
 
     def action_start(self):

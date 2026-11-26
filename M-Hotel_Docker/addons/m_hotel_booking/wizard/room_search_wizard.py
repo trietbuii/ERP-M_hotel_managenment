@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import timedelta
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
@@ -14,7 +15,7 @@ class HotelRoomSearchWizard(models.TransientModel):
     ], string='Hình thức thuê', default='night', required=True)
 
     check_in = fields.Datetime(string='Ngày nhận phòng', default=fields.Datetime.now)
-    check_out = fields.Datetime(string='Ngày trả phòng')
+    check_out = fields.Datetime(string='Ngày trả phòng', default=lambda self: fields.Datetime.now() + timedelta(days=1))
     
     hour_date = fields.Date(string='Ngày thuê giờ', default=fields.Date.context_today)
     hour_start = fields.Float(string='Giờ bắt đầu', default=14.0)
@@ -25,38 +26,59 @@ class HotelRoomSearchWizard(models.TransientModel):
 
     def action_search_rooms(self):
         self.ensure_one()
-        # Lấy tất cả các phòng thỏa mãn điều kiện cơ sở và hạng phòng
+        Booking = self.env['hotel.booking']
+        now = fields.Datetime.now()
+
+        if self.rent_type == 'night':
+            if not self.check_in or not self.check_out:
+                raise UserError(_("Vui lòng nhập đầy đủ ngày nhận và trả phòng!"))
+            if self.check_out <= self.check_in:
+                raise UserError(_("Ngày giờ trả phòng phải lớn hơn ngày giờ nhận phòng!"))
+            search_start, search_end = Booking._get_rent_interval(
+                'night', self.check_in, self.check_out, False, False, False
+            )
+        else:
+            if not self.hour_date or (self.hours_duration or 0) <= 0:
+                raise UserError(_("Vui lòng nhập ngày thuê giờ và số giờ thuê lớn hơn 0!"))
+            hour_end = (self.hour_start or 0.0) + self.hours_duration
+            search_start, search_end = Booking._get_rent_interval(
+                'hour', False, False, self.hour_date, self.hour_start, hour_end
+            )
+
+        # Lấy các phòng đang hoạt động (nếu nhận ngay/hôm nay thì loại luôn phòng Đang có khách)
+        excluded_statuses = ['maintenance', 'out_of_service']
+        if search_start <= now + timedelta(hours=1):
+            excluded_statuses.append('occupied')
+
         room_domain = [
             ('company_id', '=', self.company_id.id),
-            ('status', 'not in', ['maintenance', 'out_of_service'])
+            ('status', 'not in', excluded_statuses),
         ]
         if self.room_type_id:
             room_domain.append(('room_type_id', '=', self.room_type_id.id))
-        
+
         all_rooms = self.env['hotel.room'].search(room_domain)
-        
-        # Lọc bỏ các phòng bị trùng lịch
+
+        # Lọc bỏ các phòng bị trùng lịch (kiểm tra chéo cả theo đêm & theo giờ)
         busy_room_ids = set()
         booking_domain = [
             ('company_id', '=', self.company_id.id),
             ('state', 'in', ['confirmed', 'check_in', 'check_out', 'invoiced']),
             ('room_id', 'in', all_rooms.ids)
         ]
-        active_bookings = self.env['hotel.booking'].search(booking_domain)
-        
-        if self.rent_type == 'night':
-            if not self.check_in or not self.check_out:
-                raise UserError(_("Vui lòng nhập đầy đủ ngày nhận và trả phòng!"))
-            for b in active_bookings:
-                if b.rent_type == 'night' and b.check_in and b.check_out:
-                    if self.check_in < b.check_out and self.check_out > b.check_in:
-                        busy_room_ids.add(b.room_id.id)
-        else:
-            hour_end = (self.hour_start or 0.0) + (self.hours_duration or 0)
-            for b in active_bookings:
-                if b.rent_type == 'hour' and b.hour_date == self.hour_date:
-                    if self.hour_start < b.hour_end and hour_end > b.hour_start:
-                        busy_room_ids.add(b.room_id.id)
+        active_bookings = Booking.search(booking_domain)
+
+        for b in active_bookings:
+            b_start, b_end = Booking._get_rent_interval(
+                b.rent_type, b.check_in, b.check_out, b.hour_date, b.hour_start, b.hour_end
+            )
+            if not b_start or not b_end:
+                continue
+            # Khách đang lưu trú chưa trả phòng thì vẫn chiếm phòng ít nhất tới thời điểm hiện tại
+            if b.state == 'check_in':
+                b_end = max(b_end, now + timedelta(minutes=1))
+            if search_start < b_end and search_end > b_start:
+                busy_room_ids.add(b.room_id.id)
 
         available_rooms = all_rooms.filtered(lambda r: r.id not in busy_room_ids)
         self.available_room_ids = [(6, 0, available_rooms.ids)]

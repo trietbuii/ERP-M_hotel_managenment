@@ -14,6 +14,7 @@ class HotelIncident(models.Model):
 
         m_request = self.env['maintenance.request'].create({
             'name': f"[{self.room_id.name}] {self.title}",
+            'company_id': self.company_id.id,
             'room_id': self.room_id.id,
             'incident_id': self.id,
             'description': self.description or self.title,

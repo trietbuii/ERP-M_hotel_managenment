@@ -17,7 +17,7 @@ M-Hotel Core (m_hotel_base):
     """,
     'author': 'Group 12 — Enterprise Resource Planning (ERP)',
     'license': 'LGPL-3',
-    'depends': ['base', 'mail', 'contacts', 'product'],
+    'depends': ['base', 'mail', 'contacts', 'product', 'account', 'stock', 'purchase'],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',

@@ -15,6 +15,7 @@ M-Hotel Report (m_hotel_report):
     'license': 'LGPL-3',
     'depends': ['m_hotel_base', 'm_hotel_booking'],
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'views/hotel_occupancy_report_views.xml',
         'views/menu_views.xml',

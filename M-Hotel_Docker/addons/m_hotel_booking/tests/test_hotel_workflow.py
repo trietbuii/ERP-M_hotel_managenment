@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, tagged
 from odoo.exceptions import ValidationError, UserError
 
+@tagged('post_install', '-at_install')
 class TestHotelWorkflow(TransactionCase):
 
     def setUp(self):
@@ -151,3 +152,138 @@ class TestHotelWorkflow(TransactionCase):
         self.assertIsNotNone(warning_res)
         self.assertIn('warning', warning_res)
         self.assertIn('Cảnh Báo Tồn Kho Minibar', warning_res['warning']['title'])
+
+    def test_07_receptionist_invoice_and_payment(self):
+        """TC07: Tài khoản Lễ tân đủ quyền tạo, vào sổ và thu tiền hóa đơn khách hàng"""
+        receptionist_user = self.env['res.users'].create({
+            'name': 'Lễ Tân Test RBAC',
+            'login': 'test_receptionist_rbac',
+            'email': 'test_receptionist_rbac@example.com',
+            'group_ids': [(6, 0, [self.env.ref('m_hotel_base.group_hotel_receptionist').id])],
+        })
+        now = datetime.now()
+        BookingAsRecep = self.Booking.with_user(receptionist_user)
+        booking = BookingAsRecep.create({
+            'partner_id': self.guest.id,
+            'room_id': self.room.id,
+            'rent_type': 'night',
+            'check_in': now,
+            'check_out': now + timedelta(days=1),
+            'deposit_amount': 200000.0,
+        })
+        booking.action_confirm()
+        booking.action_check_in()
+        booking.action_check_out()
+        booking.action_create_invoice()
+
+        invoice = booking.invoice_id.with_user(receptionist_user)
+        self.assertTrue(invoice)
+        self.assertEqual(invoice.amount_total, 800000.0)
+        self.assertEqual(invoice.amount_total, booking.amount_residual)
+        invoice.action_post()
+        self.assertEqual(invoice.state, 'posted')
+
+        journal = self.env['account.journal'].sudo().search([
+            ('type', '=', 'cash'),
+            ('company_id', '=', booking.company_id.id),
+        ], limit=1) or self.env['account.journal'].sudo().search([
+            ('type', '=', 'bank'),
+            ('company_id', '=', booking.company_id.id),
+        ], limit=1)
+        self.assertTrue(journal, "Cần ít nhất 1 sổ Tiền mặt hoặc Ngân hàng để test thanh toán")
+        pay_wiz = self.env['account.payment.register'].with_user(receptionist_user).with_context(
+            active_model='account.move',
+            active_ids=invoice.ids,
+        ).create({'journal_id': journal.id})
+        pay_wiz.action_create_payments()
+        self.assertEqual(invoice.payment_state, 'paid' if journal.type == 'cash' else 'in_payment')
+        self.assertEqual(invoice.amount_residual, 0.0)
+
+    def test_08_cross_rent_type_and_wizard_occupied_filter(self):
+        """TC08: Chặn trùng chéo thuê đêm-giờ và ẩn phòng Đang có khách khỏi Wizard nhận ngay"""
+        now = datetime.now()
+        # Đơn thuê đêm hiện đang ở (quá hạn check-out giả lập giống phòng kẹt chưa trả)
+        past_in = now - timedelta(days=5)
+        past_out = now - timedelta(days=3)
+        b_stay = self.Booking.create({
+            'partner_id': self.guest.id,
+            'room_id': self.room.id,
+            'rent_type': 'night',
+            'check_in': past_in,
+            'check_out': past_out,
+        })
+        b_stay.action_confirm()
+        b_stay.action_check_in()
+
+        # Wizard tìm phòng nhận ngay hôm nay KHÔNG được hiện phòng đang occupied
+        wiz = self.env['hotel.room.search.wizard'].create({
+            'company_id': self.room.company_id.id,
+            'room_type_id': self.room_type.id,
+            'rent_type': 'night',
+            'check_in': now,
+            'check_out': now + timedelta(days=1),
+        })
+        wiz.action_search_rooms()
+        self.assertNotIn(self.room, wiz.available_room_ids)
+
+        # Chặn đặt trùng theo giờ đè lên đơn thuê đêm tương lai
+        fut_in = datetime(2026, 12, 20, 7, 0)   # 14:00 GMT+7
+        fut_out = datetime(2026, 12, 22, 5, 0)  # 12:00 GMT+7
+        b_night = self.Booking.create({
+            'partner_id': self.guest.id,
+            'room_id': self.room.id,
+            'rent_type': 'night',
+            'check_in': fut_in,
+            'check_out': fut_out,
+        })
+        b_night.action_confirm()
+        with self.assertRaises(ValidationError):
+            b_hour = self.Booking.create({
+                'partner_id': self.guest.id,
+                'room_id': self.room.id,
+                'rent_type': 'hour',
+                'hour_date': fut_in.date() + timedelta(days=1),
+                'hour_start': 10.0,
+                'hours_duration': 2,
+            })
+            b_hour.action_confirm()
+
+    def test_09_cancel_future_booking_and_block_cleaning_checkin(self):
+        """TC09: Hủy đơn tương lai không làm mất trạng thái Đang ở; chặn nhận phòng đang Cần dọn"""
+        now = datetime.now()
+        b_stay = self.Booking.create({
+            'partner_id': self.guest.id,
+            'room_id': self.room.id,
+            'rent_type': 'night',
+            'check_in': now,
+            'check_out': now + timedelta(days=1),
+        })
+        b_stay.action_confirm()
+        b_stay.action_check_in()
+
+        b_future = self.Booking.create({
+            'partner_id': self.guest.id,
+            'room_id': self.room.id,
+            'rent_type': 'night',
+            'check_in': now + timedelta(days=10),
+            'check_out': now + timedelta(days=12),
+        })
+        b_future.action_confirm()
+        b_future.action_cancel()
+
+        self.assertEqual(self.room.status, 'occupied')
+        self.assertEqual(self.room.current_guest, self.guest.name)
+
+        # Trả phòng -> phòng Cần dọn dẹp -> phải chặn nếu cố nhận phòng đơn khác khi chưa dọn xong
+        b_stay.action_check_out()
+        self.assertEqual(self.room.status, 'cleaning')
+        b_next = self.Booking.create({
+            'partner_id': self.guest.id,
+            'room_id': self.room.id,
+            'rent_type': 'night',
+            'check_in': now + timedelta(days=2),
+            'check_out': now + timedelta(days=3),
+        })
+        b_next.action_confirm()
+        with self.assertRaises(UserError):
+            b_next.action_check_in()
