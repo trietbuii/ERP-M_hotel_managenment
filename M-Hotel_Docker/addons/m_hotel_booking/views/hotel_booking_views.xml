@@ -61,7 +61,7 @@
                     <button name="action_confirm" string="Xác Nhận Giữ Phòng" type="object" class="btn-primary" invisible="state != 'draft'"/>
                     <button name="action_check_in" string="Nhận Phòng" type="object" class="btn-success" invisible="state != 'confirmed'"/>
                     <button name="action_check_out" string="Trả Phòng" type="object" class="btn-warning" invisible="state != 'check_in'"/>
-                    <button name="action_create_invoice" string="Tạo Hóa Đơn Khách Hàng" type="object" class="btn-info" invisible="state not in ('check_out', 'check_in') or invoice_id"/>
+                    <button name="action_create_invoice" string="Tạo Hóa Đơn Khách Hàng" type="object" class="btn-info" invisible="state != 'check_out' or invoice_id"/>
                     <button name="action_cancel" string="Hủy Đặt Phòng" type="object" invisible="state not in ('draft', 'confirmed')"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,check_in,check_out,invoiced"/>
                 </header>

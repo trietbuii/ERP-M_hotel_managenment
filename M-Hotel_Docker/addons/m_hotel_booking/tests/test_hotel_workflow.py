@@ -287,3 +287,35 @@ class TestHotelWorkflow(TransactionCase):
         b_next.action_confirm()
         with self.assertRaises(UserError):
             b_next.action_check_in()
+
+    def test_10_checkout_and_invoice_not_blocked_by_checked_out_booking(self):
+        """TC10: Đơn đã trả phòng/xuất hóa đơn không chặn tạo hóa đơn hay đặt phòng mới khi khách trả sớm"""
+        now = datetime.now()
+        b1 = self.Booking.create({
+            'partner_id': self.guest.id,
+            'room_id': self.room.id,
+            'rent_type': 'night',
+            'check_in': now,
+            'check_out': now + timedelta(days=3),
+        })
+        b1.action_confirm()
+        b1.action_check_in()
+        # Khách b1 trả phòng sớm sau 1 ngày
+        b1.action_check_out()
+        self.room.action_set_available()
+
+        # Đơn b2 đặt vào đúng khoảng ngày còn lại của b1 phải thành công và xuất hóa đơn bình thường
+        b2 = self.Booking.create({
+            'partner_id': self.guest.id,
+            'room_id': self.room.id,
+            'rent_type': 'night',
+            'check_in': now + timedelta(days=1),
+            'check_out': now + timedelta(days=2),
+        })
+        b2.action_confirm()
+        b2.action_check_in()
+        b2.action_check_out()
+        b2.action_create_invoice()
+        self.assertEqual(b2.state, 'invoiced')
+        b1.action_create_invoice()
+        self.assertEqual(b1.state, 'invoiced')

@@ -164,7 +164,7 @@ class HotelBooking(models.Model):
     @api.constrains('room_id', 'state', 'check_in', 'check_out', 'rent_type', 'hour_date', 'hour_start', 'hour_end')
     def _check_double_booking(self):
         for rec in self:
-            if rec.state in ['cancel', 'draft'] or not rec.room_id:
+            if rec.state not in ['confirmed', 'check_in'] or not rec.room_id:
                 continue
 
             rec_start, rec_end = self._get_rent_interval(
@@ -176,7 +176,7 @@ class HotelBooking(models.Model):
             domain = [
                 ('id', '!=', rec.id),
                 ('room_id', '=', rec.room_id.id),
-                ('state', 'in', ['confirmed', 'check_in', 'check_out', 'invoiced']),
+                ('state', 'in', ['confirmed', 'check_in']),
             ]
             conflicts = self.search(domain)
 
@@ -248,6 +248,18 @@ class HotelBooking(models.Model):
                 if not other_confirmed:
                     rec.room_id.write({'status': 'available', 'current_guest': False})
 
+    def write(self, vals):
+        old_rooms = {rec.id: rec.room_id for rec in self if rec.state == 'check_in'} if 'room_id' in vals else {}
+        res = super().write(vals)
+        if old_rooms:
+            for rec in self:
+                old_room = old_rooms.get(rec.id)
+                if old_room and rec.room_id != old_room and rec.state == 'check_in':
+                    if old_room.status == 'occupied' and old_room.current_guest == rec.partner_id.name:
+                        old_room.write({'status': 'cleaning', 'current_guest': False})
+                    rec.room_id.write({'status': 'occupied', 'current_guest': rec.partner_id.name})
+        return res
+
     # ==========================================
     # XUẤT HÓA ĐƠN ODOO CHUẨN (ACCOUNT.MOVE)
     # ==========================================
@@ -255,6 +267,10 @@ class HotelBooking(models.Model):
         self.ensure_one()
         if self.invoice_id:
             return self.action_view_invoice()
+
+        # Nếu đơn đang ở trạng thái Đang lưu trú mà bấm xuất hóa đơn ngay thì tự động tất toán trả phòng trước
+        if self.state == 'check_in':
+            self.action_check_out()
 
         # Tạo journal entry invoice (Customer Invoice: out_invoice)
         invoice_vals = {

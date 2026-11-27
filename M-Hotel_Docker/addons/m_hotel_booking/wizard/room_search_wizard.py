@@ -63,7 +63,7 @@ class HotelRoomSearchWizard(models.TransientModel):
         busy_room_ids = set()
         booking_domain = [
             ('company_id', '=', self.company_id.id),
-            ('state', 'in', ['confirmed', 'check_in', 'check_out', 'invoiced']),
+            ('state', 'in', ['confirmed', 'check_in']),
             ('room_id', 'in', all_rooms.ids)
         ]
         active_bookings = Booking.search(booking_domain)
